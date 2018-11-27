@@ -16,20 +16,37 @@
         http://www.springframework.org/schema/task/spring-task-4.2.xsd">
 
     <!-- 扫描路径  自动扫描@Controller -->
-    <context:component-scan base-package="com.tent.cloud">
+    <context:component-scan base-package="com.tent.cloud" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
-
+    
     <!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
-    <mvc:default-servlet-handler />
+    <mvc:default-servlet-handler/>
 
     <!-- 定义无需Controller的url<->view直接映射 -->
-    <!--<mvc:view-controller path="/" view-name="redirect:index.html" />-->
+    <mvc:view-controller path="/" view-name="redirect:index.html"/>
 
     <!-- 激活基于注解的配置 @RequestMapping, @ExceptionHandler,数据绑定 ,@NumberFormat ,
 @DateTimeFormat ,@Controller ,@Valid ,@RequestBody ,@ResponseBody等  -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
+    <!-- 拦截器 -->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**/*.html"/>-->
+            <!--<bean class="*"></bean>&lt;!&ndash;class="baoming"&ndash;&gt;-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+    
     <!-- 静态资源配置 -->
     <!--<mvc:resources location="/assets/" mapping="/assets/**"></mvc:resources>-->
 

@@ -29,14 +29,16 @@
     <description>项目描述标签</description><!-- 对项目进行描述 -->
     <display-name>front</display-name><!-- 定义项目的名称 -->
 
+    <!--默认欢迎页面-->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!--负责启动spring容器的监听器 begin-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <!-- 应用程序上下文 -->
+    <!-- 从类路径下加载spring的配置文件,classpath关键字特指类路径下加载  应用程序上下文 -->
     <context-param><!-- 含有一对参数名和参数值，用作应用servlet上下文初始化参数。参数名在整个web应用中必须是唯一的。 -->
         <param-name>contextConfigLocation</param-name><!-- 设置参数名称 -->
         <param-value>WEB-INF/applicationContext.xml</param-value><!-- 设置参数值 -->
@@ -61,9 +63,10 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
+    <!--Filter-mapping中的url-pattern为过滤的url类型-->
     <filter-mapping>
         <filter-name>charsetEncoding</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>*</url-pattern>
     </filter-mapping>
 
     <!--&lt;!&ndash; URL space mappings ============================================= &ndash;&gt;-->
@@ -74,22 +77,29 @@
      - (like integration with proprietary webapps or servlets) you might have
      - to change this parameter.
     -->
-    <!-- web应用程序上下文 前端控制器-->
+    <!-- 声明springMVC 的 DispatcherServlet web应用程序上下文 前端控制器-->
     <servlet>
         <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <!-- 加载/WEB-INF/[servlet-name]-servlet.xml -->
+        <!--必须是个整数，表示servlet应该被载入的顺序；
+                当值为0或者大于0时，表示容器在应用启动时就加载并初始化这个servlet；
+                当值小于0或者没有指定时，则表示容器在该servlet被选择时才会去加载；
+                正数的值越小，该servlet的优先级越高，应用启动时就越先加载；
+                当值相同时，容器就会自己选择顺序来加载
+            -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/springmvc-servlet.xml</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
-        <!--<init-param>-->
-        <!--<param-name>contextConfigLocation</param-name>-->
-        <!--<param-value>/WEB-INF/springmvc-servlet.xml</param-value>-->
-        <!--</init-param>-->
         <!--<load-on-startup>2</load-on-startup>-->
     </servlet>
-    <servlet-mapping>
-        <servlet-name>springmvc</servlet-name><!-- 定义servlet所对应的名称 -->
-        <url-pattern>/*</url-pattern><!-- 定义servlet所对应的url路径 -->
-    </servlet-mapping>
+    <!--拦截器配置-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>springmvc</servlet-name>&lt;!&ndash; 定义servlet所对应的名称 &ndash;&gt;-->
+    <!--<url-pattern>/</url-pattern>&lt;!&ndash; 定义servlet所对应的url路径 &ndash;&gt;-->
+    <!--</servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
         <url-pattern>*.html</url-pattern>
@@ -107,8 +117,6 @@
         <session-timeout>600</session-timeout>
     </session-config>
 
-    <jsp-config>
-    </jsp-config>
 
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
