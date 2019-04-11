@@ -31,7 +31,7 @@
 
     <!--默认欢迎页面-->
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
     <!--负责启动spring容器的监听器 begin-->
@@ -120,15 +120,15 @@
 
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
-        <location>/WEB-INF/error/500.html</location>
+        <location>/WEB-INF/error/500.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>/WEB-INF/error/500.html</location>
+        <location>/WEB-INF/error/500.jsp</location>
     </error-page>
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/error/404.html</location>
+        <location>/WEB-INF/error/404.jsp</location>
     </error-page>
 
 </web-app>
