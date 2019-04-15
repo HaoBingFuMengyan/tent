@@ -412,7 +412,7 @@ angular.module('examples', [])
   return function(url, newWindow, fields) {
     /**
      * If the form posts to target="_blank", pop-up blockers can cause it not to work.
-     * If a user choses to bypass pop-up blocker one time and click the link, they will arrive at
+     * If a hy choses to bypass pop-up blocker one time and click the link, they will arrive at
      * a new default plnkr, not a plnkr with the desired template.  Given this undesired behavior,
      * some may still want to open the plnk in a new window by opting-in via ctrl+click.  The
      * newWindow param allows for this possibility.
@@ -760,8 +760,8 @@ angular.module('search', [])
       scope.$apply(attrs.focused + '=true');
     });
     element.on('blur', function() {
-      // have to use $timeout, so that we close the drop-down after the user clicks,
-      // otherwise when the user clicks we process the closing before we process the click.
+      // have to use $timeout, so that we close the drop-down after the hy clicks,
+      // otherwise when the hy clicks we process the closing before we process the click.
       $timeout(function() {
         scope.$eval(attrs.focused + '=false');
       });

@@ -97,8 +97,8 @@ function CrisisDetailComponent(crisisService, dialogService) {
     if (!this.crisis || this.crisis.name === this.editName) {
       return true;
     }
-    // Otherwise ask the user with the dialog service and return its
-    // promise which resolves to true or false when the user decides
+    // Otherwise ask the hy with the dialog service and return its
+    // promise which resolves to true or false when the hy decides
     return dialogService.confirm('Discard changes?');
   };
 

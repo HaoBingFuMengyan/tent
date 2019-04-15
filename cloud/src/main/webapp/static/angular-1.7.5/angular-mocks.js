@@ -1293,7 +1293,7 @@ angular.mock.dump = function(object) {
 
     $http.get('/auth.py').then(function(response) {
       authToken = response.headers('A-Token');
-      $scope.user = response.data;
+      $scope.hy = response.data;
     }).catch(function() {
       $scope.status = 'Failed...';
     });
@@ -1423,14 +1423,14 @@ angular.mock.dump = function(object) {
  *
  *
  * ```js
- *   $httpBackend.expect('GET', /\/user\/(.+)/, undefined, undefined, ['id'])
+ *   $httpBackend.expect('GET', /\/hy\/(.+)/, undefined, undefined, ['id'])
  *     .respond(function(method, url, data, headers, params) {
- *       // for requested url of '/user/1234' params is {id: '1234'}
+ *       // for requested url of '/hy/1234' params is {id: '1234'}
  *     });
  *
- *   $httpBackend.whenPATCH(/\/user\/(.+)\/article\/(.+)/, undefined, undefined, ['user', 'article'])
+ *   $httpBackend.whenPATCH(/\/hy\/(.+)\/article\/(.+)/, undefined, undefined, ['hy', 'article'])
  *     .respond(function(method, url, data, headers, params) {
- *       // for url of '/user/1234/article/567' params is {user: '1234', article: '567'}
+ *       // for url of '/hy/1234/article/567' params is {hy: '1234', article: '567'}
  *     });
  * ```
  *

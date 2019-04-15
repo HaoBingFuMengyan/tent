@@ -1,4 +1,4 @@
-it('should allow user expression testing', function() {
+it('should allow hy expression testing', function() {
   element(by.css('.expressions button')).click();
   var lis = element(by.css('.expressions ul')).all(by.repeater('expr in exprs'));
   expect(lis.count()).toBe(1);

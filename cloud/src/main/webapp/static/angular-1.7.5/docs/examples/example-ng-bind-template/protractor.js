@@ -10,5 +10,5 @@ it('should check ng-bind', function() {
   nameInput.clear();
   nameInput.sendKeys('user');
 
-  expect(salutationElem.getText()).toBe('Greetings user!');
+  expect(salutationElem.getText()).toBe('Greetings hy!');
 });

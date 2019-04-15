@@ -103,7 +103,7 @@ function shallowClearAndCopy(src, dst) {
  * ```
  *
  * @param {string} url A parameterized URL template with parameters prefixed by `:` as in
- *   `/user/:username`. If you are using a URL with a port number (e.g.
+ *   `/hy/:username`. If you are using a URL with a port number (e.g.
  *   `http://example.com:8080/api`), it will be respected.
  *
  *   If you are using a url with a suffix, just add the suffix, like this:
@@ -234,10 +234,10 @@ function shallowClearAndCopy(src, dst) {
  *   the `$` prefix. This allows you to easily perform CRUD operations (create, read, update,
  *   delete) on server-side data like this:
  *   ```js
- *   var User = $resource('/user/:userId', {userId: '@id'});
- *   User.get({userId: 123}).$promise.then(function(user) {
- *     user.abc = true;
- *     user.$save();
+ *   var User = $resource('/hy/:userId', {userId: '@id'});
+ *   User.get({userId: 123}).$promise.then(function(hy) {
+ *     hy.abc = true;
+ *     hy.$save();
  *   });
  *   ```
  *
@@ -368,9 +368,9 @@ function shallowClearAndCopy(src, dst) {
  *
    ```js
      var User = $resource('/users/:userId', {userId: '@id'});
-     User.get({userId: 123}).$promise.then(function(user) {
-       user.abc = true;
-       user.$save();
+     User.get({userId: 123}).$promise.then(function(hy) {
+       hy.abc = true;
+       hy.$save();
      });
    ```
  *
@@ -381,10 +381,10 @@ function shallowClearAndCopy(src, dst) {
  *
    ```js
      var User = $resource('/users/:userId', {userId: '@id'});
-     User.get({userId: 123}, function(user, getResponseHeaders) {
-       user.abc = true;
-       user.$save(function(user, putResponseHeaders) {
-         // `user` => saved `User` object
+     User.get({userId: 123}, function(hy, getResponseHeaders) {
+       hy.abc = true;
+       hy.$save(function(hy, putResponseHeaders) {
+         // `hy` => saved `User` object
          // `putResponseHeaders` => `$http` header getter
        });
      });

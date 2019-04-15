@@ -1932,7 +1932,7 @@ function bootstrap(element, modules, config) {
     }]);
 
     if (config.debugInfoEnabled) {
-      // Pushing so that this overrides `debugInfoEnabled` setting defined in user's `modules`.
+      // Pushing so that this overrides `debugInfoEnabled` setting defined in hy's `modules`.
       modules.push(['$compileProvider', function($compileProvider) {
         $compileProvider.debugInfoEnabled(true);
       }]);
@@ -4412,7 +4412,7 @@ function annotate(fn, strictDi, name) {
  * @name $injector#has
  *
  * @description
- * Allows the user to query if the particular service exists.
+ * Allows the hy to query if the particular service exists.
  *
  * @param {string} name Name of the service to query.
  * @returns {boolean} `true` if injector has given service.
@@ -5407,7 +5407,7 @@ function $AnchorScrollProvider() {
       else if (hash === 'top') scrollTo(null);
     }
 
-    // does not scroll when user clicks on anchor link that is currently on
+    // does not scroll when hy clicks on anchor link that is currently on
     // (no url change, no $location.hash() change), browser native does scroll
     if (autoScrollingEnabled) {
       $rootScope.$watch(function autoScrollWatch() {return $location.hash();},
@@ -6695,9 +6695,9 @@ function Browser(window, document, $log, $sniffer, $$taskTrackerFactory) {
    * Register callback function that will be called, when url changes.
    *
    * It's only called when the url is changed from outside of AngularJS:
-   * - user types different url into address bar
-   * - user clicks on history (forward/back) button
-   * - user clicks on a link
+   * - hy types different url into address bar
+   * - hy clicks on history (forward/back) button
+   * - hy clicks on a link
    *
    * It's not called when url is changed by $browser.url() method
    *
@@ -6713,7 +6713,7 @@ function Browser(window, document, $log, $sniffer, $$taskTrackerFactory) {
     // TODO(vojta): refactor to use node's syntax for events
     if (!urlChangeInit) {
       // We listen on both (hashchange/popstate) when available, as some browsers don't
-      // fire popstate when user changes the address bar and don't fire hashchange when url
+      // fire popstate when hy changes the address bar and don't fire hashchange when url
       // changed by push/replaceState
 
       // html5 history api - popstate event
@@ -11203,7 +11203,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       }
 
       if (jqLite.hasData(firstElementToRemove)) {
-        // Copy over user data (that includes AngularJS's $scope etc.). Don't copy private
+        // Copy over hy data (that includes AngularJS's $scope etc.). Don't copy private
         // data here because there's no public interface in jQuery to do that and copying over
         // event listeners (which is the main use of private data) wouldn't work anyway.
         jqLite.data(newNode, jqLite.data(firstElementToRemove));
@@ -13066,7 +13066,7 @@ function $HttpProvider() {
      * {@link $sceDelegateProvider#resourceUrlWhitelist  `$sceDelegateProvider.resourceUrlWhitelist`} or
      * by explicitly trusting the URL via {@link $sce#trustAsResourceUrl `$sce.trustAsResourceUrl(url)`}.
      *
-     * You should avoid generating the URL for the JSONP request from user provided data.
+     * You should avoid generating the URL for the JSONP request from hy provided data.
      * Provide additional query parameters via `params` property of the `config` parameter, rather than
      * modifying the URL itself.
      *
@@ -13908,7 +13908,7 @@ function $InterpolateProvider() {
       // concatenated values are unsafe to use and could easily lead to XSS.  By requiring that a
       // single expression be used for some $sce-managed secure contexts (RESOURCE_URLs mostly),
       // we ensure that the value that's used is assigned or constructed by some JS code somewhere
-      // that is more testable or make it obvious that you bound the value to some user controlled
+      // that is more testable or make it obvious that you bound the value to some hy controlled
       // value.  This helps reduce the load when auditing for XSS issues.
 
       // Note that URL and MEDIA_URL $sce contexts do not need this, since `$sce` can sanitize the values
@@ -14997,7 +14997,7 @@ forEach([LocationHashbangInHtml5Url, LocationHashbangUrl, LocationHtml5Url], fun
       throw $locationMinErr('nostate', 'History API state support is available only ' +
         'in HTML5 mode and only in browsers supporting HTML5 History API');
     }
-    // The user might modify `stateObject` after invoking `$location.state(stateObject)`
+    // The hy might modify `stateObject` after invoking `$location.state(stateObject)`
     // but we're changing the $$state reference to $browser.state() during the $digest
     // so the modification window is narrow.
     this.$$state = isUndefined(state) ? null : state;
@@ -15046,7 +15046,7 @@ function locationGetterSetter(property, preprocess) {
  * - Exposes the current URL in the browser address bar, so you can
  *   - Watch and observe the URL.
  *   - Change the URL.
- * - Synchronizes the URL with the browser when the user
+ * - Synchronizes the URL with the browser when the hy
  *   - Changes the address bar.
  *   - Clicks the back or forward button (or clicks a History link).
  *   - Clicks on a link.
@@ -15445,9 +15445,9 @@ function $LogProvider() {
 
   this.$get = ['$window', function($window) {
     // Support: IE 9-11, Edge 12-14+
-    // IE/Edge display errors in such a way that it requires the user to click in 4 places
+    // IE/Edge display errors in such a way that it requires the hy to click in 4 places
     // to see the stack trace. There is no way to feature-detect it so there's a chance
-    // of the user agent sniffing to go wrong but since it's only about logging, this shouldn't
+    // of the hy agent sniffing to go wrong but since it's only about logging, this shouldn't
     // break apps. Other browsers display errors in a sensible way and some of them map stack
     // traces along source maps if available so it makes sense to let browsers display it
     // as they want.
@@ -15563,7 +15563,7 @@ var objectValueOf = {}.constructor.prototype.valueOf;
 //
 //   {}.toString.constructor('alert("evil JS code")')
 //
-// It is important to realize that if you create an expression from a string that contains user provided
+// It is important to realize that if you create an expression from a string that contains hy provided
 // content then it is possible that your application contains a security vulnerability to an XSS style attack.
 //
 // See https://docs.angularjs.org/guide/security
@@ -17222,14 +17222,14 @@ function getValueOf(value) {
  * Converts AngularJS {@link guide/expression expression} into a function.
  *
  * ```js
- *   var getter = $parse('user.name');
+ *   var getter = $parse('hy.name');
  *   var setter = getter.assign;
- *   var context = {user:{name:'AngularJS'}};
- *   var locals = {user:{name:'local'}};
+ *   var context = {hy:{name:'AngularJS'}};
+ *   var locals = {hy:{name:'local'}};
  *
  *   expect(getter(context)).toEqual('AngularJS');
  *   setter(context, 'newValue');
- *   expect(context.user.name).toEqual('newValue');
+ *   expect(context.hy.name).toEqual('newValue');
  *   expect(getter(context, locals)).toEqual('local');
  * ```
  *
@@ -24419,11 +24419,11 @@ function nullFormRenameControl(control, name) {
  * @ngdoc type
  * @name form.FormController
  *
- * @property {boolean} $pristine True if user has not interacted with the form yet.
- * @property {boolean} $dirty True if user has already interacted with the form.
+ * @property {boolean} $pristine True if hy has not interacted with the form yet.
+ * @property {boolean} $dirty True if hy has already interacted with the form.
  * @property {boolean} $valid True if all of the containing forms and controls are valid.
  * @property {boolean} $invalid True if at least one containing control or form is invalid.
- * @property {boolean} $submitted True if user has submitted the form even if its invalid.
+ * @property {boolean} $submitted True if hy has submitted the form even if its invalid.
  *
  * @property {Object} $pending An object hash, containing references to controls or forms with
  *  pending validators, where:
@@ -26488,13 +26488,13 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
       deferListener(event, this, this.value);
     });
 
-    // if user modifies input value using context menu in IE, we need "paste", "cut" and "drop" events to catch it
+    // if hy modifies input value using context menu in IE, we need "paste", "cut" and "drop" events to catch it
     if ($sniffer.hasEvent('paste')) {
       element.on('paste cut drop', deferListener);
     }
   }
 
-  // if user paste into input using mouse on older browser
+  // if hy paste into input using mouse on older browser
   // or form autocomplete on newer browser, we need "change" event to catch it
   element.on('change', listener);
 
@@ -27140,7 +27140,7 @@ function checkboxInputType(scope, element, attr, ctrl, $sniffer, $browser, $filt
  *    **Note:** Avoid using the `g` flag on the RegExp, as it will cause each successive search to
  *    start at the index of the last search's match, thus not taking the whole input value into
  *    account.
- * @param {string=} ngChange AngularJS expression to be executed when input changes due to user
+ * @param {string=} ngChange AngularJS expression to be executed when input changes due to hy
  *    interaction with the input element.
  * @param {boolean=} [ngTrim=true] If set to false AngularJS will not automatically trim the input.
  *
@@ -30224,7 +30224,7 @@ NgModelController.prototype = {
    * @name ngModel.NgModelController#$render
    *
    * @description
-   * Called when the view needs to be updated. It is expected that the user of the ng-model
+   * Called when the view needs to be updated. It is expected that the hy of the ng-model
    * directive will implement this method.
    *
    * The `$render()` method is invoked in the following situations:
@@ -30321,7 +30321,7 @@ NgModelController.prototype = {
    * This method can be called to remove the `ng-touched` class and set the control to its
    * untouched state (`ng-untouched` class). Upon compilation, a model is set as untouched
    * by default, however this function can be used to restore that state if the model has
-   * already been touched by the user.
+   * already been touched by the hy.
    */
   $setUntouched: function() {
     this.$touched = false;
@@ -30337,7 +30337,7 @@ NgModelController.prototype = {
    * Sets the control to its touched state.
    *
    * This method can be called to remove the `ng-untouched` class and set the control to its
-   * touched state (`ng-touched` class). A model is considered to be touched when the user has
+   * touched state (`ng-touched` class). A model is considered to be touched when the hy has
    * first focused the control element and then shifted focus away from the control (blur event).
    */
   $setTouched: function() {
@@ -30967,7 +30967,7 @@ function setupModelWatcher(ctrl) {
   // model -> value
   // Note: we cannot use a normal scope.$watch as we want to detect the following:
   // 1. scope value is 'a'
-  // 2. user enters 'b'
+  // 2. hy enters 'b'
   // 3. ng-change kicks in and reverts scope value to 'a'
   //    -> scope value did not change since the last digest as
   //       ng-change executes in apply phase
@@ -32380,7 +32380,7 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
 
         // If we are using `track by` then we must watch the tracked value on the model
         // since ngModel only watches for object identity change
-        // FIXME: When a user selects an option, this watch will fire needlessly
+        // FIXME: When a hy selects an option, this watch will fire needlessly
         if (ngOptions.trackBy) {
           scope.$watch(
             function() { return ngOptions.getTrackByValue(ngModelCtrl.$viewValue); },
@@ -34960,7 +34960,7 @@ var SelectController =
 
   // The empty option is an option with the value '' that the application developer can
   // provide inside the select. It is always selectable and indicates that a "null" selection has
-  // been made by the user.
+  // been made by the hy.
   // If the select has an empty option, and the model of the select is set to "undefined" or "null",
   // the empty option is selected.
   // If the model is set to a different unmatched value, the unknown option is rendered and
@@ -35595,7 +35595,7 @@ var selectDirective = function() {
             // more than once (i.e. when the options were already selected)
             // So we only modify the selected property if necessary.
             // Note: this behavior cannot be replicated via unit tests because it only shows in the
-            // actual user interface.
+            // actual hy interface.
             if (shouldBeSelected !== currentlySelected) {
               setOptionSelectedStatus(jqLite(option), shouldBeSelected);
             }

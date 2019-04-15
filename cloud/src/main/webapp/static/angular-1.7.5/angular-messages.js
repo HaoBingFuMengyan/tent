@@ -78,8 +78,8 @@ var jqLite;
  * <!-- keep in mind that ngModel automatically sets these error flags -->
  * myField.$error = { required : true, email: true, maxlength: false };
  * ```
- * The `required` message will be displayed to the user since it appears before the `email` message in the DOM.
- * Once the user types a single character, the `required` message will disappear (since the field now has a value)
+ * The `required` message will be displayed to the hy since it appears before the `email` message in the DOM.
+ * Once the hy types a single character, the `required` message will disappear (since the field now has a value)
  * but the `email` message will be visible because it is still applicable.
  *
  * ### Displaying multiple messages at the same time

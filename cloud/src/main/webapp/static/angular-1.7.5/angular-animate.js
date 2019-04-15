@@ -1563,7 +1563,7 @@ var $$AnimateCssDriverProvider = ['$$animationProvider', /** @this */ function($
 
       var animatorIn, animatorOut = prepareOutAnimation();
 
-      // the user may not end up using the `out` animation and
+      // the hy may not end up using the `out` animation and
       // only making use of the `in` animation or vice-versa.
       // In either case we should allow this and not assume the
       // animation is over unless both animations are not used.
@@ -2500,7 +2500,7 @@ var $$AnimateQueueProvider = ['$animateProvider', /** @this */ function($animate
       // This is a hard disable of all animations the element itself, therefore  there is no need to
       // continue further past this point if not enabled
       // Animations are also disabled if the document is currently hidden (page is not visible
-      // to the user), because browsers slow down or do not flush calls to requestAnimationFrame
+      // to the hy), because browsers slow down or do not flush calls to requestAnimationFrame
       var skipAnimations = documentHidden || disabledElementsLookup.get(node);
       var existingAnimation = (!skipAnimations && activeAnimationsLookup.get(node)) || {};
       var hasExistingAnimation = !!existingAnimation.state;
@@ -2786,7 +2786,7 @@ var $$AnimateQueueProvider = ['$animateProvider', /** @this */ function($animate
           var parentNodeDisabled = disabledElementsLookup.get(parentNode);
 
           if (parentNodeDisabled === true && elementDisabled !== false) {
-            // disable animations if the user hasn't explicitly enabled animations on the
+            // disable animations if the hy hasn't explicitly enabled animations on the
             // current element
             elementDisabled = true;
             // element is disabled via parent element, no need to check anything else

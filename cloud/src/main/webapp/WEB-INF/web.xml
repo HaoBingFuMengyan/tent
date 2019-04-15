@@ -16,6 +16,7 @@
   limitations under the License.
 -->
 
+<!-- 所有javaweb项目第一步要做的就是对web.xml文件进行配置。-->
 <!--
   - This is the Cocoon web-app configurations file
   -
@@ -34,14 +35,28 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- 防止发生java.beans.Introspector内存泄露,应将它配置在ContextLoaderListener的前面 -->
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
     <!--负责启动spring容器的监听器 begin-->
+    <!-- 实例化Spring容器 -->
+    <!-- 应用启动时,该监听器被执行,它会读取Spring相关配置文件,其默认会到WEB-INF中查找applicationContext.xml -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
     <!-- 从类路径下加载spring的配置文件,classpath关键字特指类路径下加载  应用程序上下文 -->
     <context-param><!-- 含有一对参数名和参数值，用作应用servlet上下文初始化参数。参数名在整个web应用中必须是唯一的。 -->
         <param-name>contextConfigLocation</param-name><!-- 设置参数名称 -->
-        <param-value>WEB-INF/applicationContext.xml</param-value><!-- 设置参数值 -->
+        <param-value>classpath*:/spring.xml</param-value><!-- 设置参数值 -->
+        <!--<param-value>WEB-INF/applicationContext-shiro.xml</param-value>&lt;!&ndash; 设置参数值 &ndash;&gt;-->
+    </context-param>
+
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>dev</param-value>
     </context-param>
     <context-param><!-- 指定使用那个配置文件 -->
         <param-name>spring.profiles.default</param-name>
@@ -52,7 +67,7 @@
         get乱码修改<Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443" URIEncoding="UTF-8"/>
     -->
     <filter>
-        <filter-name>charsetEncoding</filter-name>
+        <filter-name>SpringEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
@@ -65,9 +80,29 @@
     </filter>
     <!--Filter-mapping中的url-pattern为过滤的url类型-->
     <filter-mapping>
-        <filter-name>charsetEncoding</filter-name>
-        <url-pattern>*</url-pattern>
+        <filter-name>SpringEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+
+    <!-- 配置Shiro过滤器,先让Shiro过滤系统接收到的请求 -->
+    <!-- 这里filter-name必须对应applicationContext.xml中定义的<bean id="shiroFilter"/> -->
+    <!-- 使用[/*]匹配所有请求,保证所有的可控请求都经过Shiro的过滤 -->
+    <!-- 通常会将此filter-mapping放置到最前面(即其他filter-mapping前面),以保证它是过滤器链中第一个起作用的 -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 
     <!--&lt;!&ndash; URL space mappings ============================================= &ndash;&gt;-->
 
@@ -89,6 +124,7 @@
                 当值相同时，容器就会自己选择顺序来加载
             -->
         <init-param>
+            <description>spring mvc 配置文件</description>
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/springmvc-servlet.xml</param-value>
         </init-param>
@@ -96,10 +132,10 @@
         <!--<load-on-startup>2</load-on-startup>-->
     </servlet>
     <!--拦截器配置-->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>springmvc</servlet-name>&lt;!&ndash; 定义servlet所对应的名称 &ndash;&gt;-->
-    <!--<url-pattern>/</url-pattern>&lt;!&ndash; 定义servlet所对应的url路径 &ndash;&gt;-->
-    <!--</servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name><!-- 定义servlet所对应的名称 -->
+        <url-pattern>/</url-pattern><!-- 定义servlet所对应的url路径 -->
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
         <url-pattern>*.html</url-pattern>
@@ -113,6 +149,7 @@
         <url-pattern>*.json</url-pattern>
     </servlet-mapping>
 
+    <!-- 设置Session的超时时间(零或负数表示会话永不超时)-->
     <session-config>
         <session-timeout>600</session-timeout>
     </session-config>

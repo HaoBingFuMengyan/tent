@@ -35,6 +35,22 @@
     <url>http://www.example.com</url>
 
     <dependencies>
+        <dependency>
+            <groupId>com.tent</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tent</groupId>
+            <artifactId>service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tent</groupId>
+            <artifactId>po</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- spring核心包 -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -82,6 +98,39 @@
             <artifactId>spring-data-jpa</artifactId>
         </dependency>
 
+        <!-- shiro -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+        </dependency>
+        <dependency>
+            <artifactId>quartz</artifactId>
+            <groupId>org.opensymphony.quartz</groupId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-quartz</artifactId>
+        </dependency>
+        <!-- shiro end -->
+
+        <!--redis-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
         <!-- j2ee web spec -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -100,6 +149,18 @@
             <scope>runtime</scope>
         </dependency>
         <!-- WEB end -->
+        <!-- freemarker begin -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+        <!-- freemarker begin -->
+        <!-- freemarker + shiro（标签） begin -->
+        <dependency>
+            <groupId>net.mingsoft</groupId>
+            <artifactId>shiro-freemarker-tags</artifactId>
+        </dependency>
+        <!-- freemarker + shiro（标签） begin -->
 
         <!-- JSON begin -->
         <dependency>
@@ -121,6 +182,30 @@
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
 
+        <!-- GENERAL UTILS begin -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+
+        <!--upload file-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
 
     </dependencies>
 

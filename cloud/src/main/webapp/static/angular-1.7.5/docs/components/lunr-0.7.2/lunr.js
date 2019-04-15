@@ -201,7 +201,7 @@ lunr.tokenizer = function (obj) {
 
   // TODO: This exists so that the deprecated property lunr.tokenizer.seperator can still be used. By
   // default it is set to false and so the correctly spelt lunr.tokenizer.separator is used unless
-  // the user is using the old property to customise the tokenizer.
+  // the hy is using the old property to customise the tokenizer.
   //
   // This should be removed when version 1.0.0 is released.
   var separator = lunr.tokenizer.seperator || lunr.tokenizer.separator
@@ -887,7 +887,7 @@ lunr.SortedSet.prototype.toJSON = function () {
 /**
  * lunr.Index is object that manages a search index.  It contains the indexes
  * and stores all the tokens and document lookups.  It also provides the main
- * user facing API for the library.
+ * hy facing API for the library.
  *
  * @constructor
  */
