@@ -262,62 +262,62 @@ ul li {
 .k-bubble-2 {
     animation-delay: -1.0s;
 }
-@keyframes k-loadingA {
-    0 {
-        height: 15px
-    }
-    50% {
-        height: 35px
-    }
-    100% {
-        height: 15px
-    }
-}
+/*@keyframes k-loadingA {*/
+    /*0 {*/
+        /*height: 15px*/
+    /*}*/
+    /*50% {*/
+        /*height: 35px*/
+    /*}*/
+    /*100% {*/
+        /*height: 15px*/
+    /*}*/
+/*}*/
 
-@keyframes k-loadingB {
-    0 {
-        width: 15px
-    }
-    50% {
-        width: 35px
-    }
-    100% {
-        width: 15px
-    }
-}
+/*@keyframes k-loadingB {*/
+    /*0 {*/
+        /*width: 15px*/
+    /*}*/
+    /*50% {*/
+        /*width: 35px*/
+    /*}*/
+    /*100% {*/
+        /*width: 15px*/
+    /*}*/
+/*}*/
 
-@keyframes k-loadingC {
-    0 {
-        transform: translate(0, 0)
-    }
-    50% {
-        transform: translate(0, 15px)
-    }
-    100% {
-        transform: translate(0, 0)
-    }
-}
+/*@keyframes k-loadingC {*/
+    /*0 {*/
+        /*transform: translate(0, 0)*/
+    /*}*/
+    /*50% {*/
+        /*transform: translate(0, 15px)*/
+    /*}*/
+    /*100% {*/
+        /*transform: translate(0, 0)*/
+    /*}*/
+/*}*/
 
-@keyframes k-loadingD {
-    0 {
-        transform: rotate(0deg)
-    }
-    50% {
-        transform: rotate(180deg)
-    }
-    100% {
-        transform: rotate(360deg)
-    }
-}
+/*@keyframes k-loadingD {*/
+    /*0 {*/
+        /*transform: rotate(0deg)*/
+    /*}*/
+    /*50% {*/
+        /*transform: rotate(180deg)*/
+    /*}*/
+    /*100% {*/
+        /*transform: rotate(360deg)*/
+    /*}*/
+/*}*/
 
-@keyframes k-loadingE {
-    0 {
-        transform: rotate(0deg)
-    }
-    100% {
-        transform: rotate(360deg)
-    }
-}
+/*@keyframes k-loadingE {*/
+    /*0 {*/
+        /*transform: rotate(0deg)*/
+    /*}*/
+    /*100% {*/
+        /*transform: rotate(360deg)*/
+    /*}*/
+/*}*/
 
 @keyframes k-loadingF {
     0% {
@@ -566,7 +566,7 @@ ul li {
 	border-radius: 0px;
 	top: 50%;
 	line-height: 25px;
-	cursor: pinter;
+	cursor: pointer;
 	font-size: 16px;
 	position: absolute;
 	bottom: -24px;
