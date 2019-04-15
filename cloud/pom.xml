@@ -151,13 +151,17 @@
         <!-- j2ee web spec -->
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
         </dependency>
 
         <dependency>

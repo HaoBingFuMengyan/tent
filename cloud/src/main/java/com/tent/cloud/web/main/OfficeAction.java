@@ -17,6 +17,7 @@ public class OfficeAction {
     @RequiresPermissions("admin:manage")
 //    @RequiresRoles("admin")
     public String index(Model model, HttpServletRequest request) {
+        model.addAttribute("message","会员首页");
         return "of/member-index";
     }
 
