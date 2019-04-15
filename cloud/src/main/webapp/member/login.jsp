@@ -34,7 +34,7 @@
             <input type="text" id="username" name="username" placeholder="用户名"maxlength="11"/>
             <input type="text" id="password" name="password" placeholder="密码" maxlength="11"/>
             <input type="text" id="checkcode" name="checkcode" placeholder="验证码" maxlength="6"/>
-            <input type="submit" value="登录" />
+            <input type="submit" value="登陆" />
         </form>
     </div>
     <div class="copyright">HaoSHI有限公司 版权所有©2018-2118 技术支持电话：021-00000000</div>
