@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="../../include/taglib.jsp"%>
+<%@ include file="../include/taglib.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="login_box">
-    <div class="login_l_img"><img src="${ctx}/images/login-img.png"/></div>
+    <%--<div class="login_l_img"><img src="${ctx}/images/login-img.png"/></div>--%>
     <div class="login">
         <div class="login_logo"><a href="#"><img src="${ctx}/images/login_logo.png"/></a></div>
         <div class="login_name">

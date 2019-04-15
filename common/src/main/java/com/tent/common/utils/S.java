@@ -8,4 +8,8 @@ public class S {
     public static String redirect(String url){
         return "redirect:/" + url;
     }
+
+    public static String toPage(String pageUrl){
+        return pageUrl;
+    }
 }

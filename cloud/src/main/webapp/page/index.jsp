@@ -118,6 +118,12 @@
                                 <li><a href="#portfolio">Portfolio</a></li>
                                 <li><a href="#blog">Blog</a></li>
                                 <li><a href="#location">Contact</a></li>
+                                <shiro:guest>
+                                    <li><a href="${ctx}/login.html">登陆</a></li>
+                                </shiro:guest>
+                                <shiro:user>
+                                    欢迎[<shiro:principal/>]登陆，<a href="${ctx}/logout.html">退出</a>
+                                </shiro:user>
                             </ul>
                         </div>
                     </nav>

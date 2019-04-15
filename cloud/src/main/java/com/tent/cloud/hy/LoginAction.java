@@ -24,7 +24,7 @@ public class LoginAction {
         if (SecurityUtils.getSubject().isAuthenticated()) {
             return S.redirect("index.shtml");
         }
-        return "member/login";
+        return S.toPage("member/login");
     }
 
     @RequestMapping(value="login.html", method=RequestMethod.POST)
