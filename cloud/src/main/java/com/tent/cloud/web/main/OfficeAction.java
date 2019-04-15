@@ -14,9 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 public class OfficeAction {
 
     @RequestMapping(value = "index.shtml", method = RequestMethod.GET)
-//    @RequiresAuthentication
-//    @RequiresPermissions("admin:manage")
-    @RequiresRoles("admin")
+    @RequiresPermissions("admin:manage")
+//    @RequiresRoles("admin")
     public String index(Model model, HttpServletRequest request) {
         return "of/member-index";
     }
