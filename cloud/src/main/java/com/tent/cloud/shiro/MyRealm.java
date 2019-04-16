@@ -2,6 +2,10 @@ package com.tent.cloud.shiro;
 
 
 import com.tent.common.utils.LoggerUtils;
+import com.tent.service.impl.hy.RoleService;
+import com.tent.service.inte.hy.IPermissionService;
+import com.tent.service.inte.hy.IRoleService;
+import com.tent.service.inte.hy.IUserService;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.shiro.SecurityUtils;
@@ -12,6 +16,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 自定义的指定Shiro验证用户登录的类
@@ -20,6 +25,16 @@ import org.apache.shiro.subject.Subject;
  * @author
  */
 public class MyRealm extends AuthorizingRealm{
+
+    private IUserService userService;
+
+    private IRoleService roleService;
+
+    private IPermissionService permissionService;
+
+    public MyRealm(){
+        super();
+    }
 
     /**
      * 为当前登录的Subject授予角色和权限
@@ -32,6 +47,8 @@ public class MyRealm extends AuthorizingRealm{
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         //获取当前登录的用户名,等价于(String)principals.fromRealm(this.getName()).iterator().next()
         String currentUsername = (String)super.getAvailablePrincipal(principals);
+
+
 //      List<String> roleList = new ArrayList<String>();
 //      List<String> permissionList = new ArrayList<String>();
 //      //从数据库中获取当前登录用户的详细信息
@@ -89,6 +106,8 @@ public class MyRealm extends AuthorizingRealm{
         //两个token的引用都是一样的,本例中是org.apache.shiro.authc.UsernamePasswordToken@33799a1e
         UsernamePasswordToken token = (UsernamePasswordToken)authcToken;
         LoggerUtils.debug(getClass(),"验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
+
+
 //      User hy = userService.getByUsername(token.getUsername());
 //      if(null != hy){
 //          AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(hy.getUsername(), hy.getPassword(), hy.getNickname());
