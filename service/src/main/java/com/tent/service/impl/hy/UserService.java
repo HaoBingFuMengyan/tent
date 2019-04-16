@@ -51,7 +51,8 @@ public class UserService implements IUserService{
 
     @Override
     public User login(String email, String pswd) {
-        return this.userDao.findByEmailAndPswd(email,pswd);
+//        return this.userDao.findByEmailAndPswd(email,pswd);
+        return null;
     }
 
     @Override

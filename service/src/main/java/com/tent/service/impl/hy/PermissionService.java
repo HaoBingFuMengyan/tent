@@ -76,18 +76,18 @@ public class PermissionService implements IPermissionService{
     @Override
     public Set<String> findPermissionByUserId(String userId) {
 
-        Collection<String> db;
+        Collection<String> db ;
         Set<String> rs = Sets.newHashSet();
 
-        db = this.permissionDao.getAllPermission(userId);
+//        db = this.permissionDao.getAllPermission(userId);
 
-        for (String t : db) {
-            String[] as = t.split(",");
-            for (String b : as) {
-                if(B.N(b.trim()))
-                    rs.add(b.trim());
-            }
-        }
+//        for (String t : db) {
+//            String[] as = t.split(",");
+//            for (String b : as) {
+//                if(B.N(b.trim()))
+//                    rs.add(b.trim());
+//            }
+//        }
         LoggerUtils.debug(getClass(),"所有权限："+ rs.toString());
 
         return rs;

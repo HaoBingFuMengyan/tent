@@ -1,6 +1,5 @@
 package com.tent.po.entity.hy;
 
-import com.tent.common.entity.UUser;
 import com.tent.po.entityBase.hy.UserBase;
 
 import javax.persistence.Entity;
