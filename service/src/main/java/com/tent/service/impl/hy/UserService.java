@@ -24,7 +24,7 @@ public class UserService implements IUserService{
 
     @Override
     public User insert(User record) {
-        return null;
+        return this.userDao.save(record);
     }
 
     @Override

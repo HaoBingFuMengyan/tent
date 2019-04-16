@@ -19,7 +19,7 @@
     <!-- 扫描路径  自动扫描@Controller -->
     <!-- 它背后注册了很多用于解析注解的处理器,其中就包括<context:annotation-config/>配置的注解所使用的处理器 -->
     <!-- 所以配置了<context:component-scan base-package="">之后,便无需再配置<context:annotation-config> -->
-    <context:component-scan base-package="com.tent.cloud" use-default-filters="false">
+    <context:component-scan base-package="com.tent.*">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation"
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>

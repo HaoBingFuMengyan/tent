@@ -26,6 +26,7 @@ public class UserBase extends BaseEntity{
     /**1:有效，0:禁止登录*/
     private Integer status;
 
+    public UserBase(){}
     public UserBase(User user) {
         this.id = user.getId();
         this.nickname = user.getNickname();

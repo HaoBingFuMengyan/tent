@@ -9,6 +9,7 @@ import javax.persistence.Table;
 @Table(name = "hy_user")
 public class User extends UserBase{
 
+    public User(){}
     public User(User user) {
         super(user);
     }
