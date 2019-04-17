@@ -6,6 +6,7 @@ import com.tent.po.entity.hy.User;
 import com.tent.cloud.shiro.token.manager.TokenManager;
 import com.tent.service.impl.hy.PermissionService;
 import com.tent.service.impl.hy.RoleService;
+import com.tent.service.impl.hy.UserService;
 import com.tent.service.inte.hy.IPermissionService;
 import com.tent.service.inte.hy.IRoleService;
 import com.tent.service.inte.hy.IUserService;
@@ -28,11 +29,14 @@ import java.util.Set;
 
 public class SampleRealm extends AuthorizingRealm {
 
-	private IUserService userService;
+	@Autowired
+	private UserService userService;
 
-	private IRoleService roleService;
+	@Autowired
+	private RoleService roleService;
 
-	private IPermissionService permissionService;
+	@Autowired
+	private PermissionService permissionService;
 	
 	public SampleRealm() {
 		super();
@@ -45,21 +49,21 @@ public class SampleRealm extends AuthorizingRealm {
 
 		UsernamePasswordToken token = (UsernamePasswordToken)authcToken;
 		LoggerUtils.debug(getClass(),"验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
-		User user = userService.login(token.getUsername(),token.getUsername());
+		User user = userService.findBySusernameOrSmobile(token.getUsername(),token.getUsername());
 		if(null == user){
 			throw new AccountException("帐号或密码不正确！");
 		/**
 		 * 如果用户的status为禁用。那么就抛出<code>DisabledAccountException</code>
 		 */
-		}else if(UUser._0.equals(user.getStatus())){
+		}else if(UUser._0.equals(user.getBisvalid())){
 			throw new DisabledAccountException("帐号已经禁止登录！");
 		}else{
 			this.setSession("currentUser",token.getUsername());
 			//更新登录时间 last login time
-			user.setLastLoginTime(new Date());
+			user.setDlastloginsuccessdate(new Date());
 			userService.updateByPrimaryKeySelective(user);
 		}
-		return new SimpleAuthenticationInfo(user,user.getPswd(), getName());
+		return new SimpleAuthenticationInfo(user,user.getSpassword(), getName());
     }
 
 	 /** 
@@ -67,14 +71,16 @@ public class SampleRealm extends AuthorizingRealm {
      */  
     @Override  
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-    	
-    	String userId = TokenManager.getUserId();
+//		String userId = TokenManager.getUserId(); //静态类初始化失败，调用不成功(严重)
+
+		User token = (User) SecurityUtils.getSubject().getPrincipal();
+
 		SimpleAuthorizationInfo info =  new SimpleAuthorizationInfo();
 		//根据用户ID查询角色（role），放入到Authorization里。
-		Set<String> roles = roleService.findRoleByUserId(userId);
+		Set<String> roles = roleService.findRoleByUserId(token);
 		info.setRoles(roles);
 		//根据用户ID查询权限（permission），放入到Authorization里。
-		Set<String> permissions = permissionService.findPermissionByUserId(userId);
+		Set<String> permissions = permissionService.findPermissionByUserId(token);
 		info.setStringPermissions(permissions);
         return info;  
     }  

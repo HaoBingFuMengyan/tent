@@ -26,6 +26,8 @@ public abstract class BaseEntity  implements Serializable{
 	 */
 	private static final long serialVersionUID = 5119826947515364593L;
 	protected String id;
+	public BaseEntity() {
+	}
 
 	@Id 
 	@Column(name = "sguid", nullable = false)

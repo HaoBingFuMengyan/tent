@@ -7,6 +7,13 @@ import java.util.Map;
 
 public interface IUserService {
 
+	User findBySusernameOrSmobile(String susername,String smobile);
+
+	void updateByPrimaryKeySelective(User record);
+
+
+
+
 	int deleteByPrimaryKey(Long id);
 
 	User insert(User record);
@@ -15,7 +22,6 @@ public interface IUserService {
 
     User selectByPrimaryKey(Long id);
 
-    void updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
     

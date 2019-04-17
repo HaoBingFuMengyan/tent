@@ -122,7 +122,7 @@
                                     <li><a href="${ctx}/login.html">登陆</a></li>
                                 </shiro:guest>
                                 <shiro:user>
-                                    欢迎[<shiro:principal/>]登陆，<a href="${ctx}/logout.html">退出</a>
+                                    <li><%--<shiro:principal property="susername"/>--%><a href="${ctx}/logout.html">退出</a></li>
                                 </shiro:user>
                             </ul>
                         </div>

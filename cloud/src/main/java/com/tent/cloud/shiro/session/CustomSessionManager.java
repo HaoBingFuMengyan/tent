@@ -108,7 +108,7 @@ public class CustomSessionManager {
 				//session ID
 				userBo.setSessionId(session.getId().toString());
 				//session最后一次与系统交互的时间
-				userBo.setLastLoginTime(session.getLastAccessTime());
+				userBo.setDlastloginsuccessdate(session.getLastAccessTime());
 				//回话到期 ttl(ms)
 				userBo.setTimeout(session.getTimeout());
 				//session创建时间

@@ -2,12 +2,16 @@ package com.tent.service.inte.hy;
 
 
 import com.tent.po.entity.hy.Permission;
+import com.tent.po.entity.hy.User;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public interface IPermissionService {
+
+    //根据用户ID查询权限（permission），放入到Authorization里。
+    Set<String> findPermissionByUserId(User token);
 
     int deleteByPrimaryKey(String id);
 
@@ -30,6 +34,5 @@ public interface IPermissionService {
     Map<String, Object> addPermission2Role(String roleId,String ids);
 
     Map<String, Object> deleteByRids(String roleIds);
-    //根据用户ID查询权限（permission），放入到Authorization里。
-    Set<String> findPermissionByUserId(String userId);
+
 }

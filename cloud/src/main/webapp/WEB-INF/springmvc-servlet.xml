@@ -19,7 +19,7 @@
     <!-- 扫描路径  自动扫描@Controller -->
     <!-- 它背后注册了很多用于解析注解的处理器,其中就包括<context:annotation-config/>配置的注解所使用的处理器 -->
     <!-- 所以配置了<context:component-scan base-package="">之后,便无需再配置<context:annotation-config> -->
-    <context:component-scan base-package="com.tent.*">
+    <context:component-scan base-package="com.tent.cloud">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation"
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
@@ -177,7 +177,9 @@
 
     <!--shiro 授权 start  解决不走shiro授权方法及shiro注解问题-->
     <!-- 开启aop，对类代理 -->
-    <aop:config proxy-target-class="true"></aop:config>
+    <aop:config proxy-target-class="false"></aop:config>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
     <!-- 开启shiro注解支持 -->
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager" />

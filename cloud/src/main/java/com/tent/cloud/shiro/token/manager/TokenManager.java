@@ -13,10 +13,12 @@ import java.util.List;
 
 
 public class TokenManager {
+	static {}
 	//用户登录管理
 	public static final SampleRealm realm = SpringContextUtil.getBean("sampleRealm",SampleRealm.class);
 	//用户session管理
 	public static final CustomSessionManager customSessionManager = SpringContextUtil.getBean("customSessionManager",CustomSessionManager.class);
+
 	/**
 	 * 获取当前登录的用户User对象
 	 * @return
@@ -25,9 +27,7 @@ public class TokenManager {
 		User token = (User) SecurityUtils.getSubject().getPrincipal();
 		return token ;
 	}
-	
-	
-	
+
 	/**
 	 * 获取当前用户的Session
 	 * @return
@@ -40,7 +40,7 @@ public class TokenManager {
 	 * @return
 	 */
 	public static String getNickname(){
-		return getToken().getNickname();
+		return getToken().getSusername();
 	}
 	/**
 	 * 获取当前用户ID
@@ -83,7 +83,7 @@ public class TokenManager {
 	 * @return
 	 */
 	public static User login(User user, Boolean rememberMe){
-		ShiroToken token = new ShiroToken(user.getEmail(), user.getPswd());
+		ShiroToken token = new ShiroToken(user.getSusername(), user.getSpassword());
 		token.setRememberMe(rememberMe);
 		SecurityUtils.getSubject().login(token);
 		return getToken();
@@ -140,7 +140,7 @@ public class TokenManager {
 		
 		if(null == userIds || userIds.length == 0)	return ;
 		List<SimplePrincipalCollection> result = customSessionManager.getSimplePrincipalCollectionByUserId(userIds);
-		
+
 		for (SimplePrincipalCollection simplePrincipalCollection : result) {
 			realm.clearCachedAuthorizationInfo(simplePrincipalCollection);
 		}

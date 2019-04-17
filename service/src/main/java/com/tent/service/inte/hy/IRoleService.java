@@ -2,11 +2,16 @@ package com.tent.service.inte.hy;
 
 
 import com.tent.po.entity.hy.Role;
+import com.tent.po.entity.hy.User;
 
 import java.util.Map;
 import java.util.Set;
 
 public interface IRoleService {
+
+    //根据用户ID查询角色（role），放入到Authorization里。
+    Set<String> findRoleByUserId(User token);
+
 
     int deleteByPrimaryKey(Long id);
 
@@ -27,9 +32,6 @@ public interface IRoleService {
 
 //    Pagination<RolePermissionAllocationBo> findRoleAndPermissionPage(
 //            Map<String, Object> resultMap, Integer pageNo, Integer pageSize);
-
-    //根据用户ID查询角色（role），放入到Authorization里。
-    Set<String> findRoleByUserId(String userId);
 
 //    List<URole> findNowAllPermission();
     //初始化数据

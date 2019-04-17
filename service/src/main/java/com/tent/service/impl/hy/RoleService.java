@@ -1,8 +1,10 @@
 package com.tent.service.impl.hy;
 
 import com.google.common.collect.Sets;
+import com.tent.common.entity.Consts;
 import com.tent.dao.hy.RoleDao;
 import com.tent.po.entity.hy.Role;
+import com.tent.po.entity.hy.User;
 import com.tent.service.inte.hy.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,14 @@ public class RoleService implements IRoleService{
 
     @Autowired
     private RoleDao roleDao;
+
+    @Override
+    public Set<String> findRoleByUserId(User token) {
+        HashSet<String> map = Sets.newHashSet("user");
+        map.add(Consts.AuthenticateType.get(token.getIauthtype()).name().toLowerCase());
+        map.add(Consts.MemberType.get(token.getImembertype()).name().toLowerCase());
+        return map;
+    }
 
 
     @Override
@@ -55,11 +65,6 @@ public class RoleService implements IRoleService{
         return null;
     }
 
-    @Override
-    public Set<String> findRoleByUserId(String userId) {
-        HashSet<String> map = Sets.newHashSet("user");
-        return map;
-    }
 
     @Override
     public void initData() {

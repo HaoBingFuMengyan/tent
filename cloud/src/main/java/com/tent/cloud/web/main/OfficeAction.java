@@ -1,7 +1,7 @@
 package com.tent.cloud.web.main;
 
+import com.tent.common.utils.S;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +15,9 @@ public class OfficeAction {
 
     @RequestMapping(value = "index.shtml", method = RequestMethod.GET)
     @RequiresPermissions("admin:manage")
-//    @RequiresRoles("admin")
     public String index(Model model, HttpServletRequest request) {
         model.addAttribute("message","会员首页");
-        return "of/member-index";
+        return S.toPage("of/member-index");
     }
 
 }

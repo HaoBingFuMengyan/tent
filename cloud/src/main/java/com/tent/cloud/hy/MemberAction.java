@@ -26,16 +26,7 @@ public class MemberAction {
 
     @RequestMapping(value = "add.html")
     public void addUser(HttpServletRequest request,Model model){
-        User obj = new User();
-        obj.setId(null);
-        obj.setNickname("123");
-        obj.setEmail("123");
-        obj.setPswd("23456");
-        obj.setCreateTime(new Date());
-        obj.setLastLoginTime(new Date());
-        obj.setStatus(1);
 
-        User user = userService.insert(obj);
 
     }
 }

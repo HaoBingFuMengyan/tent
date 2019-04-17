@@ -1,5 +1,6 @@
 package com.tent.service.impl.hy;
 
+import com.tent.common.entity.Consts;
 import com.tent.common.entity.UUser;
 import com.tent.dao.hy.UserDao;
 import com.tent.po.entity.hy.User;
@@ -16,6 +17,26 @@ public class UserService implements IUserService{
 
     @Autowired
     private UserDao userDao;
+
+    @Override
+    public User findBySusernameOrSmobile(String susername, String smobile) {
+        User user = this.userDao.findBySusernameOrSmobile(susername,smobile);
+        if (user == null)
+            return null;
+        if (Consts.BoolType.YES.isEq(user.getBisdelete()))
+            return null;
+        if (Consts.BoolType.NO.isEq(user.getBisvalid()))
+            return null;
+
+        return user;
+    }
+
+    @Override
+    public void updateByPrimaryKeySelective(User record) {
+        record.setBisvalid(UUser._1);//更新用户状态
+
+        this.userDao.save(record);
+    }
 
     @Override
     public int deleteByPrimaryKey(Long id) {
@@ -37,12 +58,7 @@ public class UserService implements IUserService{
         return null;
     }
 
-    @Override
-    public void updateByPrimaryKeySelective(User record) {
-        record.setStatus(UUser._1);//更新用户状态
 
-        this.userDao.save(record);
-    }
 
     @Override
     public int updateByPrimaryKey(User record) {

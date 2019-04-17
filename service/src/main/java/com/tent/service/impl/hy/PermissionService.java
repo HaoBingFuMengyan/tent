@@ -5,6 +5,7 @@ import com.tent.common.utils.B;
 import com.tent.common.utils.LoggerUtils;
 import com.tent.dao.hy.PermissionDao;
 import com.tent.po.entity.hy.Permission;
+import com.tent.po.entity.hy.User;
 import com.tent.service.inte.hy.IPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,9 +20,29 @@ import java.util.Set;
 @Transactional
 public class PermissionService implements IPermissionService{
 
-
     @Autowired
     private PermissionDao permissionDao;
+
+    @Override
+    public Set<String> findPermissionByUserId(User token) {
+
+        Collection<String> db ;
+        Set<String> rs = Sets.newHashSet();
+
+        db = this.permissionDao.getAllPermission(token.getId());
+
+        for (String t : db) {
+            String[] as = t.split(",");
+            for (String b : as) {
+                if(B.N(b.trim()))
+                    rs.add(b.trim());
+            }
+        }
+        LoggerUtils.debug(getClass(),"所有权限："+ rs.toString());
+
+        return rs;
+    }
+
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -73,23 +94,5 @@ public class PermissionService implements IPermissionService{
         return null;
     }
 
-    @Override
-    public Set<String> findPermissionByUserId(String userId) {
 
-        Collection<String> db ;
-        Set<String> rs = Sets.newHashSet();
-
-//        db = this.permissionDao.getAllPermission(userId);
-
-//        for (String t : db) {
-//            String[] as = t.split(",");
-//            for (String b : as) {
-//                if(B.N(b.trim()))
-//                    rs.add(b.trim());
-//            }
-//        }
-        LoggerUtils.debug(getClass(),"所有权限："+ rs.toString());
-
-        return rs;
-    }
 }

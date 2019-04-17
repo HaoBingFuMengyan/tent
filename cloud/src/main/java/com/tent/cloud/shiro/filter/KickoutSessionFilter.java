@@ -72,7 +72,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 		
 		//获取tokenId
 		String userId = TokenManager.getUserId();
-		
+
 		//如果已经包含当前Session，并且是同一个用户，跳过。
 		if(infoMap.containsKey(userId) && infoMap.containsValue(sessionId)){
 			//更新存储到缓存1个小时（这个时间最好和session的有效期一致或者大于session的有效期）
