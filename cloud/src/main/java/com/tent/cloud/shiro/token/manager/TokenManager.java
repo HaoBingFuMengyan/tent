@@ -13,11 +13,25 @@ import java.util.List;
 
 
 public class TokenManager {
-	static {}
+
 	//用户登录管理
-	public static final SampleRealm realm = SpringContextUtil.getBean("sampleRealm",SampleRealm.class);
+	public static SampleRealm realm = null;
+
 	//用户session管理
-	public static final CustomSessionManager customSessionManager = SpringContextUtil.getBean("customSessionManager",CustomSessionManager.class);
+	public static CustomSessionManager customSessionManager = null;
+
+
+	static {
+		init();
+	}
+
+	public static void init(){
+		if (realm == null)
+			realm = SpringContextUtil.getBean("sampleRealm",SampleRealm.class);
+
+		if (customSessionManager == null)
+			customSessionManager = SpringContextUtil.getBean("customSessionManager",CustomSessionManager.class);
+	}
 
 	/**
 	 * 获取当前登录的用户User对象
