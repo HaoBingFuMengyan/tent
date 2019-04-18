@@ -16,8 +16,7 @@ public class OfficeAction {
     @RequestMapping(value = "index.shtml", method = RequestMethod.GET)
     @RequiresPermissions("admin:manage")
     public String index(Model model, HttpServletRequest request) {
-        model.addAttribute("message","会员首页");
-        return S.toPage("of/member-index");
+        return S.toPage("of/index");
     }
 
 }

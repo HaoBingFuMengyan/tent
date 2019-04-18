@@ -121,9 +121,6 @@
                                 <shiro:guest>
                                     <li><a href="${ctx}/login.html">登陆</a></li>
                                 </shiro:guest>
-                                <shiro:user>
-                                    <li><%--<shiro:principal property="susername"/>--%><a href="${ctx}/logout.html">退出</a></li>
-                                </shiro:user>
                             </ul>
                         </div>
                     </nav>

@@ -11,7 +11,6 @@ public class PageAction {
 
     @RequestMapping(value = "index.html",method = RequestMethod.GET)
     public String index(Model model){
-        model.addAttribute("msg","你好spring mvc");
         return S.toPage("page/index");
     }
 
