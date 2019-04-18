@@ -13,51 +13,74 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">layui 后台布局</div>
+        <div class="layui-logo">logo</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item"><a top_id="0001" validate="true">控制台</a></li>
+            <li class="layui-nav-item"><a top_id="0002" validate="true">商品管理</a></li>
+            <li class="layui-nav-item"><a top_id="0003" validate="true">用户</a></li>
             <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
+                <a validate="true">其它系统</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
+                    <dd><a validate="false" href="">邮件管理</a></dd>
+                    <dd><a validate="false" href="">消息管理</a></dd>
+                    <dd><a validate="false" href="">授权管理</a></dd>
                 </dl>
             </li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:;">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+            </li>
+            <li class="layui-nav-item">
+                <a validate="false">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
                     <shiro:principal property="susername"/>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                    <dd><a validate="false" href="">基本资料</a></dd>
+                    <dd><a validate="false" href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="${ctx}/logout.html">退出</a></li>
+            <li class="layui-nav-item"><a validate="false" href="${ctx}/logout.html">退出</a></li>
         </ul>
     </div>
 
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <ul class="layui-nav layui-nav-tree" lay-filter="test" top_id="0001">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有商品</a>
+                    <a validate="false">所有商品</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" tab_id="111" data-url="http://www.taobao.com">文章列表</a></dd>
-                        <dd><a href="javascript:;" tab_id="222" data-url="http://www.hao123.com">发送信息</a></dd>
-                        <dd><a href="javascript:;" tab_id="333">权限分配</a></dd>
-                        <dd><a href="javascript:;" tab_id="444" data-url="../index.html">超链接</a></dd>
+                        <dd><a tab_id="201904180000" data-url="http://www.taobao.com"><i class="layui-icon">&#xe60a;</i>文章列表</a></dd>
+                        <dd><a tab_id="201904180001" data-url="http://www.hao123.com"><i class="layui-icon">&#xe62c;</i> 发送信息</a></dd>
+                        <dd><a tab_id="201904180002">权限分配</a></dd>
+                        <dd><a tab_id="201904180003">超链接</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
+                    <a validate="false">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a>列表一</a></dd>
+                        <dd><a>列表二</a></dd>
+                        <dd><a>超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="">发布商品</a></li>
+            </ul>
+
+            <ul class="layui-nav layui-nav-tree layui-hide" lay-filter="test" top_id="0002">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a validate="false">商品管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a tab_id="">权限分配</a></dd>
+                        <dd><a tab_id="" >超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a validate="false">解决方案</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">列表一</a></dd>
                         <dd><a href="javascript:;">列表二</a></dd>
@@ -65,7 +88,6 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
             </ul>
         </div>
     </div>
@@ -95,16 +117,28 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © layui.com - 底部固定区域
     </div>
 </div>
 <script src="${ctxStatic}/layui-v2.4.5/layui.all.js"></script>
 <script>
     //JavaScript代码区域
     var $ = layui.jquery,
-        element = layui.element;
+        element = layui.element,
+        layer = layui.layer;
     $(document).on('click', 'a', function () {
         if (!$(this)[0].hasAttribute("tab_id") || $(this).attr("tab_id") === '') {
+            var flag = $(this).attr("validate");
+            if (flag == 'true') {
+                var topid = $(this).attr("top_id");
+                if (topid == undefined || topid === "" || topid == null) {
+                    layer.msg("请先设置top_id属性");
+                    return;
+                }
+                $("div.layui-side-scroll").find("ul").addClass('layui-hide');
+                $("div.layui-side-scroll").find("ul[top_id='" + topid + "']").removeClass('layui-hide');
+
+                return;
+            }
             return;
         }
         var layid = $(this).attr("tab_id");
