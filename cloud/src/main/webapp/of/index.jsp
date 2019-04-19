@@ -16,7 +16,7 @@
         <div class="layui-logo">logo</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a top_id="0001" validate="true">控制台</a></li>
+            <li class="layui-nav-item"><a top_id="0001" validate="true">会员中心</a></li>
             <li class="layui-nav-item"><a top_id="0002" validate="true">商品管理</a></li>
             <li class="layui-nav-item"><a top_id="0003" validate="true">用户</a></li>
             <li class="layui-nav-item">
@@ -51,12 +51,14 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test" top_id="0001">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a validate="false">所有商品</a>
+                    <a validate="false">会员管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a tab_id="201904180000" data-url="http://www.taobao.com"><i class="layui-icon">&#xe60a;</i>文章列表</a></dd>
-                        <dd><a tab_id="201904180001" data-url="http://www.hao123.com"><i class="layui-icon">&#xe62c;</i> 发送信息</a></dd>
-                        <dd><a tab_id="201904180002">权限分配</a></dd>
-                        <dd><a tab_id="201904180003">超链接</a></dd>
+                        <dd><a tab_id="201904180000" data-url="http://www.taobao.com"><i class="layui-icon">&#xe613;</i>&nbsp;会员认证</a>
+                        </dd>
+                        <dd><a tab_id="201904180001" data-url="http://www.hao123.com"><i class="layui-icon">&#xe678;</i>&nbsp;修改手机号</a>
+                        </dd>
+                        <dd><a tab_id="201904180002" data-url=""><i class="layui-icon">&#xe673;</i>&nbsp;登陆密码</a></dd>
+                        <dd><a tab_id="201904180003" data-url=""><i class="layui-icon">&#xe60e;</i>&nbsp;会员信息</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -67,8 +69,6 @@
                         <dd><a>超链接</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
             </ul>
 
             <ul class="layui-nav layui-nav-tree layui-hide" lay-filter="test" top_id="0002">
@@ -76,15 +76,7 @@
                     <a validate="false">商品管理</a>
                     <dl class="layui-nav-child">
                         <dd><a tab_id="">权限分配</a></dd>
-                        <dd><a tab_id="" >超链接</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a validate="false">解决方案</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a tab_id="">超链接</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="">云市场</a></li>

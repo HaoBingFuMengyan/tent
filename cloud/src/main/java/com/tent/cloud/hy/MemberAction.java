@@ -20,13 +20,7 @@ public class MemberAction {
 
     @RequestMapping(value = "index.shtml")
     public String memberIndex(Model model, HttpServletRequest request){
-        System.out.println("登陆成功");
         return "member/index";
     }
 
-    @RequestMapping(value = "add.html")
-    public void addUser(HttpServletRequest request,Model model){
-
-
-    }
 }
