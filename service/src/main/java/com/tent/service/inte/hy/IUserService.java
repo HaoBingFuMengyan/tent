@@ -2,14 +2,15 @@ package com.tent.service.inte.hy;
 
 
 import com.tent.po.entity.hy.User;
+import com.tent.service.impl.shiro.LoginUser;
 
 import java.util.Map;
 
 public interface IUserService {
 
-	User findBySusernameOrSmobile(String susername,String smobile);
+	LoginUser findBySusernameOrSmobile(String susername,String smobile);
 
-	void updateByPrimaryKeySelective(User record);
+	void updateByPrimaryKeySelective(LoginUser record);
 
 
 

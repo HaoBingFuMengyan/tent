@@ -35,7 +35,7 @@
             <li class="layui-nav-item">
                 <a validate="false">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    <shiro:principal property="susername"/>
+                    <shiro:principal property="loginName"/>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a validate="false" href="">基本资料</a></dd>
@@ -58,7 +58,7 @@
                         <dd><a tab_id="201904180001" data-url="http://www.hao123.com"><i class="layui-icon">&#xe678;</i>&nbsp;修改手机号</a>
                         </dd>
                         <dd><a tab_id="201904180002" data-url=""><i class="layui-icon">&#xe673;</i>&nbsp;登陆密码</a></dd>
-                        <dd><a tab_id="201904180003" data-url=""><i class="layui-icon">&#xe60e;</i>&nbsp;会员信息</a></dd>
+                        <dd><a tab_id="201904180003" data-url="${ctx}/member/info.shtml"><i class="layui-icon">&#xe60e;</i>&nbsp;会员信息</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

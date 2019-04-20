@@ -1,8 +1,8 @@
 package com.tent.service.inte.hy;
 
 
+import com.tent.common.shiro.ILoginUser;
 import com.tent.po.entity.hy.Role;
-import com.tent.po.entity.hy.User;
 
 import java.util.Map;
 import java.util.Set;
@@ -10,7 +10,7 @@ import java.util.Set;
 public interface IRoleService {
 
     //根据用户ID查询角色（role），放入到Authorization里。
-    Set<String> findRoleByUserId(User token);
+    Set<String> findRoleByUserId(ILoginUser token);
 
 
     int deleteByPrimaryKey(Long id);

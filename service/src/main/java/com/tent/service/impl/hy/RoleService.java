@@ -2,9 +2,10 @@ package com.tent.service.impl.hy;
 
 import com.google.common.collect.Sets;
 import com.tent.common.entity.Consts;
+import com.tent.common.shiro.ILoginUser;
 import com.tent.dao.hy.RoleDao;
 import com.tent.po.entity.hy.Role;
-import com.tent.po.entity.hy.User;
+import com.tent.service.impl.shiro.LoginUser;
 import com.tent.service.inte.hy.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,10 +23,13 @@ public class RoleService implements IRoleService{
     private RoleDao roleDao;
 
     @Override
-    public Set<String> findRoleByUserId(User token) {
+    public Set<String> findRoleByUserId(ILoginUser token) {
+
+        LoginUser user = (LoginUser)token;
+
         HashSet<String> map = Sets.newHashSet("user");
-        map.add(Consts.AuthenticateType.get(token.getIauthtype()).name().toLowerCase());
-        map.add(Consts.MemberType.get(token.getImembertype()).name().toLowerCase());
+        map.add(Consts.AuthenticateType.get(user.getAuthtype()).name().toLowerCase());
+        map.add(Consts.MemberType.get(user.getMembertype()).name().toLowerCase());
         return map;
     }
 

@@ -3,12 +3,15 @@ package com.tent.service.impl.hy;
 import com.tent.common.entity.Consts;
 import com.tent.common.entity.UUser;
 import com.tent.dao.hy.UserDao;
+import com.tent.po.entity.hy.Member;
 import com.tent.po.entity.hy.User;
+import com.tent.service.impl.shiro.LoginUser;
 import com.tent.service.inte.hy.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.Map;
 
 @Component
@@ -19,7 +22,7 @@ public class UserService implements IUserService{
     private UserDao userDao;
 
     @Override
-    public User findBySusernameOrSmobile(String susername, String smobile) {
+    public LoginUser findBySusernameOrSmobile(String susername, String smobile) {
         User user = this.userDao.findBySusernameOrSmobile(susername,smobile);
         if (user == null)
             return null;
@@ -28,14 +31,26 @@ public class UserService implements IUserService{
         if (Consts.BoolType.NO.isEq(user.getBisvalid()))
             return null;
 
-        return user;
+        Member member = user.getMember();
+        if (member == null)
+            return null;
+
+        LoginUser loginUser = new LoginUser(user.getId(), user.getSusername(), user.getSname(), user.getBisadmin(), user.getDlastloginsuccessdate(),
+                user.getSpassword(), member.getId(), member.getImembertype(), member.getScnname(), member.getSmemberno(), 0, user.getSlikename(),user.getSmobile(),0,member.getIauthtype(),user.getBisvalid());
+
+
+        return loginUser;
     }
 
     @Override
-    public void updateByPrimaryKeySelective(User record) {
-        record.setBisvalid(UUser._1);//更新用户状态
+    public void updateByPrimaryKeySelective(LoginUser record) {
 
-        this.userDao.save(record);
+        User user = this.userDao.findOne(record.getId());
+
+        user.setDlastloginsuccessdate(new Date());//更新最后登陆成功时间
+        user.setBisvalid(UUser._1);//更新用户状态
+
+        this.userDao.save(user);
     }
 
     @Override

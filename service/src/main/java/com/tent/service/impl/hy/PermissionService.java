@@ -1,11 +1,11 @@
 package com.tent.service.impl.hy;
 
 import com.google.common.collect.Sets;
+import com.tent.common.shiro.ILoginUser;
 import com.tent.common.utils.B;
 import com.tent.common.utils.LoggerUtils;
 import com.tent.dao.hy.PermissionDao;
 import com.tent.po.entity.hy.Permission;
-import com.tent.po.entity.hy.User;
 import com.tent.service.inte.hy.IPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class PermissionService implements IPermissionService{
     private PermissionDao permissionDao;
 
     @Override
-    public Set<String> findPermissionByUserId(User token) {
+    public Set<String> findPermissionByUserId(ILoginUser token) {
 
         Collection<String> db ;
         Set<String> rs = Sets.newHashSet();

@@ -1,9 +1,5 @@
 package com.tent.common.entity;
 
-import net.sf.json.JSONObject;
-
-import java.util.Map;
-
 public class Consts {
 
     public static enum BoolType implements IConst{
@@ -132,6 +128,144 @@ public class Consts {
         @Override
         public boolean isNot(int i) {
             return i != nCode;
+        }
+
+    }
+    public static enum CompanyType implements  IConst{
+        PRODUCTIVE(0,"生产型"),
+        PROCESSING(1,"加工型"),
+        TRADE(2,"贸易型");
+        public  static CompanyType get(int i){
+            switch(i)
+            {
+                case 0:
+                    return CompanyType.PRODUCTIVE;
+                case 1:
+                    return CompanyType.PROCESSING;
+                case 2:
+                    return CompanyType.TRADE;
+            }
+            return null;
+        }
+
+
+        private   int   nCode ;
+        private   String   nLabel ;
+        CompanyType ( int   _nCode,String _nlabel) {
+
+            this. nCode  = _nCode;
+            this.nLabel=_nlabel;
+        }
+
+        @Override
+        public int val(){
+            return nCode;
+        }
+        @Override
+        public String label(){
+            return nLabel;
+        }
+        @Override
+        public String getLabel(){
+            return nLabel;
+        }
+        @Override
+        public int getVal(){
+            return nCode;
+        }
+        @Override
+        public IConst[] vals(){
+            return CompanyType.values();
+        }
+
+        @Override
+        public IConst valof(String str) {
+
+            return CompanyType.valueOf(str);
+        }
+        @Override
+        public boolean isEq(int i) {
+
+            return nCode==i;
+        }
+        @Override
+        public boolean isNot(int i) {
+
+            return nCode!=i;
+        }
+
+    }
+    public static enum MemberStatus implements  IConst{
+        WAIT(0,"待激活"),
+        CHECK(1,"待审核"),
+        REJECT(2,"被拒绝"),
+        NORMAL(3 ,"正常"),
+        FLEEZE(4 ,"冻结"),
+        EDIT(5,"待完善资料");
+        public  static MemberStatus get(int i){
+            switch(i)
+            {
+                case 0:
+                    return MemberStatus.WAIT;
+                case 1:
+                    return MemberStatus.CHECK;
+                case 2:
+                    return MemberStatus. REJECT;
+                case 3 :
+                    return MemberStatus.NORMAL;
+                case 4 :
+                    return MemberStatus.FLEEZE;
+                case 5:
+                    return MemberStatus.EDIT;
+            }
+            return null;
+        }
+
+
+        private   int   nCode ;
+        private   String   nLabel ;
+        MemberStatus ( int   _nCode,String _nlabel) {
+
+            this. nCode  = _nCode;
+            this.nLabel=_nlabel;
+        }
+
+        @Override
+        public int val(){
+            return nCode;
+        }
+        @Override
+        public String label(){
+            return nLabel;
+        }
+        @Override
+        public String getLabel(){
+            return nLabel;
+        }
+        @Override
+        public int getVal(){
+            return nCode;
+        }
+        @Override
+        public IConst[] vals(){
+            return MemberStatus.values();
+        }
+
+        @Override
+        public IConst valof(String str) {
+
+            return MemberStatus.valueOf(str);
+        }
+        @Override
+        public boolean isEq(int i) {
+
+            return nCode==i;
+        }
+
+        @Override
+        public boolean isNot(int i) {
+
+            return nCode!=i;
         }
 
     }
