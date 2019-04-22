@@ -3,7 +3,6 @@ package com.tent.po.entityBase.hy;
 
 import com.tent.common.entity.BaseEntity;
 import com.tent.po.entity.hy.User;
-import com.tent.po.entity.hy.UserRole;
 import net.sf.json.JSONObject;
 
 import javax.persistence.MappedSuperclass;
@@ -43,7 +42,7 @@ public class UserBase extends BaseEntity{
     private   Date dlastloginsuccessdate; //最后登录成功日期 Date
     private   Integer imembertype=0; //会员类型
     private   Integer iauthtype=0; //认证类型
-
+    private   Integer bisproducer=0; //是否监制
 
     public String getSmemberid() {
         return smemberid;
@@ -277,6 +276,14 @@ public class UserBase extends BaseEntity{
         this.iauthtype = iauthtype;
     }
 
+    public Integer getBisproducer() {
+        return bisproducer;
+    }
+
+    public void setBisproducer(Integer bisproducer) {
+        this.bisproducer = bisproducer;
+    }
+
     public UserBase() {
     }
     public UserBase(User user) {
@@ -309,6 +316,7 @@ public class UserBase extends BaseEntity{
         this.dlastloginsuccessdate = user.getDlastloginsuccessdate();
         this.imembertype = user.getImembertype();
         this.iauthtype = user.getIauthtype();
+        this.bisproducer = user.getBisproducer();
     }
 
     public String toString(){

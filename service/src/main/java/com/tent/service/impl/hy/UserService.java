@@ -36,7 +36,7 @@ public class UserService implements IUserService{
             return null;
 
         LoginUser loginUser = new LoginUser(user.getId(), user.getSusername(), user.getSname(), user.getBisadmin(), user.getDlastloginsuccessdate(),
-                user.getSpassword(), member.getId(), member.getImembertype(), member.getScnname(), member.getSmemberno(), 0, user.getSlikename(),user.getSmobile(),0,member.getIauthtype(),user.getBisvalid());
+                user.getSpassword(), member.getId(), member.getImembertype(), member.getScnname(), member.getSmemberno(), 0, user.getSlikename(),user.getSmobile(),0,member.getIauthtype(),user.getBisvalid(),user.getBisproducer());
 
 
         return loginUser;

@@ -1,5 +1,13 @@
+<%@ page import="com.tent.common.shiro.ILoginUser" %>
+<%@ page import="com.tent.cloud.shiro.token.ShiroUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../include/taglib.jsp" %>
+
+<%
+    ILoginUser loginUser = ShiroUtils.getCurrentUser();
+
+    int bisproducer = loginUser.getBisproducer();
+%>
 
 <!DOCTYPE html>
 <html>
@@ -16,9 +24,19 @@
         <div class="layui-logo">logo</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a top_id="0001" validate="true">会员中心</a></li>
-            <li class="layui-nav-item"><a top_id="0002" validate="true">商品管理</a></li>
-            <li class="layui-nav-item"><a top_id="0003" validate="true">用户</a></li>
+
+            <!-- 是否监制 -->
+            <%if (bisproducer == 1) {%>
+                <li class="layui-nav-item"><a top_id="001" validate="true">系统管理</a></li>
+                <li class="layui-nav-item"><a top_id="002" validate="true">员工管理</a></li>
+                <li class="layui-nav-item"><a top_id="003" validate="true">会员管理</a></li>
+                <li class="layui-nav-item"><a top_id="004" validate="true">商品管理</a></li>
+            <%}else {%>
+                <li class="layui-nav-item"><a top_id="0001" validate="true">会员中心</a></li>
+                <li class="layui-nav-item"><a top_id="0002" validate="true">商品管理</a></li>
+                <li class="layui-nav-item"><a top_id="0003" validate="true">用户</a></li>
+            <%}%>
+
             <li class="layui-nav-item">
                 <a validate="true">其它系统</a>
                 <dl class="layui-nav-child">
@@ -47,40 +65,87 @@
     </div>
 
     <div class="layui-side layui-bg-black">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
         <div class="layui-side-scroll">
-            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree" lay-filter="test" top_id="0001">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a validate="false">会员管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a tab_id="201904180000" data-url="http://www.taobao.com"><i class="layui-icon">&#xe613;</i>&nbsp;会员认证</a>
-                        </dd>
-                        <dd><a tab_id="201904180001" data-url="http://www.hao123.com"><i class="layui-icon">&#xe678;</i>&nbsp;修改手机号</a>
-                        </dd>
-                        <dd><a tab_id="201904180002" data-url=""><i class="layui-icon">&#xe673;</i>&nbsp;登陆密码</a></dd>
-                        <dd><a tab_id="201904180003" data-url="${ctx}/member/info.shtml"><i class="layui-icon">&#xe60e;</i>&nbsp;会员信息</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a validate="false">解决方案</a>
-                    <dl class="layui-nav-child">
-                        <dd><a>列表一</a></dd>
-                        <dd><a>列表二</a></dd>
-                        <dd><a>超链接</a></dd>
-                    </dl>
-                </li>
-            </ul>
+            <!-- 是否监制 -->
+            <%if (bisproducer == 1) {%>
+                <ul class="layui-nav layui-nav-tree" lay-filter="test" top_id="001">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a validate="false">系统管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a tab_id="2019042100001" data-url="http://www.taobao.com"><i class="layui-icon">&#xe613;</i>&nbsp;监制权限码管理</a>
+                            </dd>
+                            <dd><a tab_id="2019042100004" data-url="http://www.taobao.com"><i class="layui-icon">&#xe613;</i>&nbsp;会员权限码管理</a>
+                            </dd>
+                            <dd><a tab_id="2019042100005" data-url="http://www.taobao.com"><i class="layui-icon">&#xe613;</i>&nbsp;生成编号</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
 
-            <ul class="layui-nav layui-nav-tree layui-hide" lay-filter="test" top_id="0002">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a validate="false">商品管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a tab_id="">权限分配</a></dd>
-                        <dd><a tab_id="">超链接</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-            </ul>
+                <ul class="layui-nav layui-nav-tree layui-hide" lay-filter="test" top_id="002">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a validate="false">员工账号</a>
+                        <dl class="layui-nav-child">
+                            <dd><a tab_id="2019042100002">账号管理</a></dd>
+                            <dd><a tab_id="2019042100003">角色管理</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+
+                <ul class="layui-nav layui-nav-tree layui-hide" lay-filter="test" top_id="003">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a validate="false">会员管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a tab_id="2019042100006">会员默认角色</a></dd>
+                            <dd><a tab_id="2019042100007">交易会员</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+
+                <ul class="layui-nav layui-nav-tree layui-hide" lay-filter="test" top_id="004">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a validate="false">商品管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a tab_id="2019042100008" data-url="${ctx}/category/list.shtml">品种管理</a></dd>
+                            <dd><a tab_id="2019042100009">品名管理</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            <%}else {%>
+                <ul class="layui-nav layui-nav-tree" lay-filter="test" top_id="0001">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a validate="false">会员管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a tab_id="201904180000" data-url="http://www.taobao.com"><i class="layui-icon">&#xe613;</i>&nbsp;会员认证</a>
+                            </dd>
+                            <dd><a tab_id="201904180001" data-url="http://www.hao123.com"><i class="layui-icon">&#xe678;</i>&nbsp;修改手机号</a>
+                            </dd>
+                            <dd><a tab_id="201904180002" data-url=""><i class="layui-icon">&#xe673;</i>&nbsp;登陆密码</a></dd>
+                            <dd><a tab_id="201904180003" data-url="${ctx}/member/info.shtml"><i class="layui-icon">&#xe60e;</i>&nbsp;会员信息</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a validate="false">解决方案</a>
+                        <dl class="layui-nav-child">
+                            <dd><a>列表一</a></dd>
+                            <dd><a>列表二</a></dd>
+                            <dd><a>超链接</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+
+                <ul class="layui-nav layui-nav-tree layui-hide" lay-filter="test" top_id="0002">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a validate="false">商品管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a tab_id="201904210000">品种维护</a></dd>
+                            <dd><a tab_id="201904210001">品名维护</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="">云市场</a></li>
+                </ul>
+            <%}%>
         </div>
     </div>
 

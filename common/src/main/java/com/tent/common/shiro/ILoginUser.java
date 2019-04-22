@@ -17,4 +17,6 @@ public interface ILoginUser {
     public abstract String getMemberId();
 
     public abstract String getMemberName();
+
+    public abstract int getBisproducer();
 }

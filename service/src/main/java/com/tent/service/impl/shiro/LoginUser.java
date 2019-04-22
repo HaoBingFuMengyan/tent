@@ -27,8 +27,9 @@ public class LoginUser implements Serializable, ILoginUser {
     private int bisselfsaler;
     private int authtype;
     private int bisvalid;
+    private int bisproducer;
 
-    public LoginUser(String id, String loginName, String name, int bisadmin, Date lastlogintime, String password, String memberId, int membertype, String membercnname, String memberno, int bissalesman, String slikename, String smobile, int bisselfsaler, int authtype, int bisvalid) {
+    public LoginUser(String id, String loginName, String name, int bisadmin, Date lastlogintime, String password, String memberId, int membertype, String membercnname, String memberno, int bissalesman, String slikename, String smobile, int bisselfsaler, int authtype, int bisvalid, int bisproducer) {
         this.id = id;
         this.loginName = loginName;
         this.name = name;
@@ -45,6 +46,7 @@ public class LoginUser implements Serializable, ILoginUser {
         this.bisselfsaler = bisselfsaler;
         this.authtype = authtype;
         this.bisvalid = bisvalid;
+        this.bisproducer = bisproducer;
     }
 
     public int getBisvalid(){
@@ -102,6 +104,10 @@ public class LoginUser implements Serializable, ILoginUser {
         return this.membercnname;
     }
 
+    @Override
+    public int getBisproducer() {
+        return this.bisproducer;
+    }
     /**
      * 重载equals,只计算loginName;
      */

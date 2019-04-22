@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.layui-info {
+    /* margin: 10px;*/
+}
+
+.layui-info .layui-form-item{
+    border-bottom: #eee 1px solid;
+    overflow: hidden;
+}
+
+.layui-info .layui-form-item:last-child{
+    border-bottom: #eee 0px solid;
+    margin-bottom: 0px;
+}
+
+.layui-info .layui-form-item .layui-inline{
+    width: 33%;
+    margin-right: 0;
+}
+.layui-info .layui-form-item .layui-inline .layui-form-label,
+.layui-info .layui-form-item .layui-block .layui-form-label{
+    padding: 6px 5px;
+}
+.layui-info .layui-form-item .layui-inline .layui-form-label,
+.layui-info .layui-form-item .layui-block .layui-form-label{
+    font-size: 13px !important;
+}
+.layui-info .layui-form-item .layui-inline .layui-input-inline{
+    width: auto;!important;
+    padding: 6px 5px;
+    line-height: 20px;
+    text-align: left;
+    font-size: 13px;
+}
+.layui-info .layui-inline .layui-input-inline em{
+    color: red;
+}
+
+.layui-info .layui-form-item .layui-block{
+    width: 100%;
+    vertical-align: middle;
+    position: relative;
+}
+
+.layui-info .layui-form-item .layui-block .layui-input-block{
+    width: auto;!important;
+    padding: 6px 5px;
+    line-height: 20px;
+    text-align: left;
+    font-size: 12px;
+    margin-left: 0px;
+}
+.top10{
+    margin-top: 10px;
+}
