@@ -107,8 +107,8 @@
                     <li class="layui-nav-item layui-nav-itemed">
                         <a validate="false">商品管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a tab_id="2019042100008" data-url="${ctx}/category/list.shtml">品种管理</a></dd>
-                            <dd><a tab_id="2019042100009">品名管理</a></dd>
+                            <dd><a tab_id="2019042100008" data-url="${ctx}/category/list.shtml"><i class="layui-icon">&#xe62e;</i>&nbsp;品种管理</a></dd>
+                            <dd><a tab_id="2019042100009" data-url="${ctx}/commodity/list.shtml"><i class="layui-icon">&#xe6b1;</i>&nbsp;品名管理</a></dd>
                         </dl>
                     </li>
                 </ul>

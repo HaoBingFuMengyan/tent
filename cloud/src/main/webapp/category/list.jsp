@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>品种管理</title>
-
+    <script src="${ctxStatic}/jquery/jquery-2.1.1.min.js"></script>
     <script src="${ctxStatic}/layui-v2.4.5/layui.all.js"></script>
 
     <link rel="stylesheet" href="${ctxStatic}/layui-v2.4.5/css/layui.css">
@@ -16,7 +16,6 @@
         body {
             margin: 10px;
         }
-
         .demo-carousel {
             height: 200px;
             line-height: 200px;
@@ -25,28 +24,50 @@
     </style>
 </head>
 <body>
+
 <table class="layui-hide" id="demo" lay-filter="test"></table>
+
+<%-- 头部工具栏 --%>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+    </div>
+</script>
+
+<%-- 右边工具栏 --%>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 
 <script>
 
-    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function () {
-        var laydate = layui.laydate //日期
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider', 'form'], function () {
+        var form = layui.form
+            , laydate = layui.laydate //日期
             , laypage = layui.laypage //分页
             , layer = layui.layer //弹层
             , table = layui.table //表格
             , carousel = layui.carousel //轮播
             , upload = layui.upload //上传
             , element = layui.element //元素操作
-            , slider = layui.slider //滑块
+            , slider = layui.slider; //滑块
+
         //执行一个 table 实例
         table.render({
             elem: '#demo'
             , height: 420
             , url: '${ctx}/category/list.json' //数据接口
-            , title: '用户表'
+            , title: '品种表'
             , page: true //开启分页
-            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+//            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            , toolbar: '#toolbarDemo'
             , totalRow: true //开启合计行
+            , limits: [10,20,40,50] //每页条数选择项
+            , limit: 20 //每页显示条数
             , cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
                 , {field: '', title: 'ID', width: 80, sort: true, fixed: 'left', totalRowText: '合计：'}
@@ -68,9 +89,29 @@
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'add':
-                    layer.msg('添加');
+                    top.layer.open({
+                        type: 2,
+                        title:'添加',
+                        area: ['85%', '85%'],
+                        content: '${ctx}/category/add.shtml',
+                        btn: ['确定', '关闭'],
+                        yes: function(index,layero) {
+                            var iframeWin = layero.find('iframe')[0];
+                            var $=iframeWin.contentWindow.$;
+                            var doc=$(iframeWin.contentWindow.document);
+
+                            if(iframeWin){//这里我想判断校验结果，怎么调用表单校验，不知道有没有自带方法，官网没找到
+
+                                doc.find('.layui-form').submit();//提交表单
+                            }
+
+
+
+                        },
+                        cancel: function(index){}
+                    });
                     break;
-                case 'update':
+                case 'getCheckLength':
                     if (data.length === 0) {
                         layer.msg('请选择一行');
                     } else if (data.length > 1) {
@@ -86,8 +127,9 @@
                         layer.msg('删除');
                     }
                     break;
-            }
-            ;
+                default:
+                    break;
+            };
         });
 
         //监听行工具事件
@@ -108,12 +150,6 @@
         });
 
     });
-</script>
-
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
 </body>

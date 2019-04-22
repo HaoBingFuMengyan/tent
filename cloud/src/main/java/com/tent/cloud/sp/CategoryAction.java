@@ -45,4 +45,22 @@ public class CategoryAction {
         }
     }
 
+    @RequestMapping(value = "add.shtml",method = RequestMethod.GET)
+    public String add(Model model,HttpServletRequest request,HttpSession session){
+        return S.toPage("category/add");
+    }
+
+    @RequestMapping(value = "add.shtml",method = RequestMethod.POST)
+    public String add(Category category, Model model,HttpServletRequest request,HttpSession session){
+        try {
+
+        }catch (ServiceException ex){
+            ex.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
 }

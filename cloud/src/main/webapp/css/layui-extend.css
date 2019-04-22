@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* layui详情展示扩展样式 */
 .layui-info {
     /* margin: 10px;*/
 }
@@ -53,4 +54,55 @@
 }
 .top10{
     margin-top: 10px;
+}
+
+/* layui表单样式扩展 */
+.layui-form-item {
+    margin-bottom: 5px;
+}
+.layui-form-item .layui-input-inline {
+    width: 270px ;
+}
+.layui-form-item .layui-input-text{
+    width: 842px ;
+}
+.layui-inline{
+    width:48%;
+}
+.layui-form-text{
+    width:99%;
+}
+.layui-form-label{
+    font-size: 10pt;
+}
+.layui-input-table {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 14px 1px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: 1px 1px 20px rgba(0,0,0,.15)
+}
+.layui-input-block{
+    margin-left: 130px;
+}
+.layui-textarea{
+    min-height: 60px;
+    width: 100%;
+}
+.layui-elem-field legend{
+    font-size: 16px;
+}
+.layui-input-sm{
+    height: 30px;
+    line-height: 30px;
+}
+.layui-field-title {
+    margin: 10px 0 10px;
+}
+
+.layui-table-tool-temp .layui-table-tool-right{
+    float: right;
 }
