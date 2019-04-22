@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>品种管理</title>
+    <title>Title</title>
 
     <script src="${ctxStatic}/layui-v2.4.5/layui.all.js"></script>
 
@@ -29,35 +29,28 @@
 
 <script>
 
+
     layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function () {
-        var laydate = layui.laydate //日期
-            , laypage = layui.laypage //分页
-            , layer = layui.layer //弹层
-            , table = layui.table //表格
-            , carousel = layui.carousel //轮播
-            , upload = layui.upload //上传
-            , element = layui.element //元素操作
-            , slider = layui.slider //滑块
         //执行一个 table 实例
         table.render({
             elem: '#demo'
             , height: 420
-            , url: '${ctx}/category/list.json' //数据接口
+            , url: '/demo/table/user/' //数据接口
             , title: '用户表'
             , page: true //开启分页
             , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             , totalRow: true //开启合计行
             , cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
-                , {field: '', title: 'ID', width: 80, sort: true, fixed: 'left', totalRowText: '合计：'}
-                , {field: '', title: '用户名', width: 80}
-                , {field: '', title: '积分', width: 90, sort: true, totalRow: true}
-                , {field: '', title: '性别', width: 80, sort: true}
-                , {field: '', title: '评分', width: 80, sort: true, totalRow: true}
-                , {field: '', title: '城市', width: 150}
-                , {field: '', title: '签名', width: 200}
-                , {field: '', title: '职业', width: 100}
-                , {field: '', title: '财富', width: 135, sort: true, totalRow: true}
+                , {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left', totalRowText: '合计：'}
+                , {field: 'username', title: '用户名', width: 80}
+                , {field: 'experience', title: '积分', width: 90, sort: true, totalRow: true}
+                , {field: 'sex', title: '性别', width: 80, sort: true}
+                , {field: 'score', title: '评分', width: 80, sort: true, totalRow: true}
+                , {field: 'city', title: '城市', width: 150}
+                , {field: 'sign', title: '签名', width: 200}
+                , {field: 'classify', title: '职业', width: 100}
+                , {field: 'wealth', title: '财富', width: 135, sort: true, totalRow: true}
                 , {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo'}
             ]]
         });

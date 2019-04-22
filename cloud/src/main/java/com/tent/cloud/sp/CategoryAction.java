@@ -1,7 +1,7 @@
 package com.tent.cloud.sp;
 
+import com.tent.common.jpa.Result;
 import com.tent.common.utils.S;
-import com.tent.common.web.Msg;
 import com.tent.po.entity.sp.Category;
 import com.tent.service.inte.sp.ICategoryService;
 import org.hibernate.service.spi.ServiceException;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,20 +24,25 @@ public class CategoryAction {
     private ICategoryService categoryService;
 
     @RequestMapping(value = "list.shtml",method = RequestMethod.GET)
-    public String index(Model model, HttpServletRequest request, HttpSession session){
+    public String list(Model model,HttpServletRequest request,HttpSession session){
+        return S.toPage("category/list");
+    }
+
+    @RequestMapping(value = "list.json")
+    @ResponseBody
+    public Result index(Model model, HttpServletRequest request, HttpSession session){
         try {
 
             Page<Category> list = this.categoryService.findPageList(null);
 
-            model.addAttribute("list",list);
+            return  Result.success(list,"");
         }catch (ServiceException ex){
             ex.printStackTrace();
-            Msg.error(model,ex.getMessage());
+            return Result.failure(ex.getMessage());
         }catch (Exception e){
             e.printStackTrace();
-            Msg.error(model,e.getMessage());
+            return Result.failure(e.getMessage());
         }
-        return S.toPage("category/list");
     }
 
 }
