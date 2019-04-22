@@ -100,7 +100,8 @@
                             var $=iframeWin.contentWindow.$;
                             var doc=$(iframeWin.contentWindow.document);
 
-                            if(iframeWin){//这里我想判断校验结果，怎么调用表单校验，不知道有没有自带方法，官网没找到
+
+                            if(iframeWin.contentWindow.valiForm()){//这里我想判断校验结果，怎么调用表单校验，不知道有没有自带方法，官网没找到
 
                                 doc.find('.layui-form').submit();//提交表单
                             }

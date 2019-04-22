@@ -13,6 +13,58 @@
     <link rel="stylesheet" href="${ctxStatic}/layui-v2.4.5/css/layui.css">
     <link rel="stylesheet" href="${ctx}/css/layui-extend.css">
     <link rel="stylesheet" href="${ctxStatic}/css/common.css">
+
+    <script>
+        var device;
+        var form;
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            device = layui.device();
+            form = layui.form;
+            form.verify({
+                required: function (value) {
+                    if (value.length < 5) {
+                        return '时间至少得5个字符';
+                    }
+                }
+            });
+        });
+
+        function valiForm() {//仿照源码写的校验，返回布尔类型
+            var verify = form.config.verify, stop = null
+                , DANGER = 'layui-form-danger', field = {}, elem = $('.layui-form')
+                , verifyElem = elem.find('*[lay-verify]') //获取需要校验的元素
+                , formElem = elem //获取当前所在的form元素，如果存在的话
+                , fieldElem = elem.find('input,select,textarea') //获取所有表单域
+                , filter = '*'; //获取过滤器
+
+            //开始校验
+            layui.each(verifyElem, function (_, item) {
+                var othis = $(this), ver = othis.attr('lay-verify'), tips = '';
+                var value = othis.val(), isFn = typeof verify[ver] === 'function';
+                othis.removeClass(DANGER);
+                if (verify[ver] && (isFn ? tips = verify[ver](value, item) : !verify[ver][0].test(value))) {
+//                    layer.msg(tips || verify[ver][1], {
+//                        icon: 5
+//                        , shift: 6
+//                    });
+                    layer.tips(tips || verify[ver][1],othis);
+                    //非移动设备自动定位焦点
+                    if (!device.android && !device.ios) {
+                        item.focus();
+                    }
+                    othis.addClass(DANGER);
+                    return stop = true;
+                }
+            });
+
+            if (stop) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        };
+    </script>
 </head>
 <body>
 <div class="mbody">
@@ -30,13 +82,13 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">品种名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input">
+                                <input type="text" class="layui-input" lay-verify="required">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">俗名</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input">
+                                <input type="text" class="layui-input" lay-verify="required">
                             </div>
                         </div>
                     </div>
@@ -44,7 +96,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">是否常用</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input">
+                                <input type="text" class="layui-input" lay-verify="required">
                             </div>
                         </div>
                         <div class="layui-inline">
