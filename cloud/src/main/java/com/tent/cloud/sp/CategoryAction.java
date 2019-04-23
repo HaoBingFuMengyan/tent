@@ -1,9 +1,11 @@
 package com.tent.cloud.sp;
 
+import com.tent.common.jpa.Ajax;
 import com.tent.common.jpa.Result;
 import com.tent.common.utils.S;
 import com.tent.po.entity.sp.Category;
 import com.tent.service.inte.sp.ICategoryService;
+import net.sf.json.JSONObject;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,17 +52,20 @@ public class CategoryAction {
         return S.toPage("category/add");
     }
 
-    @RequestMapping(value = "add.shtml",method = RequestMethod.POST)
-    public String add(Category category, Model model,HttpServletRequest request,HttpSession session){
+    @RequestMapping(value = "add.json",method = RequestMethod.POST)
+    @ResponseBody
+    public Ajax add(Category category, Model model, HttpServletRequest request, HttpSession session){
         try {
 
+            System.out.print(JSONObject.fromObject(category));
+            return Ajax.success("","操作成功");
         }catch (ServiceException ex){
             ex.printStackTrace();
+            return Ajax.failure(ex.getMessage());
         }catch (Exception e){
             e.printStackTrace();
+            return Ajax.failure(e.getMessage());
         }
-
-        return "";
     }
 
 }

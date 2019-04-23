@@ -22,8 +22,8 @@
             form = layui.form;
             form.verify({
                 required: function (value) {
-                    if (value.length < 5) {
-                        return '时间至少得5个字符';
+                    if (value.length < 2) {
+                        return '时间至少得2个字符';
                     }
                 }
             });
@@ -82,7 +82,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">品种名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" lay-verify="required">
+                                <input type="text" name="sname" id="sname" class="layui-input" lay-verify="required">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -96,7 +96,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">是否常用</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" lay-verify="required">
+                                <input type="text" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">

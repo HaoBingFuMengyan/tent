@@ -24,15 +24,22 @@
     </style>
 </head>
 <body>
+<div class="demoTable">
+    搜索ID：
+    <div class="layui-inline">
+        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+    </div>
+    <button class="layui-btn" data-type="reload">搜索</button>
+</div>
 
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 
 <%-- 头部工具栏 --%>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-        <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>添加</button>
+        <button class="layui-btn layui-btn-sm" lay-event="delete"><i class="layui-icon">&#xe640;</i>删除</button>
+        <button class="layui-btn layui-btn-sm" lay-event="refresh"><i class="layui-icon">&#x1002;</i>刷新</button>
     </div>
 </script>
 
@@ -57,7 +64,7 @@
             , slider = layui.slider; //滑块
 
         //执行一个 table 实例
-        table.render({
+        var tableIns = table.render({
             elem: '#demo'
             , height: 420
             , url: '${ctx}/category/list.json' //数据接口
@@ -81,6 +88,7 @@
                 , {field: '', title: '财富', width: 135, sort: true, totalRow: true}
                 , {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo'}
             ]]
+            ,id: 'testReload'
         });
 
         //监听头工具栏事件
@@ -100,26 +108,37 @@
                             var $=iframeWin.contentWindow.$;
                             var doc=$(iframeWin.contentWindow.document);
 
-
                             if(iframeWin.contentWindow.valiForm()){//这里我想判断校验结果，怎么调用表单校验，不知道有没有自带方法，官网没找到
-
-                                doc.find('.layui-form').submit();//提交表单
+                                $.ajax({
+                                    type: "POST",
+                                    url: '${ctx}/category/add.json',
+                                    data: doc.find('.layui-form').serialize(),
+                                    dataType:'json',
+                                    cache: false,
+                                    contentType:false,
+                                    processData:false,
+                                    success:function (data) {
+                                        if(data.success){
+                                            top.layer.closeAll();//返回成功，关闭所有弹窗
+                                            if(data.msg){
+                                                top.layer.msg(data.msg,{icon:1});
+                                            }else {
+                                                top.layer.msg("操作成功!",{icon:1});
+                                            }
+//                                            parent.location.reload();//更新父级页面
+                                        }else {
+                                            top.layer.msg(data.msg,{icon:2});
+                                        }
+                                    },
+                                    error:function (data) {
+                                        top.layer.msg("系统错误，请联系管理员",{icon:2});
+                                    }
+                                })
                             }
-
-
 
                         },
                         cancel: function(index){}
                     });
-                    break;
-                case 'getCheckLength':
-                    if (data.length === 0) {
-                        layer.msg('请选择一行');
-                    } else if (data.length > 1) {
-                        layer.msg('只能同时编辑一个');
-                    } else {
-                        layer.alert('编辑 [id]：' + checkStatus.data[0].id);
-                    }
                     break;
                 case 'delete':
                     if (data.length === 0) {
@@ -127,6 +146,9 @@
                     } else {
                         layer.msg('删除');
                     }
+                    break;
+                case 'refresh':
+                    tableIns.reload()
                     break;
                 default:
                     break;
@@ -150,6 +172,29 @@
             }
         });
 
+        var $ = layui.$, active = {
+            reload: function(){
+                var demoReload = $('#demoReload');
+
+                //执行重载
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        key: {
+                            id: demoReload.val()
+                        }
+                    }
+                });
+            }
+        };
+
+        //搜索
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
     });
 </script>
 
