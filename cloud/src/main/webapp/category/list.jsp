@@ -11,6 +11,7 @@
     <script src="${ctxStatic}/layui-v2.4.5/layui.all.js"></script>
 
     <link rel="stylesheet" href="${ctxStatic}/layui-v2.4.5/css/layui.css">
+    <link rel="stylesheet" href="${ctxStatic}/css/common.css">
 
     <style>
         body {
@@ -24,13 +25,17 @@
     </style>
 </head>
 <body>
-<div class="demoTable">
-    搜索ID：
-    <div class="layui-inline">
-        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+
+<form action="" id="mainForm">
+    <div class="demoTable">
+        搜索ID：
+        <div class="layui-inline">
+            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+        </div>
+        <button class="layui-btn" data-type="reload"><i class="layui-icon">&#xe615;</i>搜索</button>
+        <button class="layui-btn layui-btn-primary clear-margin-left" type="reset" onclick="reset()"><i class="layui-icon">&#xe63c;</i>重置</button>
     </div>
-    <button class="layui-btn" data-type="reload">搜索</button>
-</div>
+</form>
 
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 
@@ -39,7 +44,7 @@
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>添加</button>
         <button class="layui-btn layui-btn-sm" lay-event="delete"><i class="layui-icon">&#xe640;</i>删除</button>
-        <button class="layui-btn layui-btn-sm" lay-event="refresh"><i class="layui-icon">&#x1002;</i>刷新</button>
+        <button class="layui-btn layui-btn-sm" lay-event="refresh"><i class="layui-icon">&#xe666;</i>刷新</button>
     </div>
 </script>
 
@@ -72,21 +77,20 @@
             , page: true //开启分页
 //            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             , toolbar: '#toolbarDemo'
-            , totalRow: true //开启合计行
+//            , totalRow: true //开启合计行
             , limits: [10,20,40,50] //每页条数选择项
             , limit: 20 //每页显示条数
             , cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
-                , {field: '', title: 'ID', width: 80, sort: true, fixed: 'left', totalRowText: '合计：'}
-                , {field: '', title: '用户名', width: 80}
-                , {field: '', title: '积分', width: 90, sort: true, totalRow: true}
-                , {field: '', title: '性别', width: 80, sort: true}
-                , {field: '', title: '评分', width: 80, sort: true, totalRow: true}
-                , {field: '', title: '城市', width: 150}
-                , {field: '', title: '签名', width: 200}
-                , {field: '', title: '职业', width: 100}
-                , {field: '', title: '财富', width: 135, sort: true, totalRow: true}
-                , {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo'}
+//                , {field: '', title: 'ID', width: 80, sort: true, fixed: 'left', totalRowText: '合计：'}
+                , {field: 'sname', title: '品种名称', width: 120, sort: true}
+                , {field: 'ssystemcode', title: '编号', width: 120, sort: true}
+                , {field: 'senname', title: '英文名称', width: 120, sort: true}
+                , {field: 'sweightunit', title: '单位', width: 120}
+                , {field: 'sproducer', title: '生产厂商', width: 150}
+                , {field: 'sspec', title: '规格型号', width: 120}
+                , {field: 'biscommon', title: '是否常用', width: 120, sort: true}
+                , {fixed: 'right', width: 165, toolbar: '#barDemo'}
             ]]
             ,id: 'testReload'
         });
@@ -195,7 +199,13 @@
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
+
     });
+
+    //重置
+    function reset(){
+        $(':input','#mainForm').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
+    }
 </script>
 
 </body>
