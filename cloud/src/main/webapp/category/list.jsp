@@ -9,6 +9,7 @@
     <title>品种管理</title>
     <script src="${ctxStatic}/jquery/jquery-2.1.1.min.js"></script>
     <script src="${ctxStatic}/layui-v2.4.5/layui.all.js"></script>
+    <script src="${ctxStatic}/js/common.js"></script>
 
     <link rel="stylesheet" href="${ctxStatic}/layui-v2.4.5/css/layui.css">
     <link rel="stylesheet" href="${ctxStatic}/css/common.css">
@@ -119,8 +120,6 @@
                                     data: doc.find('.layui-form').serialize(),
                                     dataType:'json',
                                     cache: false,
-                                    contentType:false,
-                                    processData:false,
                                     success:function (data) {
                                         if(data.success){
                                             top.layer.closeAll();//返回成功，关闭所有弹窗
@@ -172,7 +171,8 @@
                     //向服务端发送删除指令
                 });
             } else if (layEvent === 'edit') {
-                layer.msg('编辑操作');
+                console.log(JSON.stringify(data));
+                pub.open('编辑','${ctx}/category/add.shtml?id='+data.id,'${ctx}/category/add.json');
             }
         });
 

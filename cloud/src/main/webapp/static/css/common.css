@@ -15,3 +15,9 @@
 .clear-margin-left{
     margin-left: 0 !important;
 }
+
+em{
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+}

@@ -61,6 +61,10 @@ public class Ajax implements Serializable {
         return new Ajax(true,200,"",content);
     }
 
+    public static Ajax success(String message){
+        return new Ajax(true,200,"");
+    }
+
     public static Ajax failure(String msg){
         return new Ajax(false,Ajax.AJAX_FAILURE,msg);
     }

@@ -7,4 +7,8 @@ import org.springframework.data.domain.Pageable;
 public interface ICategoryService {
 
     Page<Category> findPageList(Pageable pageable);
+
+    void save(Category category);
+
+    Category findById(String id);
 }

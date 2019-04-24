@@ -2,10 +2,10 @@ package com.tent.cloud.sp;
 
 import com.tent.common.jpa.Ajax;
 import com.tent.common.jpa.Result;
+import com.tent.common.utils.B;
 import com.tent.common.utils.S;
 import com.tent.po.entity.sp.Category;
 import com.tent.service.inte.sp.ICategoryService;
-import net.sf.json.JSONObject;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +49,12 @@ public class CategoryAction {
     }
 
     @RequestMapping(value = "add.shtml",method = RequestMethod.GET)
-    public String add(Model model,HttpServletRequest request,HttpSession session){
+    public String add(@RequestParam(value = "id",defaultValue = "") String id,
+            Model model,HttpServletRequest request,HttpSession session){
+        if (B.Y(id))
+            model.addAttribute("data",new Category());
+        else
+            model.addAttribute("data",this.categoryService.findById(id));
         return S.toPage("category/add");
     }
 
@@ -56,9 +62,12 @@ public class CategoryAction {
     @ResponseBody
     public Ajax add(Category category, Model model, HttpServletRequest request, HttpSession session){
         try {
-
-            System.out.print(JSONObject.fromObject(category));
-            return Ajax.success("","操作成功");
+            System.out.println(request.getParameter("sname"));
+            this.categoryService.save(category);
+            if (B.Y(category.getId()))
+                return Ajax.success("品种添加成功");
+            else
+                return Ajax.success("品种修改成功");
         }catch (ServiceException ex){
             ex.printStackTrace();
             return Ajax.failure(ex.getMessage());
