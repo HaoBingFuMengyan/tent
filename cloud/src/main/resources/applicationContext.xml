@@ -8,7 +8,8 @@
     <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
     <context:component-scan base-package="com.tent.po;com.tent.service.inte;com.tent.service.impl">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
 
@@ -55,6 +56,16 @@
     <!-- base-package: 扫描dao所在的包 -->
     <jpa:repositories base-package="com.tent.dao" entity-manager-factory-ref="entityManagerFactory">
     </jpa:repositories>
+
+    <!-- Spring Data Jpa配置 -->
+    <jpa:repositories base-package="com.tent.dao"
+                      repository-impl-postfix="Impl"
+                      query-lookup-strategy="create-if-not-found"
+                      factory-class="com.tent.common.jpa.BaseDaoFactoryBean"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager">
+    </jpa:repositories>
+
 
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

@@ -58,5 +58,21 @@ var pub = {
             },
             cancel: function(index){}
         });
+    },
+    /**
+     * layui open iframe
+     * @param title     窗口标题
+     * @param contentUrl    iframe请求地址
+     */
+    detail: function (title,contentUrl){
+        top.layer.open({
+            type: 2,
+            title:title,
+            area: ['85%', '85%'],
+            content: contentUrl,
+            btn: ['关闭'],
+            cancel: function(index){}
+        });
     }
+
 }

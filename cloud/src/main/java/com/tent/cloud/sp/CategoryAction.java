@@ -1,7 +1,9 @@
 package com.tent.cloud.sp;
 
 import com.tent.common.jpa.Ajax;
+import com.tent.common.jpa.PageUtils;
 import com.tent.common.jpa.Result;
+import com.tent.common.jpa.Servlets;
 import com.tent.common.utils.B;
 import com.tent.common.utils.S;
 import com.tent.po.entity.sp.Category;
@@ -9,6 +11,7 @@ import com.tent.service.inte.sp.ICategoryService;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/category/")
@@ -36,7 +40,11 @@ public class CategoryAction {
     public Result index(Model model, HttpServletRequest request, HttpSession session){
         try {
 
-            Page<Category> list = this.categoryService.findPageList(null);
+            Map<String,Object> searchParams = Servlets.getParametersStartingWith(request,model);
+
+            Pageable pageable = PageUtils.pageable(request);
+
+            Page<Category> list = this.categoryService.findPageList(pageable);
 
             return  Result.success(list,"");
         }catch (ServiceException ex){

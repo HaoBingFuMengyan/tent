@@ -18,6 +18,7 @@
         body {
             margin: 10px;
         }
+
         .demo-carousel {
             height: 200px;
             line-height: 200px;
@@ -27,14 +28,16 @@
 </head>
 <body>
 
-<form action="" id="mainForm">
+<form action="" id="mainForm" class="layui-form">
     <div class="demoTable">
-        搜索ID：
+        品种名称：
         <div class="layui-inline">
-            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+            <input class="layui-input" name="sname" id="sname" autocomplete="off">
         </div>
         <button class="layui-btn" data-type="reload"><i class="layui-icon">&#xe615;</i>搜索</button>
-        <button class="layui-btn layui-btn-primary clear-margin-left" type="reset" onclick="reset()"><i class="layui-icon">&#xe63c;</i>重置</button>
+        <button class="layui-btn layui-btn-primary clear-margin-left" type="reset" onclick="reset()"><i
+                class="layui-icon">&#xe63c;</i>重置
+        </button>
     </div>
 </form>
 
@@ -79,7 +82,7 @@
 //            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             , toolbar: '#toolbarDemo'
 //            , totalRow: true //开启合计行
-            , limits: [10,20,40,50] //每页条数选择项
+            , limits: [10, 20, 40, 50] //每页条数选择项
             , limit: 20 //每页显示条数
             , cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
@@ -93,7 +96,7 @@
                 , {field: 'biscommon', title: '是否常用', width: 120, sort: true}
                 , {fixed: 'right', width: 165, toolbar: '#barDemo'}
             ]]
-            ,id: 'testReload'
+            , id: 'testReload'
         });
 
         //监听头工具栏事件
@@ -102,46 +105,7 @@
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'add':
-                    top.layer.open({
-                        type: 2,
-                        title:'添加',
-                        area: ['85%', '85%'],
-                        content: '${ctx}/category/add.shtml',
-                        btn: ['确定', '关闭'],
-                        yes: function(index,layero) {
-                            var iframeWin = layero.find('iframe')[0];
-                            var $=iframeWin.contentWindow.$;
-                            var doc=$(iframeWin.contentWindow.document);
-
-                            if(iframeWin.contentWindow.valiForm()){//这里我想判断校验结果，怎么调用表单校验，不知道有没有自带方法，官网没找到
-                                $.ajax({
-                                    type: "POST",
-                                    url: '${ctx}/category/add.json',
-                                    data: doc.find('.layui-form').serialize(),
-                                    dataType:'json',
-                                    cache: false,
-                                    success:function (data) {
-                                        if(data.success){
-                                            top.layer.closeAll();//返回成功，关闭所有弹窗
-                                            if(data.msg){
-                                                top.layer.msg(data.msg,{icon:1});
-                                            }else {
-                                                top.layer.msg("操作成功!",{icon:1});
-                                            }
-//                                            parent.location.reload();//更新父级页面
-                                        }else {
-                                            top.layer.msg(data.msg,{icon:2});
-                                        }
-                                    },
-                                    error:function (data) {
-                                        top.layer.msg("系统错误，请联系管理员",{icon:2});
-                                    }
-                                })
-                            }
-
-                        },
-                        cancel: function(index){}
-                    });
+                    pub.open('添加', '${ctx}/category/add.shtml', '${ctx}/category/add.json');
                     break;
                 case 'delete':
                     if (data.length === 0) {
@@ -155,7 +119,8 @@
                     break;
                 default:
                     break;
-            };
+            }
+            ;
         });
 
         //监听行工具事件
@@ -163,7 +128,7 @@
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'detail') {
-                layer.msg('查看操作');
+                pub.detail('品种详情', '${ctx}/category/add.shtml?id=' + data.id);
             } else if (layEvent === 'del') {
                 layer.confirm('真的删除行么', function (index) {
                     obj.del(); //删除对应行（tr）的DOM结构
@@ -171,31 +136,29 @@
                     //向服务端发送删除指令
                 });
             } else if (layEvent === 'edit') {
-                console.log(JSON.stringify(data));
-                pub.open('编辑','${ctx}/category/add.shtml?id='+data.id,'${ctx}/category/add.json');
+                pub.open('编辑', '${ctx}/category/add.shtml?id=' + data.id, '${ctx}/category/add.json');
             }
         });
 
         var $ = layui.$, active = {
-            reload: function(){
-                var demoReload = $('#demoReload');
+            reload: function () {
+                var sname = $('#sname');
 
                 //执行重载
                 table.reload('testReload', {
-                    page: {
+                    method: 'post'
+                    , page: {
                         curr: 1 //重新从第 1 页开始
                     }
-                    ,where: {
-                        key: {
-                            id: demoReload.val()
-                        }
+                    , where: {
+                        search_like_sname: sname.val().trim()
                     }
                 });
             }
         };
 
         //搜索
-        $('.demoTable .layui-btn').on('click', function(){
+        $('.demoTable .layui-btn').on('click', function () {
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
@@ -203,8 +166,8 @@
     });
 
     //重置
-    function reset(){
-        $(':input','#mainForm').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
+    function reset() {
+        $(':input', '#mainForm').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
     }
 </script>
 
