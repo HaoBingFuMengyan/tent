@@ -27,7 +27,7 @@ var pub = {
      * @param contentUrl    iframe请求地址
      * @param ajaxUrl   数据保存地址
      */
-    open: function (title,contentUrl,ajaxUrl){
+    open: function (title,contentUrl,ajaxUrl,tableIns){
         top.layer.open({
             type: 2,
             title:title,
@@ -54,7 +54,7 @@ var pub = {
                                 }else {
                                     top.layer.msg("操作成功!",{icon:1});
                                 }
-//                                            parent.location.reload();//更新父级页面
+                                tableIns.reload();//更新父级页面
                             }else {
                                 top.layer.msg(data.msg,{icon:2});
                             }

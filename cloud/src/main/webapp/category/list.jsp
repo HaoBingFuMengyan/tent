@@ -103,7 +103,7 @@
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'add':
-                    pub.open('添加', '${ctx}/category/add.shtml', '${ctx}/category/add.json');
+                    pub.open('添加', '${ctx}/category/add.shtml', '${ctx}/category/add.json',tableIns);
                     break;
                 case 'delete':
                     if (data.length === 0) {
@@ -134,7 +134,7 @@
                     //向服务端发送删除指令
                 });
             } else if (layEvent === 'edit') {
-                pub.open('编辑', '${ctx}/category/add.shtml?id=' + data.id, '${ctx}/category/add.json');
+                pub.open('编辑', '${ctx}/category/add.shtml?id=' + data.id, '${ctx}/category/add.json',tableIns);
             }
         });
 
