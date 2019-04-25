@@ -28,18 +28,16 @@
 </head>
 <body>
 
-<form action="" id="mainForm" class="layui-form">
-    <div class="demoTable">
-        品种名称：
-        <div class="layui-inline">
-            <input class="layui-input" name="sname" id="sname" autocomplete="off">
-        </div>
-        <button class="layui-btn" data-type="reload"><i class="layui-icon">&#xe615;</i>搜索</button>
-        <button class="layui-btn layui-btn-primary clear-margin-left" type="reset" onclick="reset()"><i
-                class="layui-icon">&#xe63c;</i>重置
-        </button>
+<div class="demoTable" id="mainForm">
+    品种名称：
+    <div class="layui-inline">
+        <input class="layui-input" name="sname" id="sname" autocomplete="off">
     </div>
-</form>
+    <button class="layui-btn" data-type="reload"><i class="layui-icon">&#xe615;</i>搜索</button>
+    <button class="layui-btn layui-btn-primary clear-margin-left" type="reset"><i
+            class="layui-icon">&#xe63c;</i>重置
+    </button>
+</div>
 
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 
@@ -144,6 +142,7 @@
             reload: function () {
                 var sname = $('#sname');
 
+                var index = layer.msg('查询中，请稍后...', {icon: 16, time: false, shade: 0});
                 //执行重载
                 table.reload('testReload', {
                     method: 'post'
@@ -154,6 +153,7 @@
                         search_like_sname: sname.val().trim()
                     }
                 });
+                layer.close(index);
             }
         };
 
@@ -165,10 +165,6 @@
 
     });
 
-    //重置
-    function reset() {
-        $(':input', '#mainForm').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
-    }
 </script>
 
 </body>

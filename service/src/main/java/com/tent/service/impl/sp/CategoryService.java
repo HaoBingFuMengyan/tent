@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
+
 @Component
 @Transactional
 public class CategoryService implements ICategoryService {
@@ -19,8 +21,8 @@ public class CategoryService implements ICategoryService {
     private CategoryDao categoryDao;
 
     @Override
-    public Page<Category> findPageList(Pageable pageable) {
-        return this.categoryDao.findAll(pageable);
+    public Page<Category> findPageList(Map<String,Object> searchParams, Pageable pageable) {
+        return this.categoryDao.findPage(pageable,searchParams);
     }
 
     @Override

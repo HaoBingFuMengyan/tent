@@ -2,6 +2,16 @@ String.prototype.trim = function () {
     return this.replace(/(^\s*)|(\s*$)/g, '');
 }
 
+$(function () {
+    /**
+     * 重置
+     */
+    $("#mainForm").find('button[type="reset"]').click(function () {
+        $(':input', '#mainForm').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
+    });
+
+});
+
 var pub = {
     /**
      * 判断字符串是否为空

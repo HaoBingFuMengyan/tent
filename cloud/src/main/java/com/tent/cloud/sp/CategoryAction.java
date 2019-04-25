@@ -44,7 +44,7 @@ public class CategoryAction {
 
             Pageable pageable = PageUtils.pageable(request);
 
-            Page<Category> list = this.categoryService.findPageList(pageable);
+            Page<Category> list = this.categoryService.findPageList(searchParams,pageable);
 
             return  Result.success(list,"");
         }catch (ServiceException ex){

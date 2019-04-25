@@ -4,9 +4,11 @@ import com.tent.po.entity.sp.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Map;
+
 public interface ICategoryService {
 
-    Page<Category> findPageList(Pageable pageable);
+    Page<Category> findPageList(Map<String,Object> searchParams, Pageable pageable);
 
     void save(Category category);
 

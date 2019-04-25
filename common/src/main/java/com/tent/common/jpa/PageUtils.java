@@ -76,8 +76,8 @@ public class PageUtils {
         String page = request.getParameter("page");
         String limit = request.getParameter("limit");
         String[] sort = request.getParameterValues("sort");
-
-        PageRequest p = new PageRequest(B.Y(page)?1:Integer.parseInt(page),B.Y(limit)?Integer.parseInt("20"):Integer.parseInt(limit), toSort(sort));
+        //jpa页码从0开始
+        PageRequest p = new PageRequest(B.Y(page)?0:Integer.parseInt(page)-1,B.Y(limit)?PageUtils.DefaultLimit:Integer.parseInt(limit), toSort(sort));
 
         return p;
     }

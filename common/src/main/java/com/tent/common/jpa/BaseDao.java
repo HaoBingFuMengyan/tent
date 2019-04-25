@@ -1,6 +1,6 @@
 package com.tent.common.jpa;
 
-import com.tent.common.persistence.SearchFilter;
+import com.tent.common.persistence.Filter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -19,9 +19,9 @@ public interface BaseDao<T, ID extends Serializable>
 
     Page<T> findPage(Pageable var1, Specification<T> var2);
 
-    Page<T> findPage(Pageable var1, Map<String, Object> var2, SearchFilter... var3);
+    Page<T> findPage(Pageable var1, Map<String, Object> var2, Filter... var3);
 
     Page<T> findPage(Pageable var1, Map<String, Object> var2, Specification<T> var3);
 
-    List<T> findAll(Map<String, Object> var1, SearchFilter... var2);
+    List<T> findAll(Map<String, Object> var1, Filter... var2);
 }
