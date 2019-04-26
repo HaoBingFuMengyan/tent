@@ -3,6 +3,7 @@ package com.tent.common.jpa;
 import com.google.common.collect.Maps;
 import com.tent.common.persistence.Filter;
 import com.tent.common.persistence.QueryParams;
+import com.tent.common.utils.AnnotationUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -10,6 +11,7 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -26,6 +28,32 @@ public class BaseDaoImpl<T,ID extends Serializable> extends SimpleJpaRepository<
     public BaseDaoImpl(Class<T> domainClass, EntityManager em) {
         super(domainClass, em);
         this.em = em;
+    }
+
+    @Override
+    public T fetchOne(ID var1) {
+        T obj = this.findOne(var1);
+        if(obj != null) {
+            AnnotationUtils.fetchAll(obj, false);
+        }
+        return obj;
+    }
+
+    @Override
+    public List<T> findByPropertyName(String var1, Object var2) {
+        String sql = "FROM " + this.getDomainClass().getSimpleName() + " t WHERE t." + var1 + "= :" + var1;
+        Query query = this.em.createQuery(sql);
+        query.setParameter(var1, var2);
+        return query.getResultList();
+    }
+
+    @Override
+    public T findOneByPropertyName(String var1, Object var2) {
+        return this.findOne(new Specification<T>() {
+            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                return cb.equal(root.get(var1), var2);
+            }
+        });
     }
 
     @Override
@@ -94,5 +122,10 @@ public class BaseDaoImpl<T,ID extends Serializable> extends SimpleJpaRepository<
 
         Specification<T> spec = QueryParams.byFilter(((Map)ss).values(), this.getDomainClass(), new String[0]);
         return this.findAll(spec);
+    }
+
+    @Override
+    public List<T> findAll(Pageable pageable, QueryParams<?> queryParams) {
+        return null;
     }
 }
