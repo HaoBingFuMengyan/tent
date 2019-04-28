@@ -1,6 +1,8 @@
 package com.tent.service.impl.sp;
 
 import com.tent.common.exception.E;
+import com.tent.common.jpa.BaseDao;
+import com.tent.common.jpa.BaseService;
 import com.tent.common.utils.B;
 import com.tent.dao.sp.CategoryDao;
 import com.tent.po.entity.sp.Category;
@@ -15,7 +17,7 @@ import java.util.Map;
 
 @Component
 @Transactional
-public class CategoryService implements ICategoryService {
+public class CategoryService extends BaseService<Category> implements ICategoryService {
 
     @Autowired
     private CategoryDao categoryDao;
@@ -101,5 +103,13 @@ public class CategoryService implements ICategoryService {
     }
 
 
+    @Override
+    protected BaseDao<Category, String> getBaseDao() {
+        return this.categoryDao;
+    }
 
+    @Override
+    protected void BaseSaveCheck(Category obj) {
+
+    }
 }

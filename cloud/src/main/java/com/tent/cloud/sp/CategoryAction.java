@@ -7,7 +7,7 @@ import com.tent.common.jpa.Servlets;
 import com.tent.common.utils.B;
 import com.tent.common.utils.S;
 import com.tent.po.entity.sp.Category;
-import com.tent.service.inte.sp.ICategoryService;
+import com.tent.service.impl.sp.CategoryService;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,7 +28,7 @@ import java.util.Map;
 public class CategoryAction {
 
     @Autowired
-    private ICategoryService categoryService;
+    private CategoryService categoryService;
 
     @RequestMapping(value = "list.shtml",method = RequestMethod.GET)
     public String list(Model model,HttpServletRequest request,HttpSession session){
