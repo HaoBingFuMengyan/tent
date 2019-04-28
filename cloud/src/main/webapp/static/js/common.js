@@ -83,6 +83,67 @@ var pub = {
             btn: ['关闭'],
             cancel: function(index){}
         });
-    }
+    },
+    /**
+     * 删除数据
+     * @param obj 数据原型集合
+     * @param datas 数据原型
+     * @param ajaxUrl   删除请求地址
+     * @param message   询问消息
+     * @param isDel     是否确定删除
+     * @param isBat     是否批量删除
+     * @param tableIns     数据列表
+     */
+    delete: function (datas,ajaxUrl,message,isDel,isBat,tableIns) {
+        if (datas.length === 0){
+            layer.msg("至少要选择一条数据",{icon:2});
+        }else{
+            var inds = new Array();
+            if (!isBat)
+                inds.push(datas.id);
+            else
+                $.each(datas,function (ind,data) {
+                    inds.push(data.id);
+                });
 
+            if (isDel){
+                layer.confirm(message==null?"确定要删除吗？":message, function (index) {
+                    pub.ajaxFun(inds,ajaxUrl,tableIns);
+                });
+            }else{//直接删除
+                pub.ajaxFun(inds,ajaxUrl,tableIns);
+            }
+        }
+    },
+    /**
+     * 异步删除
+     * @param inds
+     * @param ajaxUrl
+     * @param tableIns
+     */
+    ajaxFun: function (inds,ajaxUrl,tableIns) {
+        $.ajax({
+            type: "POST",
+            url: ajaxUrl,
+            data: inds,
+            dataType:'json',
+            cache: false,
+            success:function (data) {
+                if(data.success){
+                    layer.closeAll();//返回成功，关闭所有弹窗
+                    if(data.msg){
+                        layer.msg(data.msg,{icon:1});
+                    }else {
+                        layer.msg("删除成功!",{icon:1});
+                    }
+                    tableIns.reload();//更新父级页面
+                }else {
+                    layer.msg(data.msg,{icon:2});
+                }
+            },
+            error:function (data) {
+                layer.msg("系统错误，请联系管理员",{icon:2});
+            }
+        })
+    }
 }

@@ -106,11 +106,7 @@
                     pub.open('添加', '${ctx}/category/add.shtml', '${ctx}/category/add.json',tableIns);
                     break;
                 case 'delete':
-                    if (data.length === 0) {
-                        layer.msg('请选择一行');
-                    } else {
-                        layer.msg('删除');
-                    }
+                    pub.delete(data,'','确定要删除吗？',true,true,tableIns);
                     break;
                 case 'refresh':
                     tableIns.reload()
@@ -128,11 +124,7 @@
             if (layEvent === 'detail') {
                 pub.detail('品种详情', '${ctx}/category/add.shtml?id=' + data.id);
             } else if (layEvent === 'del') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del(); //删除对应行（tr）的DOM结构
-                    layer.close(index);
-                    //向服务端发送删除指令
-                });
+                pub.delete(data,'','',false,false,tableIns);
             } else if (layEvent === 'edit') {
                 pub.open('编辑', '${ctx}/category/add.shtml?id=' + data.id, '${ctx}/category/add.json',tableIns);
             }
