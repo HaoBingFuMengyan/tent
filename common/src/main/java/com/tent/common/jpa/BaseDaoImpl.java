@@ -12,11 +12,13 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +39,22 @@ public class BaseDaoImpl<T,ID extends Serializable> extends SimpleJpaRepository<
             AnnotationUtils.fetchAll(obj, false);
         }
         return obj;
+    }
+
+    @Override
+    public List<?> findBySql(String var1, Object... var2) {
+        Query query = this.em.createNativeQuery(var1);
+        if(var2 != null && var2.length > 0) {
+            for(int i = 0; i < var2.length; ++i) {
+                if(var2[i] instanceof Date) {
+                    query.setParameter(i + 1, (Date)var2[i], TemporalType.DATE);
+                } else {
+                    query.setParameter(i + 1, var2[i]);
+                }
+            }
+        }
+
+        return query.getResultList();
     }
 
     @Override

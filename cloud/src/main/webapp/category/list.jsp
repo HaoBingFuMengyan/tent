@@ -106,7 +106,7 @@
                     pub.open('添加', '${ctx}/category/add.shtml', '${ctx}/category/add.json',tableIns);
                     break;
                 case 'delete':
-                    pub.delete(data,'','确定要删除吗？',true,true,tableIns);
+                    pub.delete(data,'${ctx}/category/delete.json','确定要删除吗？',true,true,tableIns);
                     break;
                 case 'refresh':
                     tableIns.reload()
@@ -124,7 +124,7 @@
             if (layEvent === 'detail') {
                 pub.detail('品种详情', '${ctx}/category/add.shtml?id=' + data.id);
             } else if (layEvent === 'del') {
-                pub.delete(data,'','',false,false,tableIns);
+                pub.delete(data,'${ctx}/category/delete.json','确定要删除吗？',false,false,tableIns);
             } else if (layEvent === 'edit') {
                 pub.open('编辑', '${ctx}/category/add.shtml?id=' + data.id, '${ctx}/category/add.json',tableIns);
             }

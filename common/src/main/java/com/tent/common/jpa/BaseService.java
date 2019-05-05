@@ -39,12 +39,12 @@ public abstract class BaseService<T> {
     /**
      * 根据id数组删除单据编号
      *
-     * @param checkboxId 单据编号数组
+     * @param inds 单据编号数组
      */
     @Transactional
-    public void BaseDelete(String[] checkboxId) throws ServiceException {
+    public void BaseDelete(String[] inds) throws ServiceException {
         try {
-            for (String id : checkboxId) {
+            for (String id : inds) {
                 if (StringUtils.isNotBlank(id)) {
                     T obj = getBaseDao().findOne(id);
                     if (obj != null) {

@@ -19,6 +19,8 @@ public interface BaseDao<T, ID extends Serializable>
 
     T fetchOne(ID var1);
 
+    List<?> findBySql(String var1, Object... var2);
+
     List<T> findByPropertyName(String var1, Object var2);
 
     T findOneByPropertyName(String var1, Object var2);

@@ -85,4 +85,21 @@ public class CategoryAction {
         }
     }
 
+    @RequestMapping(value = "delete.json",method = RequestMethod.POST)
+    @ResponseBody
+    public Result delete(@RequestParam(value = "inds[]") String[] inds,Model model,HttpServletRequest request,HttpSession session){
+        try {
+
+            this.categoryService.BaseDelete(inds);
+
+            return  Result.success("删除成功");
+        }catch (ServiceException ex){
+            ex.printStackTrace();
+            return Result.failure(ex.getMessage());
+        }catch (Exception e){
+            e.printStackTrace();
+            return Result.failure(e.getMessage());
+        }
+    }
+
 }

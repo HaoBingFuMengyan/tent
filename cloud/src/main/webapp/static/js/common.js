@@ -100,10 +100,10 @@ var pub = {
         }else{
             var inds = new Array();
             if (!isBat)
-                inds.push(datas.id);
+                inds[0] = datas.id;
             else
                 $.each(datas,function (ind,data) {
-                    inds.push(data.id);
+                    inds[ind] = data.id;
                 });
 
             if (isDel){
@@ -125,7 +125,7 @@ var pub = {
         $.ajax({
             type: "POST",
             url: ajaxUrl,
-            data: inds,
+            data: {inds:inds},
             dataType:'json',
             cache: false,
             success:function (data) {
