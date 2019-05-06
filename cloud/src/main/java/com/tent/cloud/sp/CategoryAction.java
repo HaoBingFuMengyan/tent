@@ -66,6 +66,7 @@ public class CategoryAction {
         return S.toPage("category/add");
     }
 
+
     @RequestMapping(value = "add.json",method = RequestMethod.POST)
     @ResponseBody
     public Ajax add(Category category, Model model, HttpServletRequest request, HttpSession session){
