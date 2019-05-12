@@ -353,6 +353,73 @@ public class Consts {
 
     }
 
+    public static enum Cusource implements IConst{
+        PC(0,"PC"),
+        MOBILE(1,"手机"),
+        OTHER(10,"其它");
+
+        public static Cusource get(int i){
+            switch (i) {
+                case 0:
+                    return Cusource.PC;
+                case 1:
+                    return Cusource.MOBILE;
+                case 10:
+                    return Cusource.OTHER;
+            }
+            return null;
+        }
+
+        private int nCode;
+        private String nLabel;
+
+        Cusource(int _nCode, String _nlabel) {
+
+            this.nCode = _nCode;
+            this.nLabel = _nlabel;
+        }
+
+        @Override
+        public int val() {
+            return nCode;
+        }
+
+        @Override
+        public String label() {
+            return nLabel;
+        }
+
+        @Override
+        public String getLabel() {
+            return nLabel;
+        }
+
+        @Override
+        public int getVal() {
+            return nCode;
+        }
+
+        @Override
+        public IConst[] vals() {
+            return ImageType.values();
+        }
+
+        @Override
+        public IConst valof(String str) {
+            return ImageType.valueOf(str);
+        }
+
+        @Override
+        public boolean isEq(int i) {
+            return nCode == i;
+        }
+
+        @Override
+        public boolean isNot(int i) {
+            return nCode != i;
+        }
+    }
+
 
     //商品模块(sp)
     public static enum ImageType implements IConst {

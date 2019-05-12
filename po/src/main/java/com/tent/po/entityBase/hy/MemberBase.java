@@ -69,6 +69,7 @@ public class MemberBase extends BaseEntity{
     private   Integer biscardmerged=0; //是否三码合一 int
     private   String ssocialcreditno; //统一社会信息用代码 String
     private   Integer bismembercert=0; //是否通过企业认证 int
+    private   Integer bcusource=0; //客户来源
 
 
     public String getSmemberno() {
@@ -549,6 +550,14 @@ public class MemberBase extends BaseEntity{
 
     public void setBismembercert(Integer bismembercert) {
         this.bismembercert = bismembercert;
+    }
+
+    public Integer getBcusource() {
+        return bcusource;
+    }
+
+    public void setBcusource(Integer bcusource) {
+        this.bcusource = bcusource;
     }
 
     @Override
