@@ -70,7 +70,7 @@
     </bean>
 
     <!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
-    <!--<mvc:default-servlet-handler/>-->
+    <mvc:default-servlet-handler/>
 
     <!-- 视图层配置 -->
     <!-- 配置SpringMVC的视图解析器 -->
