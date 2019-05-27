@@ -106,7 +106,7 @@
                 /**/**.shtml = authc
                 /logout.html = logout
                 /static/** = anon
-                /WEB-INF/** = anon
+                <!--/WEB-INF/** = anon-->
                 /** = anon
             </value>
         </property>

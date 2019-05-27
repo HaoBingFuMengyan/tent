@@ -3,6 +3,7 @@ package com.tent.common.persistence;
 import com.google.common.collect.Lists;
 import com.tent.common.utils.Collections3;
 import com.tent.common.utils.DateUtils;
+import com.tent.common.utils.LoggerUtils;
 import com.tent.common.utils.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.data.jpa.domain.Specification;
@@ -340,6 +341,51 @@ public class QueryParams<T> implements Specification<T> {
             }
         };
     }
+
+    /**
+     * 分析查询参数,并且合并到sql语句中
+     * @param sql JPQL查询语句
+     * @param params 查询参数
+     * @return 参数对应的value
+     */
+    @SuppressWarnings("Unchecked")
+    public static List<Object> analysisQueryParams(StringBuilder sql, QueryParams<?> params){
+        List<String> strList = new ArrayList<>();
+        List<Object> valueList = new ArrayList<>();
+        int i = 1;
+        //分析or条件
+        for (Filter filter : params.getOrFilters()) {
+            if (filter.getValue() != null){
+                strList.add(filter.getProperty()+" " + filter.getOperator().getOperator()+" ?" + (i++));
+                valueList.add(filter.getValue());
+            }else {
+                strList.add(filter.getProperty()+" " + filter.getOperator().getOperator()+" ");
+            }
+        }
+        if (!strList.isEmpty()){
+            sql.append(" and ").append("( ").append(StringUtils.join(strList," or ")).append(" )");
+        }
+        strList.clear();
+        //分析and条件
+        for (Filter filter : params.getAndFilters()) {
+            if (filter.getValue() != null){
+                strList.add(filter.getProperty()+" " + filter.getOperator().getOperator()+" ?" + (i++));
+                valueList.add(filter.getValue());
+            }else {
+                strList.add(filter.getProperty()+" " + filter.getOperator().getOperator()+" ");
+            }
+        }
+        sql.append(" and ").append(StringUtils.join(strList," and "));
+        //分析排序字段
+        if (!params.getOrders().isEmpty()){
+            sql.append(" order by ");
+            sql.append(StringUtils.join(params.getOrders(),","));
+        }
+        LoggerUtils.debug(QueryParams.class,"解析后的sql:"+sql.toString());
+        LoggerUtils.debug(QueryParams.class,"对应的值为:"+valueList);
+        return valueList;
+    }
+
     /**
      * 转换为Order
      *

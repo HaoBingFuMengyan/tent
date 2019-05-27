@@ -21,6 +21,8 @@ public interface BaseDao<T, ID extends Serializable>
 
     List<?> findBySql(String var1, Object... var2);
 
+    List<?> findByHql(String var1, Object... var2);
+
     List<T> findByPropertyName(String var1, Object var2);
 
     T findOneByPropertyName(String var1, Object var2);
@@ -33,5 +35,8 @@ public interface BaseDao<T, ID extends Serializable>
 
     List<T> findAll(Map<String, Object> var1, Filter... var2);
 
-    List<T> findAll(Pageable pageable, QueryParams<?> queryParams);
+    List<T> findByQueryParam(QueryParams queryParams, Pageable pageable);
+
+    Object getFieldValue(String var1, Object... var2);
+
 }
