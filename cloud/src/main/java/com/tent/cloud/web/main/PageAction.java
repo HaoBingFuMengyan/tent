@@ -11,6 +11,7 @@ public class PageAction {
 
     @RequestMapping(value = "index.html",method = RequestMethod.GET)
     public String index(Model model){
+        System.out.println("------------首页-----------");
         return S.toPage("page/index");
     }
 
