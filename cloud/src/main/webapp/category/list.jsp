@@ -85,13 +85,18 @@
             , cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
 //                , {field: '', title: 'ID', width: 80, sort: true, fixed: 'left', totalRowText: '合计：'}
-                , {field: 'sname', title: '品种名称', width: 120, sort: true}
                 , {field: 'ssystemcode', title: '编号', width: 120, sort: true}
-                , {field: 'senname', title: '英文名称', width: 120, sort: true}
-                , {field: 'sweightunit', title: '单位', width: 120}
+                , {field: 'sname', title: '品种名称', width: 120, sort: true}
+//                , {field: 'senname', title: '英文名称', width: 120, sort: true}
                 , {field: 'sproducer', title: '生产厂商', width: 150}
                 , {field: 'sspec', title: '规格型号', width: 120}
-                , {field: 'biscommon', title: '是否常用', width: 120, sort: true}
+                , {field: 'sweightunit', title: '单位', width: 120}
+                , {field: 'biscommon', title: '是否常用', width: 120, sort: true,templet:function (res) {
+                    if (res.biscommon === 1)
+                        return '是'
+                    else
+                        return '否'
+                  }}
                 , {fixed: 'right', width: 165, toolbar: '#barDemo'}
             ]]
             , id: 'testReload'

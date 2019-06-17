@@ -58,6 +58,7 @@ public class CategoryService extends BaseService<Category> implements ICategoryS
         data.setShostbrand(category.getShostbrand());
         data.setShostname(category.getShostname());
         data.setShostmodel(category.getShostmodel());
+        data.setSspec(category.getSspec());
 
         this.categoryDao.save(data);
     }
@@ -81,6 +82,7 @@ public class CategoryService extends BaseService<Category> implements ICategoryS
         data.setShostbrand(category.getShostbrand());
         data.setShostname(category.getShostname());
         data.setShostmodel(category.getShostmodel());
+        data.setSspec(category.getSspec());
 
         this.categoryDao.save(data);
     }
