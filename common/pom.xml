@@ -56,6 +56,11 @@
             <artifactId>servlet-api</artifactId>
             <scope>compile</scope>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>jsp-api</artifactId>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
 
         <!--其它常用包-->
         <dependency>

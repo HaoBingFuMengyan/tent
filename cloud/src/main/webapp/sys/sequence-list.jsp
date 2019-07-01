@@ -90,16 +90,16 @@
                 {type: 'checkbox', fixed: 'left'}
 //                , {field: '', title: 'ID', width: 80, sort: true, fixed: 'left', totalRowText: '合计：'}
                 , {field: 'sobjectname', title: '名称', width: 120, sort: true}
-                , {field: '', title: '代码', width: 120, sort: true}
+                , {field: 'scode', title: '代码', width: 120, sort: true}
                 , {field: 'sfromat', title: '格式', width: 120, sort: true}
-                , {field: '', title: '起始编号', width: 150}
+                , {field: 'istartno', title: '起始编号', width: 150}
                 , {field: 'iincrement', title: '增长阶梯', width: 120}
-                , {field: '', title: '当前序号', width: 120}
+                , {field: 'icurrentno', title: '当前序号', width: 120}
                 , {field: 'sprefix', title: '前缀', width: 120, sort: true}
                 , {field: 'ssuffix', title: '后缀', width: 120, sort: true}
-                , {field: '', title: '当前日期', width: 120, sort: true}
-                , {field: '', title: '是否循环', width: 120, sort: true}
-                , {field: '', title: '是否清零', width: 120, sort: true}
+                , {field: 'dcurrentdate', title: '当前日期', width: 120, sort: true}
+                , {field: 'biscycle', title: '是否循环', width: 120, sort: true}
+                , {field: 'bisreset', title: '是否清零', width: 120, sort: true}
                 , {fixed: 'right', width: 165, toolbar: '#barDemo'}
             ]]
             , id: 'testReload'
