@@ -37,12 +37,12 @@ function shallowCopy(src, dst) {
 /**
  * @param {string} path - The path to parse. (It is assumed to have query and hash stripped off.)
  * @param {Object} opts - Options.
- * @return {Object} - An object containing an array of path parameter names (`keys`) and a regular
+ * @return {Object} - An object containing an array of path sys names (`keys`) and a regular
  *     expression (`regexp`) that can be used to identify a matching URL and extract the path
- *     parameter values.
+ *     sys values.
  *
  * @description
- * Parses the given path, extracting path parameter names and a regular expression to match URLs.
+ * Parses the given path, extracting path sys names and a regular expression to match URLs.
  *
  * Originally inspired by `pathRexp` in `visionmedia/express/lib/utils.js`.
  */
@@ -649,7 +649,7 @@ function $RouteProvider() {
            * definitions will be interpolated into the location's path, while
            * remaining properties will be treated as query params.
            *
-           * @param {!Object<string, string>} newParams mapping of URL parameter names to values
+           * @param {!Object<string, string>} newParams mapping of URL sys names to values
            */
           updateParams: function(newParams) {
             if (this.current && this.current.$$route) {
@@ -956,7 +956,7 @@ ngRouteModule.provider('$routeParams', $RouteParamsProvider);
  * {@link ng.$location#search `search()`} and {@link ng.$location#path `path()`}.
  * The `path` parameters are extracted when the {@link ngRoute.$route `$route`} path is matched.
  *
- * In case of parameter name collision, `path` params take precedence over `search` params.
+ * In case of sys name collision, `path` params take precedence over `search` params.
  *
  * The service guarantees that the identity of the `$routeParams` object will remain unchanged
  * (but its properties will likely change) even when a route change occurs.

@@ -109,27 +109,27 @@ function shallowClearAndCopy(src, dst) {
  *   If you are using a url with a suffix, just add the suffix, like this:
  *   `$resource('http://example.com/resource.json')` or `$resource('http://example.com/:id.json')`
  *   or even `$resource('http://example.com/resource/:resource_id.:format')`
- *   If the parameter before the suffix is empty, :resource_id in this case, then the `/.` will be
+ *   If the sys before the suffix is empty, :resource_id in this case, then the `/.` will be
  *   collapsed down to a single `.`.  If you need this sequence to appear and not collapse then you
  *   can escape it with `/\.`.
  *
  * @param {Object=} paramDefaults Default values for `url` parameters. These can be overridden in
- *   `actions` methods. If a parameter value is a function, it will be called every time
+ *   `actions` methods. If a sys value is a function, it will be called every time
  *   a param value needs to be obtained for a request (unless the param was overridden). The
  *   function will be passed the current data value as an argument.
  *
- *   Each key value in the parameter object is first bound to url template if present and then any
+ *   Each key value in the sys object is first bound to url template if present and then any
  *   excess keys are appended to the url search query after the `?`.
  *
- *   Given a template `/path/:verb` and parameter `{verb: 'greet', salutation: 'Hello'}` results in
+ *   Given a template `/path/:verb` and sys `{verb: 'greet', salutation: 'Hello'}` results in
  *   URL `/path/greet?salutation=Hello`.
  *
- *   If the parameter value is prefixed with `@`, then the value for that parameter will be
+ *   If the sys value is prefixed with `@`, then the value for that sys will be
  *   extracted from the corresponding property on the `data` object (provided when calling actions
  *   with a request body).
  *   For example, if the `defaultParam` object is `{someParam: '@someProp'}` then the value of
  *   `someParam` will be `data.someProp`.
- *   Note that the parameter will be ignored, when calling a "GET" action method (i.e. an action
+ *   Note that the sys will be ignored, when calling a "GET" action method (i.e. an action
  *   method that does not accept a request body).
  *
  * @param {Object.<Object>=} actions Hash with declaration of custom actions that will be available
@@ -152,7 +152,7 @@ function shallowClearAndCopy(src, dst) {
  *   - **`method`** – {string} – Case insensitive HTTP method (e.g. `GET`, `POST`, `PUT`,
  *     `DELETE`, `JSONP`, etc).
  *   - **`params`** – {Object=} – Optional set of pre-bound parameters for this action. If any of
- *     the parameter value is a function, it will be called every time when a param value needs to
+ *     the sys value is a function, it will be called every time when a param value needs to
  *     be obtained for a request (unless the param was overridden). The function will be passed the
  *     current data value as an argument.
  *   - **`url`** – {string} – Action specific `url` override. The url templating is supported just
@@ -615,7 +615,7 @@ angular.module('ngResource', ['ng']).
           var urlParams = self.urlParams = Object.create(null);
           forEach(url.split(/\W/), function(param) {
             if (param === 'hasOwnProperty') {
-              throw $resourceMinErr('badname', 'hasOwnProperty is not a valid parameter name.');
+              throw $resourceMinErr('badname', 'hasOwnProperty is not a valid sys name.');
             }
             if (!(new RegExp('^\\d+$').test(param)) && param &&
               (new RegExp('(^|[^\\\\]):' + param + '(\\W|$)').test(url))) {

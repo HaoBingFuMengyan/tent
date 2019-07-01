@@ -240,7 +240,7 @@ public class Reflections {
 			return Object.class;
 		}
 		if (!(params[index] instanceof Class)) {
-			logger.warn(clazz.getSimpleName() + " not set the actual class on superclass generic parameter");
+			logger.warn(clazz.getSimpleName() + " not set the actual class on superclass generic sys");
 			return Object.class;
 		}
 

@@ -34,7 +34,7 @@
  *     })
  *
  * @param {Function} config A function that will be called with the new instance
- * of the lunr.Index as both its context and first parameter. It can be used to
+ * of the lunr.Index as both its context and first sys. It can be used to
  * customize the instance of new lunr.Index.
  * @namespace
  * @module

@@ -110,7 +110,7 @@
      - Cocoon handles all the URL space assigned to the webapp using its sitemap.
      - It is recommended to leave it unchanged. Under some circumstances though
      - (like integration with proprietary webapps or servlets) you might have
-     - to change this parameter.
+     - to change tsyseter.
     -->
     <!-- 声明springMVC 的 DispatcherServlet web应用程序上下文 前端控制器-->
     <servlet>

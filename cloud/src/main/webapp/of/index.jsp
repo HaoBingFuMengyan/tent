@@ -75,9 +75,9 @@
                         <dl class="layui-nav-child">
                             <dd><a tab_id="2019042100001" data-url="http://www.taobao.com"><i class="layui-icon">&#xe613;</i>&nbsp;监制权限码管理</a>
                             </dd>
-                            <dd><a tab_id="2019042100004" data-url="http://www.taobao.com"><i class="layui-icon">&#xe613;</i>&nbsp;会员权限码管理</a>
+                            <dd><a tab_id="2019042100004" data-url="http://www.taobao.com"><i class="layui-icon">&#xe612;</i>&nbsp;会员权限码管理</a>
                             </dd>
-                            <dd><a tab_id="2019042100005" data-url="http://www.taobao.com"><i class="layui-icon">&#xe613;</i>&nbsp;生成编号</a>
+                            <dd><a tab_id="2019042100005" data-url="${ctx}/sys/sequence/list.shtml"><i class="layui-icon">&#xe60a;</i>&nbsp;生成编号</a>
                             </dd>
                         </dl>
                     </li>

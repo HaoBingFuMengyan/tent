@@ -119,8 +119,8 @@ ngTouch.factory('$swipe', [function() {
      * `$swipe` will listen for `mouse`, `touch` and `pointer` events.
      *
      * The four events are `start`, `move`, `end`, and `cancel`. `start`, `move`, and `end`
-     * receive as a parameter a coordinates object of the form `{ x: 150, y: 310 }` and the raw
-     * `event`. `cancel` receives the raw `event` as its single parameter.
+     * receive as a sys a coordinates object of the form `{ x: 150, y: 310 }` and the raw
+     * `event`. `cancel` receives the raw `event` as its single sys.
      *
      * `start` is called on either `mousedown`, `touchstart` or `pointerdown`. After this event, `$swipe` is
      * watching for `touchmove`, `mousemove` or `pointermove` events. These events are ignored until the total

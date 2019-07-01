@@ -80,7 +80,7 @@ function CrisisListComponent(crisisService) {
 function CrisisDetailComponent(crisisService, dialogService) {
   var ctrl = this;
   this.$routerOnActivate = function(next) {
-    // Get the crisis identified by the route parameter
+    // Get the crisis identified by the route sys
     var id = next.params.id;
     crisisService.getCrisis(id).then(function(crisis) {
       if (crisis) {

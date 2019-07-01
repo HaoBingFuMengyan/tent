@@ -81,7 +81,7 @@ function HeroDetailComponent(heroService) {
   var $ctrl = this;
 
   this.$routerOnActivate = function(next) {
-    // Get the hero identified by the route parameter
+    // Get the hero identified by the route sys
     var id = next.params.id;
     heroService.getHero(id).then(function(hero) {
       $ctrl.hero = hero;

@@ -1239,7 +1239,7 @@ var prettyPrint;
   /** Register a language handler for the given file extensions.
     * @param {function (Object)} handler a function from source code to a list
     *      of decorations.  Takes a single argument job which describes the
-    *      state of the computation.   The single parameter has the form
+    *      state of the computation.   The single sys has the form
     *      {@code {
     *        sourceCode: {string} as plain text.
     *        decorations: {Array.<number|string>} an array of style classes

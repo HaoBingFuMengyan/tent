@@ -12,12 +12,12 @@
 /**
  * @param {string} path - The path to parse. (It is assumed to have query and hash stripped off.)
  * @param {Object} opts - Options.
- * @return {Object} - An object containing an array of path parameter names (`keys`) and a regular
+ * @return {Object} - An object containing an array of path sys names (`keys`) and a regular
  *     expression (`regexp`) that can be used to identify a matching URL and extract the path
- *     parameter values.
+ *     sys values.
  *
  * @description
- * Parses the given path, extracting path parameter names and a regular expression to match URLs.
+ * Parses the given path, extracting path sys names and a regular expression to match URLs.
  *
  * Originally inspired by `pathRexp` in `visionmedia/express/lib/utils.js`.
  */
@@ -1400,7 +1400,7 @@ angular.mock.dump = function(object) {
  * ## Dynamic responses
  *
  * You define a response to a request by chaining a call to `respond()` onto a definition or expectation.
- * If you provide a **callback** as the first parameter to `respond(callback)` then you can dynamically generate
+ * If you provide a **callback** as the first sys to `respond(callback)` then you can dynamically generate
  * a response based on the properties of the request.
  *
  * The `callback` function should be of the form `function(method, url, data, headers, params)`.
@@ -1410,7 +1410,7 @@ angular.mock.dump = function(object) {
  * By default, query parameters on request URLs are parsed into the `params` object. So a request URL
  * of `/list?q=searchstr&orderby=-name` would set `params` to be `{q: 'searchstr', orderby: '-name'}`.
  *
- * ### Regex parameter matching
+ * ### Regex sys matching
  *
  * If an expectation or definition uses a **regex** to match the URL, you can provide an array of **keys** via a
  * `params` argument. The index of each **key** in the array will match the index of a **group** in the
@@ -1439,7 +1439,7 @@ angular.mock.dump = function(object) {
  * For extra convenience, `whenRoute` and `expectRoute` shortcuts are available. These methods offer colon
  * delimited matching of the url path, ignoring the query string and trailing slashes. This allows declarations
  * similar to how application routes are configured with `$routeProvider`. Because these methods convert
- * the definition url to regex, declaration order is important. Combined with query parameter parsing,
+ * the definition url to regex, declaration order is important. Combined with query sys parsing,
  * the following is possible:
  *
   ```js
@@ -2485,7 +2485,7 @@ angular.mock.$RootElementProvider = function() {
  * @ngdoc service
  * @name $controller
  * @description
- * A decorator for {@link ng.$controller} with additional `bindings` parameter, useful when testing
+ * A decorator for {@link ng.$controller} with additional `bindings` sys, useful when testing
  * controllers of directives that use {@link $compile#-bindtocontroller- `bindToController`}.
  *
  * ## Example
@@ -3335,13 +3335,13 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
    * Often, we would like to inject a reference once, in a `beforeEach()` block and reuse this
    * in multiple `it()` clauses. To be able to do this we must assign the reference to a variable
    * that is declared in the scope of the `describe()` block. Since we would, most likely, want
-   * the variable to have the same name of the reference we have a problem, since the parameter
+   * the variable to have the same name of the reference we have a problem, since the sys
    * to the `inject()` function would hide the outer variable.
    *
    * To help with this, the injected parameters can, optionally, be enclosed with underscores.
    * These are ignored by the injector when the reference name is resolved.
    *
-   * For example, the parameter `_myService_` would be resolved as the reference `myService`.
+   * For example, the sys `_myService_` would be resolved as the reference `myService`.
    * Since it is available in the function body as `_myService_`, we can then assign it to a variable
    * defined in an outer scope.
    *
@@ -3349,7 +3349,7 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
    * // Defined out reference variable outside
    * var myService;
    *
-   * // Wrap the parameter in underscores
+   * // Wrap the sys in underscores
    * beforeEach( inject( function(_myService_){
    *   myService = _myService_;
    * }));
