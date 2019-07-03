@@ -98,7 +98,8 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">是否常用<em>*</em></label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" lay-verify="required" placeholder="(必填项)" name="biscommon" id="biscommon" value="${data.biscommon}">
+                                <%--<input type="text" class="layui-input" lay-verify="required" placeholder="(必填项)" name="biscommon" id="biscommon" value="${data.biscommon}">--%>
+                                <consts:BoolType op="select" defval="" defname="全部" name="biscommon" val="${data.biscommon}" option="class='layui-input'"/>
                             </div>
                         </div>
                         <div class="layui-inline">
