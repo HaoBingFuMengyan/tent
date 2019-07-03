@@ -9,12 +9,17 @@
     <short-name>Consts</short-name>
     <uri>http://www.tent.com/tags/consts</uri>
 
-
+    <function>
+        <name>BoolType</name>
+        <function-class>com.tent.common.entity.Consts$BoolType</function-class>
+        <function-signature> java.lang.String json()</function-signature>
+        <example>obj:json()</example>
+    </function>
     <tag>
         <description></description>
         <name>BoolType</name>
 
-        <tag-class><!--com.frogsing.heart.web.taglib.ConstsTag$TagBoolType--></tag-class>
+        <tag-class>com.tent.common.web.ConstsTag$TagBoolType</tag-class>
         <body-content>scriptless</body-content>
         <variable>
             <description></description>
@@ -65,12 +70,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
-
         <attribute>
             <name>yes</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
-
     </tag>
 </taglib>

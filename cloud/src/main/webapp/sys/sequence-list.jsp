@@ -31,11 +31,11 @@
 <div class="demoTable" id="mainForm">
     名称：
     <div class="layui-inline">
-        <input class="layui-input" name="sname" id="sname" autocomplete="off">
+        <input class="layui-input" name="search_like_sname" id="search_like_sname" autocomplete="off">
     </div>
     代码：
     <div class="layui-inline">
-        <input class="layui-input" name="sname" id="sname" autocomplete="off">
+        <input class="layui-input" name="search_like_sobjectname" id="search_like_sobjectname" autocomplete="off">
     </div>
     <button class="layui-btn" data-type="reload"><i class="layui-icon">&#xe615;</i>搜索</button>
     <button class="layui-btn layui-btn-primary clear-margin-left" type="reset"><i
@@ -63,6 +63,7 @@
 
 <script>
 
+    var consts_BoolType = ${consts:BoolType()};
     layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider', 'form'], function () {
         var form = layui.form
             , laydate = layui.laydate //日期
@@ -98,8 +99,12 @@
                 , {field: 'sprefix', title: '前缀', width: 120, sort: true}
                 , {field: 'ssuffix', title: '后缀', width: 120, sort: true}
                 , {field: 'dcurrentdate', title: '当前日期', width: 120, sort: true}
-                , {field: 'biscycle', title: '是否循环', width: 120, sort: true}
-                , {field: 'bisreset', title: '是否清零', width: 120, sort: true}
+                , {field: 'biscycle', title: '是否循环', width: 120, sort: true,templet:function (d) {
+                    return consts_BoolType[d.biscycle];
+                }}
+                , {field: 'bisreset', title: '是否清零', width: 120, sort: true,templet:function (d) {
+                    return consts_BoolType[d.bisreset];
+                }}
                 , {fixed: 'right', width: 165, toolbar: '#barDemo'}
             ]]
             , id: 'testReload'

@@ -1,5 +1,9 @@
 package com.tent.common.entity;
 
+import com.tent.common.json.JSONObject;
+
+import java.util.Map;
+
 public class Consts {
 
     public static enum BoolType implements IConst {
@@ -62,6 +66,12 @@ public class Consts {
         @Override
         public boolean isNot(int i) {
             return i != nCode;
+        }
+        public static Map<Integer,String> map(){
+            return  IConstUtils.map(BoolType.values());
+        }
+        public static String json(){
+            return JSONObject.wrap(map(),3).toString();
         }
     }
 

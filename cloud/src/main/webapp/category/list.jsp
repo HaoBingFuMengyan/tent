@@ -58,7 +58,7 @@
 </script>
 
 <script>
-
+    var consts_BoolType = ${consts:BoolType()};
     layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider', 'form'], function () {
         var form = layui.form
             , laydate = layui.laydate //日期
@@ -92,10 +92,7 @@
                 , {field: 'sspec', title: '规格型号', width: 120}
                 , {field: 'sweightunit', title: '单位', width: 120}
                 , {field: 'biscommon', title: '是否常用', width: 120, sort: true,templet:function (res) {
-                    if (res.biscommon === 1)
-                        return '是'
-                    else
-                        return '否'
+                    return consts_BoolType[res.biscommon];
                   }}
                 , {fixed: 'right', width: 165, toolbar: '#barDemo'}
             ]]
