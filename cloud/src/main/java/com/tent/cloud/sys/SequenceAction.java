@@ -1,11 +1,9 @@
 package com.tent.cloud.sys;
 
-import com.tent.common.jpa.PageUtils;
-import com.tent.common.jpa.Result;
-import com.tent.common.jpa.Servlets;
+import com.tent.common.jpa.*;
 import com.tent.common.utils.S;
 import com.tent.po.entity.sys.Sequence;
-import com.tent.service.inte.sys.ISequenceService;
+import com.tent.service.impl.sys.SequenceService;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,10 +19,10 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = "sys/sequence")
-public class SequenceAction {
+public class SequenceAction extends BaseAction<Sequence,Sequence>{
 
     @Autowired
-    private ISequenceService sequenceService;
+    private SequenceService sequenceService;
 
     @RequestMapping(value = "list.shtml")
     public String list(Model model, HttpServletRequest request, HttpSession session){
@@ -50,6 +48,21 @@ public class SequenceAction {
             e.printStackTrace();
             return Result.failure(e.getMessage());
         }
+    }
+
+    @Override
+    public BaseService<Sequence> getBaseService() {
+        return this.sequenceService;
+    }
+
+    @Override
+    public String positionJsp() {
+        return "sys";
+    }
+
+    @Override
+    public String prefixJsp() {
+        return "sequence";
     }
 
 }

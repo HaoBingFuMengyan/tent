@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>品种添加</title>
+    <title>单据编号管理列表</title>
     <script src="${ctxStatic}/jquery/jquery-2.1.1.min.js"></script>
     <script src="${ctxStatic}/layui-v2.4.5/layui.all.js"></script>
     <script src="${ctxStatic}/js/common.js"></script>
@@ -22,11 +22,11 @@
             device = layui.device();
             form = layui.form;
             form.verify({
-                required: function (value) {
-                    if (pub.isnull(value)) {
-                        return '这是必填项';
-                    }
-                }
+//                required: function (value) {
+//                    if (pub.isnull(value)) {
+//                        return '这是必填项';
+//                    }
+//                }
             });
         });
 
@@ -69,92 +69,84 @@
 </head>
 <body>
 <div class="mbody">
-    <form id="formInput" class="layui-form" action="${ctx}/category/add.shtml" method="post" enctype="multipart/form-data" autocomplete="on">
+    <form id="formInput" class="layui-form" action="${ctx}/sys/sequence/add.json" method="post" enctype="multipart/form-data" autocomplete="on">
         <input type="hidden" name="id" value="${data.id}"/>
         <div class="layui-tab layui-tab-card">
             <ul class="layui-tab-title">
-                <li class="layui-this">品种信息</li>
+                <li class="layui-this">单据编号</li>
             </ul>
             <div class="layui-tab-content height-100-perce">
                 <div class="layui-tab-item layui-show">
                     <fieldset class="layui-elem-field layui-field-title top20">
-                        <legend>品种参数</legend>
+                        <legend>单据参数</legend>
                     </fieldset>
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">品种名称<em>*</em></label>
+                            <label class="layui-form-label">名称<em>*</em></label>
                             <div class="layui-input-inline">
-                                <input type="text" name="sname" id="sname" value="${data.sname}" class="layui-input" lay-verify="required" placeholder="(必填项)">
+                                <input type="text" name="sobjectname" id="sobjectname" value="${data.sobjectname}" class="layui-input" lay-verify="required|number" placeholder="(必填项)" autocomplete="off" >
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">俗名</label>
+                            <label class="layui-form-label">代码</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" name="slocalname" id="slocalname" value="${data.slocalname}">
+                                <input type="text" class="layui-input" name="scode" id="scode" value="${data.scode}">
                             </div>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">是否常用<em>*</em></label>
+                            <label class="layui-form-label">格式<em>*</em></label>
                             <div class="layui-input-inline">
-                                <consts:BoolType op="select" defval="99" defname="全部" name="biscommon" val="${data.biscommon}" option="class='layui-input'"/>
+                                <input type="text" class="layui-input" lay-verify="required" placeholder="(必填项)" name="sfromat" id="sfromat" value="${data.sfromat}">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">单位<em>*</em></label>
+                            <label class="layui-form-label">起始编号<em>*</em></label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" lay-verify="required" placeholder="(必填项)" name="sweightunit" id="sweightunit" value="${data.sweightunit}">
+                                <input type="text" class="layui-input" lay-verify="required" placeholder="(必填项)" name="istartno" id="istartno" value="${data.istartno}">
                             </div>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">规格型号</label>
+                            <label class="layui-form-label">增长阶梯<em>*</em></label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" name="sspec" id="sspec" value="${data.sspec}">
+                                <input type="text" class="layui-input" lay-verify="required | number" placeholder="(必填项)" name="iincrement" id="iincrement" value="${data.iincrement}">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">生产厂家<em>*</em></label>
+                            <label class="layui-form-label">当前序号<em>*</em></label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" lay-verify="required" placeholder="(必填项)" name="sproducer" id="sproducer" value="${data.sproducer}">
+                                <input type="text" class="layui-input" lay-verify="required|number" placeholder="(必填项)" name="icurrentno" id="icurrentno" value="${data.icurrentno}">
                             </div>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">所属设备</label>
+                            <label class="layui-form-label">前缀</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" name="shostname" id="shostname" value="${data.shostname}">
+                                <input type="text" class="layui-input" name="sprefix" id="sprefix" value="${data.sprefix}">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">所属设备型号</label>
+                            <label class="layui-form-label">后缀</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" name="shostmodel" id="shostmodel" value="${data.shostmodel}">
+                                <input type="text" class="layui-input" name="ssuffix" id="ssuffix" value="${data.ssuffix}">
                             </div>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">所属设备厂商</label>
+                            <label class="layui-form-label">是否清零</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" name="shostbrand" id="shostbrand" value="${data.shostbrand}">
+                                <consts:BoolType op="select" defval="99" defname="全部" name="bisreset" val="${data.bisreset}" option="class='layui-input'"/>
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">排序号<em>*</em></label>
+                            <label class="layui-form-label">是否循环</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" lay-verify="required" placeholder="(必填项)" name="isort" id="isort" value="${data.isort}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <div class="layui-inline layui-form-text">
-                            <label class="layui-form-label">品种介绍</label>
-                            <div class="layui-input-inline layui-input-text">
-                                <textarea class="layui-textarea" name="sdescription" id="sdescription">${data.sdescription}</textarea>
+                                <consts:BoolType op="select" defval="99" defname="全部" name="biscycle" val="${data.biscycle}" option="class='layui-input'"/>
                             </div>
                         </div>
                     </div>

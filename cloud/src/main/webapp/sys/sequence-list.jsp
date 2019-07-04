@@ -116,7 +116,7 @@
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'add':
-                    pub.open('添加', '${ctx}/category/add.shtml', '${ctx}/category/add.json',tableIns);
+                    pub.open('添加', '${ctx}/sys/sequence/add.shtml', '${ctx}/category/add.json',tableIns);
                     break;
                 case 'delete':
                     pub.delete(data,'${ctx}/category/delete.json','确定要删除吗？',true,true,tableIns);
@@ -135,11 +135,11 @@
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'detail') {
-                pub.detail('品种详情', '${ctx}/category/add.shtml?id=' + data.id);
+                pub.detail('品种详情', '${ctx}/sys/sequence/add.shtml?id=' + data.id);
             } else if (layEvent === 'del') {
                 pub.delete(data,'${ctx}/category/delete.json','确定要删除吗？',false,false,tableIns);
             } else if (layEvent === 'edit') {
-                pub.open('编辑', '${ctx}/category/add.shtml?id=' + data.id, '${ctx}/category/add.json',tableIns);
+                pub.open('编辑', '${ctx}/sys/sequence/add.shtml?id=' + data.id, '${ctx}/category/add.json',tableIns);
             }
         });
 
