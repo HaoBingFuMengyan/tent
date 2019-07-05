@@ -31,11 +31,11 @@
 <div class="demoTable" id="mainForm">
     名称：
     <div class="layui-inline">
-        <input class="layui-input" name="search_like_sname" id="search_like_sname" autocomplete="off">
+        <input class="layui-input" name="search_like_sobjectname" id="search_like_sobjectname" autocomplete="off">
     </div>
     代码：
     <div class="layui-inline">
-        <input class="layui-input" name="search_like_sobjectname" id="search_like_sobjectname" autocomplete="off">
+        <input class="layui-input" name="search_like_scode" id="search_like_scode" autocomplete="off">
     </div>
     <button class="layui-btn" data-type="reload"><i class="layui-icon">&#xe615;</i>搜索</button>
     <button class="layui-btn layui-btn-primary clear-margin-left" type="reset"><i
@@ -116,7 +116,7 @@
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'add':
-                    pub.open('添加', '${ctx}/sys/sequence/add.shtml', '${ctx}/category/add.json',tableIns);
+                    pub.open('添加', '${ctx}/sys/sequence/add.shtml', '${ctx}/sys/sequence/add.json',tableIns);
                     break;
                 case 'delete':
                     pub.delete(data,'${ctx}/category/delete.json','确定要删除吗？',true,true,tableIns);
@@ -139,14 +139,12 @@
             } else if (layEvent === 'del') {
                 pub.delete(data,'${ctx}/category/delete.json','确定要删除吗？',false,false,tableIns);
             } else if (layEvent === 'edit') {
-                pub.open('编辑', '${ctx}/sys/sequence/add.shtml?id=' + data.id, '${ctx}/category/add.json',tableIns);
+                pub.open('编辑', '${ctx}/sys/sequence/add.shtml?id=' + data.id, '${ctx}/sys/sequence/add.json',tableIns);
             }
         });
 
         var $ = layui.$, active = {
             reload: function () {
-                var sname = $('#sname');
-
                 var index = layer.msg('查询中，请稍后...', {icon: 16, time: false, shade: 0});
                 //执行重载
                 table.reload('testReload', {
@@ -155,7 +153,7 @@
                         curr: 1 //重新从第 1 页开始
                     }
                     , where: {
-                        search_like_sname: sname.val().trim()
+
                     }
                 });
                 layer.close(index);
