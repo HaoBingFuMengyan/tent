@@ -58,6 +58,21 @@ public abstract class BaseAction<T,V> {
         }
     }
 
+    @RequestMapping(value = "delete.json",method = RequestMethod.POST)
+    @ResponseBody
+    public Result delete(@RequestParam(value = "inds[]") String[] inds,Model model,HttpServletRequest request,HttpSession session){
+        try {
+            getBaseService().BaseDelete(inds);
+            return  Result.success("删除成功");
+        }catch (ServiceException ex){
+            ex.printStackTrace();
+            return Result.failure(ex.getMessage());
+        }catch (Exception e){
+            e.printStackTrace();
+            return Result.failure(e.getMessage());
+        }
+    }
+
     public void save(V obj,Model model,HttpServletRequest request){
         getBaseService().BaseSave(voToPo(obj),"");
     }
