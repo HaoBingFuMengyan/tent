@@ -157,6 +157,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="layui-form-item">
+                        <div class="layui-inline layui-form-text">
+                            <label class="layui-form-label">备注</label>
+                            <div class="layui-input-inline layui-input-text">
+                                <textarea class="layui-textarea" name="sremark" id="sremark">${data.sremark}</textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
