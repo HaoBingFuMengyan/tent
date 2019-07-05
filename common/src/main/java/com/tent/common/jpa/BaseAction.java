@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 public abstract class BaseAction<T,V> {
     public BaseAction(){
@@ -46,7 +45,7 @@ public abstract class BaseAction<T,V> {
 
     @RequestMapping(value = "add.json",method = RequestMethod.POST)
     @ResponseBody
-    public Ajax add(@Valid @ModelAttribute("data") V obj, Model model, HttpServletRequest request, HttpSession session){
+    public Ajax add(@ModelAttribute("data") V obj, Model model, HttpServletRequest request, HttpSession session){
         try {
             save(obj,model,request);
             return Ajax.success("操作成功");

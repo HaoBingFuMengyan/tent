@@ -91,7 +91,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">名称<em>*</em></label>
                             <div class="layui-input-inline">
-                                <input type="text" name="sobjectname" id="sobjectname" value="${data.sobjectname}" class="layui-input" lay-verify="required|phone|number" placeholder="(必填项)" autocomplete="off" >
+                                <input type="text" name="sobjectname" id="sobjectname" value="${data.sobjectname}" class="layui-input" lay-verify="required" placeholder="(必填项)" autocomplete="off" >
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -111,7 +111,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">起始编号<em>*</em></label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" lay-verify="required" placeholder="(必填项)" name="istartno" id="istartno" value="${data.istartno}">
+                                <input type="text" class="layui-input" lay-verify="required|number" placeholder="(必填项)" name="istartno" id="istartno" value="${data.istartno}">
                             </div>
                         </div>
                     </div>

@@ -226,11 +226,11 @@
             <!-- freemarker + shiro（标签） begin -->
 
             <!-- JSR303 Bean Validator -->
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${hibernate-validator.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.hibernate</groupId>-->
+                <!--<artifactId>hibernate-validator</artifactId>-->
+                <!--<version>${hibernate-validator.version}</version>-->
+            <!--</dependency>-->
 
             <!-- JSON begin -->
             <dependency>
