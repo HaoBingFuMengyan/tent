@@ -17,6 +17,8 @@ import java.util.Map;
 public interface BaseDao<T, ID extends Serializable>
         extends JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
 
+    String getSeqNo(String name);
+
     T fetchOne(ID var1);
 
     List<?> findBySql(String var1, Object... var2);

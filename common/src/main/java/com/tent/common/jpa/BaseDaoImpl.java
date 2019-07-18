@@ -1,9 +1,11 @@
 package com.tent.common.jpa;
 
 import com.google.common.collect.Maps;
+import com.tent.common.exception.E;
 import com.tent.common.persistence.Filter;
 import com.tent.common.persistence.QueryParams;
 import com.tent.common.utils.AnnotationUtils;
+import org.hibernate.internal.SessionImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -18,6 +20,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.io.Serializable;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Types;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +35,31 @@ public class BaseDaoImpl<T, ID extends Serializable> extends SimpleJpaRepository
     public BaseDaoImpl(Class<T> domainClass, EntityManager em) {
         super(domainClass, em);
         this.em = em;
+    }
+
+    @Override
+    public String getSeqNo(String name) {
+        try {
+            String temp = null;
+            Connection conn = ((SessionImpl) em.getDelegate()).connection();
+            CallableStatement proc = conn
+                    .prepareCall("{call pd_GetSeqNo(?,?)}");
+
+            proc.setString(1, name);
+            proc.registerOutParameter(2, Types.VARCHAR);
+            proc.execute();
+            temp = proc.getString(2);
+            proc.close();
+
+            return temp;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            System.gc();
+            E.S("编号生成故障:" + name);
+            return null;
+        }
     }
 
     @Override
@@ -170,10 +200,10 @@ public class BaseDaoImpl<T, ID extends Serializable> extends SimpleJpaRepository
     @Override
     public Object getFieldValue(String var1, Object... var2) {
         Query query = this.em.createNativeQuery(var1);
-        if(var2 != null && var2.length > 0) {
-            for(int i = 0; i < var2.length; ++i) {
-                if(var2[i] instanceof Date) {
-                    query.setParameter(i + 1, (Date)var2[i], TemporalType.DATE);
+        if (var2 != null && var2.length > 0) {
+            for (int i = 0; i < var2.length; ++i) {
+                if (var2[i] instanceof Date) {
+                    query.setParameter(i + 1, (Date) var2[i], TemporalType.DATE);
                 } else {
                     query.setParameter(i + 1, var2[i]);
                 }

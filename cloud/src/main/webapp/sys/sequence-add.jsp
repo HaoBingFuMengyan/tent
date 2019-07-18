@@ -38,7 +38,7 @@
                 , fieldElem = elem.find('input,select,textarea') //获取所有表单域
                 , filter = '*'; //获取过滤器
 
-            //开始校验
+            //开始校验  可以支持多规则校验,例：lay-verify="required|number|phone"
             layui.each(verifyElem, function (_, item) {
                 var othis = $(this), ver = othis.attr('lay-verify'), tips = '', isExecue = false;
                 var value = othis.val(),verArr = ver.split("|");

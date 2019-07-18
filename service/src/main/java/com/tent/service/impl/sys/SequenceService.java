@@ -2,6 +2,7 @@ package com.tent.service.impl.sys;
 
 import com.tent.common.jpa.BaseDao;
 import com.tent.common.jpa.BaseService;
+import com.tent.common.utils.DateUtils;
 import com.tent.dao.sys.SequenceDao;
 import com.tent.po.entity.sys.Sequence;
 import com.tent.service.inte.sys.ISequenceService;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.Map;
 
 @Component
@@ -28,6 +30,7 @@ public class SequenceService extends BaseService<Sequence> implements ISequenceS
     @Override
     protected void BaseSaveCheck(Sequence obj) {
 
+        obj.setDcurrentdate(DateUtils.dateParseString(new Date()));
     }
 
 
