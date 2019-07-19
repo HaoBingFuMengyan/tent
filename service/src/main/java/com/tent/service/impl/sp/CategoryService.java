@@ -4,6 +4,7 @@ import com.tent.common.exception.E;
 import com.tent.common.jpa.BaseDao;
 import com.tent.common.jpa.BaseService;
 import com.tent.common.utils.B;
+import com.tent.common.web.ParaUtils;
 import com.tent.dao.sp.CategoryDao;
 import com.tent.po.entity.sp.Category;
 import com.tent.service.inte.sp.ICategoryService;
@@ -59,6 +60,7 @@ public class CategoryService extends BaseService<Category> implements ICategoryS
         data.setShostname(category.getShostname());
         data.setShostmodel(category.getShostmodel());
         data.setSspec(category.getSspec());
+        data.setSsystemcode(ParaUtils.seqno("sp_category"));
 
         this.categoryDao.save(data);
     }

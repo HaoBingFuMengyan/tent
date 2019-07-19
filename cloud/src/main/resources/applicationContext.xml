@@ -12,11 +12,6 @@
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
-
-    <!-- 属性文件位置 -->
-    <!--<context:property-placeholder location="classpath:application.dev.properties" ignore-unresolvable="true"/>-->
-
-
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="jdbcUrl" value="${jdbc.url}"/>
         <property name="driverClass" value="${jdbc.driver}"/>
