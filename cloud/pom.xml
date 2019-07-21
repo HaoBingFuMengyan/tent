@@ -62,6 +62,12 @@
             <artifactId>${jdbc.driver.artifactId}</artifactId>
         </dependency>
 
+        <!-- 使用谷歌验证码插件 -->
+        <dependency>
+            <groupId>com.google.code</groupId>
+            <artifactId>kaptcha</artifactId>
+        </dependency>
+
         <!-- spring核心包 -->
         <dependency>
             <groupId>org.springframework</groupId>

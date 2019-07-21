@@ -1,5 +1,6 @@
 package com.tent.cloud.shiro.token;
 
+import com.tent.cloud.shiro.ShiroUsernamePasswordToken;
 import com.tent.common.entity.UUser;
 import com.tent.common.shiro.ILoginUser;
 import com.tent.common.utils.LoggerUtils;
@@ -43,7 +44,9 @@ public class SampleRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken authcToken) throws AuthenticationException {
 
-		UsernamePasswordToken token = (UsernamePasswordToken)authcToken;
+		ShiroUsernamePasswordToken token = (ShiroUsernamePasswordToken)authcToken;
+		token.CheckCaptcha();
+
 		LoggerUtils.debug(getClass(),"验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
 		LoginUser user = userService.findBySusernameOrSmobile(token.getUsername(),token.getUsername());
 		if(null == user){
