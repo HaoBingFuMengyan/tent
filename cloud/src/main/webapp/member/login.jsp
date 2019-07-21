@@ -78,7 +78,7 @@
             <input type="button" onclick="return doSubmit();" value="登陆" />
         </form>
     </div>
-    <div class="copyright">HaoSHI有限公司 版权所有©2018-2118 技术支持电话：021-00000000</div>
+    <div class="copyright">版权所有©2018-2118 技术支持电话：021-00000000</div>
 </div>
 </body>
 </html>
