@@ -4,11 +4,14 @@ import com.tent.common.utils.B;
 import com.tent.common.utils.S;
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.service.spi.ServiceException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 public abstract class BaseAction<T,V> {
     public BaseAction(){
@@ -41,6 +44,27 @@ public abstract class BaseAction<T,V> {
     public String add(@PathVariable String page, Model model, HttpServletRequest request, HttpSession session){
         S.printPageUrl("页面路径为：" + this.positionJsp() + "/" + this.prefixJsp() + "-" + page);
         return S.toPage(this.positionJsp() + "/" + this.prefixJsp() + "-" + page);
+    }
+
+    @RequestMapping(value = "list.json")
+    @ResponseBody
+    public Result data(Model model, HttpServletRequest request, HttpSession session){
+        try {
+
+            Map<String,Object> searchParams = Servlets.getParametersStartingWith(request,model);
+
+            Pageable pageable = PageUtils.pageable(request);
+
+            Page<T> list = this.getBaseService().listpage(searchParams,pageable);
+
+            return  Result.success(list,"");
+        }catch (ServiceException ex){
+            ex.printStackTrace();
+            return Result.failure(ex.getMessage());
+        }catch (Exception e){
+            e.printStackTrace();
+            return Result.failure(e.getMessage());
+        }
     }
 
     @RequestMapping(value = "add.json",method = RequestMethod.POST)
