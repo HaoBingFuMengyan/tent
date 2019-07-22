@@ -41,7 +41,7 @@ public class LoginAction {
             model.addAttribute("errormsg", "用户不存在");
 
         model.addAttribute("userName",userName);
-        return "member/login";
+        return S.toPage("member/login");
     }
 
 //    @RequestMapping(value="login.html", method=RequestMethod.POST)
