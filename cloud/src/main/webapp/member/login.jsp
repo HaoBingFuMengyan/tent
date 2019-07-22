@@ -53,7 +53,7 @@
 <div class="login_box">
     <%--<div class="login_l_img"><img src="${ctx}/images/login-img.png"/></div>--%>
     <div class="login">
-        <div class="login_logo"><a href="#"><img src="${ctx}/images/login_logo.png"/></a></div>
+        <a href="${ctx}/index.html"><div class="login_logo"><img src="${ctx}/images/login_logo.png"/></div></a>
         <div class="login_name">
             <p>会员管理系统</p>
         </div>
