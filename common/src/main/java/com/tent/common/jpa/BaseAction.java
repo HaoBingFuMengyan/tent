@@ -37,10 +37,10 @@ public abstract class BaseAction<T,V> {
         }
     }
 
-    @RequestMapping(value = "add.shtml")
-    public String add(Model model, HttpServletRequest request, HttpSession session){
-        System.out.println("页面路径为：" + this.positionJsp() + "/" + this.prefixJsp() + "-add");
-        return S.toPage(this.positionJsp() + "/" + this.prefixJsp() + "-add");
+    @RequestMapping(value = "{page}.shtml")
+    public String add(@PathVariable String page, Model model, HttpServletRequest request, HttpSession session){
+        S.printPageUrl("页面路径为：" + this.positionJsp() + "/" + this.prefixJsp() + "-" + page);
+        return S.toPage(this.positionJsp() + "/" + this.prefixJsp() + "-" + page);
     }
 
     @RequestMapping(value = "add.json",method = RequestMethod.POST)

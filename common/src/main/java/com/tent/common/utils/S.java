@@ -20,4 +20,8 @@ public class S {
     public static Predicate andList(CriteriaBuilder cb, List<Predicate> list) {
         return cb.and((Predicate[])list.toArray(new Predicate[list.size()]));
     }
+
+    public static void printPageUrl(String page){
+        System.out.println(page);
+    }
 }

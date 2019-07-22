@@ -81,6 +81,15 @@
                             </dd>
                         </dl>
                     </li>
+
+                    <li class="layui-nav-item">
+                        <a validate="false">解决方案</a>
+                        <dl class="layui-nav-child">
+                            <dd><a>列表一</a></dd>
+                            <dd><a>列表二</a></dd>
+                            <dd><a>超链接</a></dd>
+                        </dl>
+                    </li>
                 </ul>
 
                 <ul class="layui-nav layui-nav-tree layui-hide" lay-filter="test" top_id="002">

@@ -69,8 +69,8 @@
         <!--<input id="login" value="登录" style="width:100%;" type="submit">-->
         <!--</form>-->
         <form id="inputForm" method="post" action="${ctx}/login.html">
-            <input type="text" id="username" name="username" placeholder="用户名" maxlength="11"/>
-            <input type="text" id="password" name="password" placeholder="密码" maxlength="11" />
+            <input type="text" id="username" name="username" placeholder="用户名" maxlength="11" value="admin"/>
+            <input type="password" id="password" name="password" placeholder="密码" maxlength="11" value="123456" />
             <input type="text" class="checkcode" id="checkword" name="checkword" placeholder="验证码" maxlength="6"/>
             <img id="captchaImg" src="${ctx}/captcha.shtml" class="captchaImg"  onclick="refreshCaptcha();">
             <a href="javascript:" onclick="refreshCaptcha();" class="invisibility" >看不清</a>
