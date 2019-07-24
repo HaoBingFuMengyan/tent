@@ -1,6 +1,7 @@
 package com.tent.common.jpa;
 
 import com.tent.common.exception.E;
+import com.tent.common.persistence.QueryParams;
 import com.tent.common.utils.StringUtils;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.data.domain.Page;
@@ -117,4 +118,8 @@ public abstract class BaseService<T> {
         });
     }
 
+    @Transactional(readOnly = true)
+    public List<T> findByQueryParam(QueryParams queryParams,Pageable pageable){
+        return this.getBaseDao().findByQueryParam(queryParams,pageable);
+    }
 }
