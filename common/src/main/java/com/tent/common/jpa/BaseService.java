@@ -23,14 +23,17 @@ public abstract class BaseService<T> {
 
     @Transactional(readOnly = true)
     public Page<T> listPage(Pageable page, Specification<T> spec) {
-
         return getBaseDao().findAll(spec, page);
     }
 
     @Transactional(readOnly = true)
     public Page<T> listpage(Map<String, Object> searchParams, Pageable pageable) {
-
         return getBaseDao().findPage(pageable,searchParams);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<T> listpage(Pageable page, Map<String, Object> searchParams, Specification<T> spec){
+        return getBaseDao().findPage(page,searchParams,spec);
     }
 
     /**
@@ -91,6 +94,10 @@ public abstract class BaseService<T> {
         return getBaseDao().findByPropertyName(colName, colValue);
     }
 
+    @Transactional(readOnly = true)
+    public T findByColname(String colName, Object colValue) {
+        return getBaseDao().findOneByPropertyName(colName,colValue);
+    }
     /**
      * 根据列查找唯一对象
      *
