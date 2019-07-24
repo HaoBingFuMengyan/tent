@@ -3,7 +3,7 @@ package com.tent.cloud.shiro.session;
 import com.tent.po.entity.hy.User;
 import com.tent.cloud.customer.bo.UserOnlineBo;
 import com.tent.cloud.shiro.CustomShiroSessionDAO;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import com.tent.common.utils.StringUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.SimplePrincipalCollection;
@@ -152,7 +152,7 @@ public class CustomSessionManager {
 			map.put("sessionStatusText", status?"踢出":"激活");
 			map.put("sessionStatusTextTd", status?"有效":"已踢出");
 		} catch (Exception e) {
-			LoggerUtils.fmtError(getClass(), e, "改变Session状态错误，sessionId[%s]", sessionIds);
+			Lg.fmtError(getClass(), e, "改变Session状态错误，sessionId[%s]", sessionIds);
 			map.put("status", 500);
 			map.put("message", "改变失败，有可能Session不存在，请刷新再试！");
 		}

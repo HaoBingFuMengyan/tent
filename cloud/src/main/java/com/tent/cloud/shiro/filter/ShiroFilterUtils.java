@@ -1,6 +1,6 @@
 package com.tent.cloud.shiro.filter;
 
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletRequest;
@@ -42,7 +42,7 @@ public class ShiroFilterUtils {
 			out = response.getWriter();
 			out.println(JSONObject.fromObject(resultMap).toString());
 		} catch (Exception e) {
-			LoggerUtils.fmtError(CLAZZ, e, "输出JSON报错。");
+			Lg.fmtError(CLAZZ, e, "输出JSON报错。");
 		}finally{
 			if(null != out){
 				out.flush();

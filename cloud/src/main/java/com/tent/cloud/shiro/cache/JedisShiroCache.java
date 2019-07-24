@@ -1,6 +1,6 @@
 package com.tent.cloud.shiro.cache;
 
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import com.tent.common.utils.SerializeUtil;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
@@ -51,7 +51,7 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
         try {
             byteValue = jedisManager.getValueByKey(DB_INDEX, byteKey);
         } catch (Exception e) {
-            LoggerUtils.error(SELF, "get value by cache throw exception",e);
+            Lg.error(SELF, "get value by cache throw exception",e);
         }
         return (V) SerializeUtil.deserialize(byteValue);
     }
@@ -63,7 +63,7 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
             jedisManager.saveValueByKey(DB_INDEX, SerializeUtil.serialize(buildCacheKey(key)),
                     SerializeUtil.serialize(value), -1);
         } catch (Exception e) {
-        	 LoggerUtils.error(SELF, "put cache throw exception",e);
+        	 Lg.error(SELF, "put cache throw exception",e);
         }
         return previos;
     }
@@ -74,7 +74,7 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
         try {
             jedisManager.deleteByKey(DB_INDEX, SerializeUtil.serialize(buildCacheKey(key)));
         } catch (Exception e) {
-            LoggerUtils.error(SELF, "remove cache  throw exception",e);
+            Lg.error(SELF, "remove cache  throw exception",e);
         }
         return previos;
     }

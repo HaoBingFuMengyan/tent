@@ -1,7 +1,7 @@
 package com.tent.common.web;
 
 
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -96,7 +96,7 @@ public class Msg {
     public static void error(Model model, Exception e) {
         error(model, e.getMessage());
         if(!(e instanceof ServiceException)) {
-            LoggerUtils.fmtError(Msg.class, e.getMessage(), new Throwable[]{e});
+            Lg.fmtError(Msg.class, e.getMessage(), new Throwable[]{e});
         }
 
     }
@@ -105,7 +105,7 @@ public class Msg {
         String msg = e.getMessage();
         if(!(e instanceof ServiceException)) {
             msg = "操作失败了";
-            LoggerUtils.fmtError(Msg.class,e.getMessage(), new Throwable[]{e});
+            Lg.fmtError(Msg.class,e.getMessage(), new Throwable[]{e});
         }
 
         error(model, msg);

@@ -1,7 +1,7 @@
 package com.tent.cloud.shiro;
 
 import com.tent.cloud.shiro.session.ShiroSessionRepository;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
@@ -30,7 +30,7 @@ public class CustomShiroSessionDAO extends AbstractSessionDAO {
     @Override  
     public void delete(Session session) {
         if (session == null) {  
-        	LoggerUtils.error(getClass(), "Session 不能为null");
+        	Lg.error(getClass(), "Session 不能为null");
             return;  
         }  
         Serializable id = session.getId();  

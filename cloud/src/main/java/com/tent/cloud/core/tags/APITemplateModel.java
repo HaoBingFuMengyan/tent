@@ -3,7 +3,7 @@ package com.tent.cloud.core.tags;
 import static freemarker.template.ObjectWrapper.DEFAULT_WRAPPER;
 
 import com.tent.cloud.core.statics.Constant;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import com.tent.common.utils.SpringContextUtil;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
@@ -36,7 +36,7 @@ public class APITemplateModel extends WYFTemplateModel {
 			//输出
 			paramWrap.put(Constant.OUT_TAG_NAME, DEFAULT_WRAPPER.wrap(result));
 		}else{
-			LoggerUtils.error(getClass(), "Cannot be null, must include a 'name' attribute!");
+			Lg.error(getClass(), "Cannot be null, must include a 'name' attribute!");
 		}
 		return paramWrap;
 	}

@@ -2,8 +2,7 @@ package com.tent.cloud.core.freemarker.extend;
 
 import com.tent.cloud.core.statics.Constant;
 import com.tent.cloud.shiro.token.manager.TokenManager;
-import com.tent.common.entity.UUser;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import com.tent.po.entity.hy.User;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
@@ -18,7 +17,7 @@ public class FreeMarkerViewExtend extends FreeMarkerView {
 		try {
 			super.exposeHelpers(model, request);
 		} catch (Exception e) {
-			LoggerUtils.fmtError(FreeMarkerViewExtend.class,e, "FreeMarkerViewExtend 加载父类出现异常。请检查。");
+			Lg.fmtError(FreeMarkerViewExtend.class,e, "FreeMarkerViewExtend 加载父类出现异常。请检查。");
 		}
 		model.put(Constant.CONTEXT_PATH, request.getContextPath());
 		model.putAll(Ferrmarker.initMap);

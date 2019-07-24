@@ -1,8 +1,7 @@
 package com.tent.cloud.shiro;
 
 
-import com.tent.common.utils.LoggerUtils;
-import com.tent.service.impl.hy.RoleService;
+import com.tent.common.utils.Lg;
 import com.tent.service.inte.hy.IPermissionService;
 import com.tent.service.inte.hy.IRoleService;
 import com.tent.service.inte.hy.IUserService;
@@ -16,7 +15,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 自定义的指定Shiro验证用户登录的类
@@ -105,7 +103,7 @@ public class MyRealm extends AuthorizingRealm{
         //实际上这个authcToken是从LoginController里面currentUser.login(token)传过来的
         //两个token的引用都是一样的,本例中是org.apache.shiro.authc.UsernamePasswordToken@33799a1e
         UsernamePasswordToken token = (UsernamePasswordToken)authcToken;
-        LoggerUtils.debug(getClass(),"验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
+        Lg.debug(getClass(),"验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
 
 
 //      User hy = userService.getByUsername(token.getUsername());
@@ -140,7 +138,7 @@ public class MyRealm extends AuthorizingRealm{
         Subject currentUser = SecurityUtils.getSubject();
         if(null != currentUser){
             Session session = currentUser.getSession();
-            LoggerUtils.debug(getClass(),"Session默认超时时间为[" + session.getTimeout() + "]毫秒");
+            Lg.debug(getClass(),"Session默认超时时间为[" + session.getTimeout() + "]毫秒");
             if(null != session){
                 session.setAttribute(key, value);
             }

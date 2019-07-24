@@ -3,7 +3,7 @@ package com.tent.service.impl.hy;
 import com.google.common.collect.Sets;
 import com.tent.common.shiro.ILoginUser;
 import com.tent.common.utils.B;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import com.tent.dao.hy.PermissionDao;
 import com.tent.po.entity.hy.Permission;
 import com.tent.service.inte.hy.IPermissionService;
@@ -38,7 +38,7 @@ public class PermissionService implements IPermissionService{
                     rs.add(b.trim());
             }
         }
-        LoggerUtils.debug(getClass(),"所有权限："+ rs.toString());
+        Lg.info(PermissionService.class,"所有权限："+ rs.toString());
 
         return rs;
     }

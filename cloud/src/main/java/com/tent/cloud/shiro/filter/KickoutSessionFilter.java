@@ -3,7 +3,7 @@ package com.tent.cloud.shiro.filter;
 import com.tent.cloud.shiro.cache.VCache;
 import com.tent.cloud.shiro.session.ShiroSessionRepository;
 import com.tent.cloud.shiro.token.manager.TokenManager;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import net.sf.json.JSONObject;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -56,7 +56,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 			Map<String, String> resultMap = new HashMap<String, String>();
 			//判断是不是Ajax请求
 			if (ShiroFilterUtils.isAjax(request) ) {
-				LoggerUtils.debug(getClass(), "当前用户已经在其他地方登录，并且是Ajax请求！");
+				Lg.debug(getClass(), "当前用户已经在其他地方登录，并且是Ajax请求！");
 				resultMap.put("user_status", "300");
 				resultMap.put("message", "您已经在其他地方登录，请重新登录！");
 				out(response, resultMap);
@@ -92,7 +92,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 				//标记session已经踢出
 				oldSession.setAttribute(KICKOUT_STATUS, Boolean.TRUE);
 				shiroSessionRepository.saveSession(oldSession);//更新session
-				LoggerUtils.fmtDebug(getClass(), "kickout old session success,oldId[%s]",oldSessionId);
+				Lg.fmtDebug(getClass(), "kickout old session success,oldId[%s]",oldSessionId);
 			}else{
 				shiroSessionRepository.deleteSession(oldSessionId);
 				infoMap.remove(userId);
@@ -132,7 +132,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 			out.flush();
 			out.close();
 		} catch (Exception e) {
-			LoggerUtils.error(getClass(), "KickoutSessionFilter.class 输出JSON异常，可以忽略。");
+			Lg.error(getClass(), "KickoutSessionFilter.class 输出JSON异常，可以忽略。");
 		}
 	}
 

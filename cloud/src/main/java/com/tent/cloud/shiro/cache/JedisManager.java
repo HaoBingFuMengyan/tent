@@ -1,6 +1,6 @@
 package com.tent.cloud.shiro.cache;
 
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import com.tent.common.utils.SerializeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.session.Session;
@@ -80,7 +80,7 @@ public class JedisManager {
             jedis = getJedis();
             jedis.select(dbIndex);
             Long result = jedis.del(key);
-            LoggerUtils.fmtDebug(getClass(), "删除Session结果：%s" , result);
+            Lg.fmtDebug(getClass(), "删除Session结果：%s" , result);
         } catch (Exception e) {
             isBroken = true;
             throw e;

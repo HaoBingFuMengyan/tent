@@ -1,7 +1,7 @@
 package com.tent.cloud.core.config;
 
 
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -33,7 +33,7 @@ public class IConfig {
 		try {
 			prop.load(IConfig.class.getResourceAsStream(FILE_NAME));
 		} catch (IOException e) {
-			LoggerUtils.fmtError(IConfig.class,e, "加载文件异常，文件路径：%s", FILE_NAME);
+			Lg.fmtError(IConfig.class,e, "加载文件异常，文件路径：%s", FILE_NAME);
 		}
 		
 	}

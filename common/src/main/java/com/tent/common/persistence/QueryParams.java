@@ -3,7 +3,7 @@ package com.tent.common.persistence;
 import com.google.common.collect.Lists;
 import com.tent.common.utils.Collections3;
 import com.tent.common.utils.DateUtils;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import com.tent.common.utils.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.data.jpa.domain.Specification;
@@ -381,8 +381,8 @@ public class QueryParams<T> implements Specification<T> {
             sql.append(" order by ");
             sql.append(StringUtils.join(params.getOrders(),","));
         }
-        LoggerUtils.debug(QueryParams.class,"解析后的sql:"+sql.toString());
-        LoggerUtils.debug(QueryParams.class,"对应的值为:"+valueList);
+        Lg.debug(QueryParams.class,"解析后的sql:"+sql.toString());
+        Lg.debug(QueryParams.class,"对应的值为:"+valueList);
         return valueList;
     }
 

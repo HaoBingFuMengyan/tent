@@ -3,7 +3,7 @@ package com.tent.cloud.shiro.cache;
 import com.tent.cloud.shiro.session.CustomSessionManager;
 import com.tent.cloud.shiro.session.SessionStatus;
 import com.tent.cloud.shiro.session.ShiroSessionRepository;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import com.tent.common.utils.SerializeUtil;
 import org.apache.shiro.session.Session;
 
@@ -60,7 +60,7 @@ public class JedisShiroSessionRepository implements ShiroSessionRepository {
              */
             getJedisManager().saveValueByKey(DB_INDEX, key, value, (int) (session.getTimeout() / 1000));
         } catch (Exception e) {
-        	LoggerUtils.fmtError(getClass(), e, "save session error，id:[%s]",session.getId());
+        	Lg.fmtError(getClass(), e, "save session error，id:[%s]",session.getId());
         }
     }
 
@@ -73,7 +73,7 @@ public class JedisShiroSessionRepository implements ShiroSessionRepository {
             getJedisManager().deleteByKey(DB_INDEX,
                     SerializeUtil.serialize(buildRedisSessionKey(id)));
         } catch (Exception e) {
-        	LoggerUtils.fmtError(getClass(), e, "删除session出现异常，id:[%s]",id);
+        	Lg.fmtError(getClass(), e, "删除session出现异常，id:[%s]",id);
         }
     }
 
@@ -88,7 +88,7 @@ public class JedisShiroSessionRepository implements ShiroSessionRepository {
                     .serialize(buildRedisSessionKey(id)));
             session = SerializeUtil.deserialize(value, Session.class);
         } catch (Exception e) {
-        	LoggerUtils.fmtError(getClass(), e, "获取session异常，id:[%s]",id);
+        	Lg.fmtError(getClass(), e, "获取session异常，id:[%s]",id);
         }
         return session;
     }
@@ -99,7 +99,7 @@ public class JedisShiroSessionRepository implements ShiroSessionRepository {
 		try {
 			sessions = getJedisManager().AllSession(DB_INDEX,REDIS_SHIRO_SESSION);
 		} catch (Exception e) {
-			LoggerUtils.fmtError(getClass(), e, "获取全部session异常");
+			Lg.fmtError(getClass(), e, "获取全部session异常");
 		}
        
         return sessions;

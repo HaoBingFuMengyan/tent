@@ -55,38 +55,38 @@ public class LoginAction {
 //
 //        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 //        token.setRememberMe(true);
-//        LoggerUtils.debug(getClass(),"验证登陆用户封装的token为："+ ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
+//        Lg.debug(getClass(),"验证登陆用户封装的token为："+ ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
 //        //获取当前的Subject
 //        Subject currentUser = SecurityUtils.getSubject();
 //        try {
 //            //在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
 //            //每个Realm都能在必要时对提交的AuthenticationTokens作出反应
 //            //所以这一步在调用login(token)方法时,它会走到MyRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
-//            LoggerUtils.debug(getClass(),"用户[" + username + "]进行登录验证开始");
+//            Lg.debug(getClass(),"用户[" + username + "]进行登录验证开始");
 //            currentUser.login(token);
-//            LoggerUtils.debug(getClass(),"用户[" + username + "]进行登录验证通过");
+//            Lg.debug(getClass(),"用户[" + username + "]进行登录验证通过");
 //            resultPageURL = "main";
 //        }catch(UnknownAccountException uae){
-//            LoggerUtils.debug(getClass(),"用户[" + username + "]进行登录验证，验证未通过，未知账户");
+//            Lg.debug(getClass(),"用户[" + username + "]进行登录验证，验证未通过，未知账户");
 //            request.setAttribute("message_login", "未知账户");
 //        }catch(IncorrectCredentialsException ice){
-//            LoggerUtils.debug(getClass(),"用户[" + username + "]进行登录验证，验证失败，错误凭证");
+//            Lg.debug(getClass(),"用户[" + username + "]进行登录验证，验证失败，错误凭证");
 //            request.setAttribute("message_login", "密码不正确");
 //        }catch(LockedAccountException lae){
-//            LoggerUtils.debug(getClass(),"用户[" + username + "]进行登录验证，验证失败，账户已锁定");
+//            Lg.debug(getClass(),"用户[" + username + "]进行登录验证，验证失败，账户已锁定");
 //            request.setAttribute("message_login", "账户已锁定");
 //        }catch(ExcessiveAttemptsException eae){
-//            LoggerUtils.debug(getClass(),"用户[" + username + "]进行登录验证，验证失败，错误次数过多");
+//            Lg.debug(getClass(),"用户[" + username + "]进行登录验证，验证失败，错误次数过多");
 //            request.setAttribute("message_login", "用户名或密码错误次数过多");
 //        }catch(AuthenticationException ae){
 //            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
-//            LoggerUtils.debug(getClass(),"用户[" + username + "]进行登录验证，验证失败，堆栈轨迹如下");
+//            Lg.debug(getClass(),"用户[" + username + "]进行登录验证，验证失败，堆栈轨迹如下");
 //            ae.printStackTrace();
 //            request.setAttribute("message_login", "用户名或密码不正确");
 //        }
 //        //验证是否登录成功
 //        if(currentUser.isAuthenticated()){
-//            LoggerUtils.debug(getClass(),"用户[" + username + "]进行登录验证，验证通过（这里可以进行一些认证通过后的一些系统参数初始化操作）");
+//            Lg.debug(getClass(),"用户[" + username + "]进行登录验证，验证通过（这里可以进行一些认证通过后的一些系统参数初始化操作）");
 //
 //            getUserInfo(request);
 //            System.out.println(SecurityUtils.getSubject().isAuthenticated());

@@ -2,7 +2,7 @@ package com.tent.cloud.shiro.filter;
 
 import com.tent.po.entity.hy.User;
 import com.tent.cloud.shiro.token.manager.TokenManager;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import org.apache.shiro.web.filter.AccessControlFilter;
 
 import javax.servlet.ServletRequest;
@@ -24,7 +24,7 @@ public class LoginFilter extends AccessControlFilter {
         }
 		if (ShiroFilterUtils.isAjax(request)) {// ajax请求
 			Map<String,String> resultMap = new HashMap<String, String>();
-			LoggerUtils.debug(getClass(), "当前用户没有登录，并且是Ajax请求！");
+			Lg.debug(getClass(), "当前用户没有登录，并且是Ajax请求！");
 			resultMap.put("login_status", "300");
 			resultMap.put("message", "\u5F53\u524D\u7528\u6237\u6CA1\u6709\u767B\u5F55\uFF01");//当前用户没有登录！
 			ShiroFilterUtils.out(response, resultMap);

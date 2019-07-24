@@ -4,11 +4,11 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 
-public class LoggerUtils {
+public class Lg {
 	/**
 	 * 是否开启Debug
 	 */
-	public static boolean isDebug =  Logger.getLogger(LoggerUtils.class).isDebugEnabled();
+	public static boolean isDebug =  Logger.getLogger(Lg.class).isDebugEnabled();
 	
 	/**
 	 * Debug 输出
@@ -20,6 +20,17 @@ public class LoggerUtils {
 		Logger logger = Logger.getLogger(clazz);
 		logger.debug(message);
 	}
+
+	/**
+	 * info 输出
+	 * @param clazz  	目标.Class
+	 * @param message	输出信息
+	 */
+	public static void info(Class<? extends Object> clazz ,String message){
+		Logger logger = Logger.getLogger(clazz);
+		logger.info(message);
+	}
+
 	/**
 	 * Debug 输出
 	 * @param clazz  	目标.Class

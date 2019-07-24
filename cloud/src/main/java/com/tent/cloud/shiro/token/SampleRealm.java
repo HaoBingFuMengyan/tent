@@ -3,7 +3,7 @@ package com.tent.cloud.shiro.token;
 import com.tent.cloud.shiro.ShiroUsernamePasswordToken;
 import com.tent.common.entity.UUser;
 import com.tent.common.shiro.ILoginUser;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import com.tent.service.impl.hy.PermissionService;
 import com.tent.service.impl.hy.RoleService;
 import com.tent.service.impl.hy.UserService;
@@ -47,7 +47,7 @@ public class SampleRealm extends AuthorizingRealm {
 		ShiroUsernamePasswordToken token = (ShiroUsernamePasswordToken)authcToken;
 		token.CheckCaptcha();
 
-		LoggerUtils.debug(getClass(),"验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
+		Lg.debug(getClass(),"验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
 		LoginUser user = userService.findBySusernameOrSmobile(token.getUsername(),token.getUsername());
 		if(null == user){
 			throw new AccountException("帐号或密码不正确！");
@@ -109,7 +109,7 @@ public class SampleRealm extends AuthorizingRealm {
 		Subject currentUser = SecurityUtils.getSubject();
 		if(null != currentUser){
 			Session session = currentUser.getSession();
-			LoggerUtils.debug(getClass(),"Session默认超时时间为[" + session.getTimeout() + "]毫秒");
+			Lg.debug(getClass(),"Session默认超时时间为[" + session.getTimeout() + "]毫秒");
 			if(null != session){
 				session.setAttribute(key, value);
 			}

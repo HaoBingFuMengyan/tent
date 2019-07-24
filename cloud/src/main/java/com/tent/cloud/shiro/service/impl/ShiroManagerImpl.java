@@ -1,7 +1,7 @@
 package com.tent.cloud.shiro.service.impl;
 
 import com.tent.cloud.core.config.INI4j;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
@@ -42,7 +42,7 @@ public class ShiroManagerImpl implements ShiroManager {
 		try {
 			ini = new INI4j(cp.getFile());
 		} catch (IOException e) {
-			LoggerUtils.fmtError(getClass(), e, "加载文件出错。file:[%s]", fileName);
+			Lg.fmtError(getClass(), e, "加载文件出错。file:[%s]", fileName);
 		}
 		String section = "base_auth";
 		Set<String> keys = ini.get(section).keySet();
@@ -65,7 +65,7 @@ public class ShiroManagerImpl implements ShiroManager {
 		try {
 			shiroFilter = (AbstractShiroFilter) shiroFilterFactoryBean.getObject();
 		} catch (Exception e) {
-			LoggerUtils.error(getClass(),"getShiroFilter from shiroFilterFactoryBean error!", e);
+			Lg.error(getClass(),"getShiroFilter from shiroFilterFactoryBean error!", e);
 			throw new RuntimeException("get ShiroFilter from shiroFilterFactoryBean error!");
 		}
 

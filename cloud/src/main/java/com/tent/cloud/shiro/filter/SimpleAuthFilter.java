@@ -2,7 +2,7 @@ package com.tent.cloud.shiro.filter;
 
 import com.tent.cloud.shiro.session.CustomSessionManager;
 import com.tent.cloud.shiro.session.SessionStatus;
-import com.tent.common.utils.LoggerUtils;
+import com.tent.common.utils.Lg;
 import net.sf.json.JSONObject;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -36,7 +36,7 @@ public class SimpleAuthFilter extends AccessControlFilter {
 		if (null != sessionStatus && !sessionStatus.isOnlineStatus()) {
 			//判断是不是Ajax请求
 			if (ShiroFilterUtils.isAjax(request) ) {
-				LoggerUtils.debug(getClass(), "当前用户已经被踢出，并且是Ajax请求！");
+				Lg.debug(getClass(), "当前用户已经被踢出，并且是Ajax请求！");
 				resultMap.put("user_status", "300");
 				resultMap.put("message", "您已经被踢出，请重新登录！");
 				out(response, resultMap);
