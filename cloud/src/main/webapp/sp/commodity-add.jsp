@@ -15,6 +15,6 @@
     <title>Title</title>
 </head>
 <body>
-    commodity-add
+    commodity-add添加
 </body>
 </html>
