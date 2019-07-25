@@ -2,6 +2,7 @@ package com.tent.cloud.hy;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.tent.common.utils.Lg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class CaptchaImageCreateAction {
         // create the text for the image
         String capText = captchaProducer.createText();
 
-        System.out.println("验证码："+capText);
+        Lg.info(CaptchaImageCreateAction.class,"验证码："+capText);
         // store the text in the session
         request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
         // create the image with the text
