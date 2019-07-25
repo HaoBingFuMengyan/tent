@@ -381,8 +381,8 @@ public class QueryParams<T> implements Specification<T> {
             sql.append(" order by ");
             sql.append(StringUtils.join(params.getOrders(),","));
         }
-        Lg.debug(QueryParams.class,"解析后的sql:"+sql.toString());
-        Lg.debug(QueryParams.class,"对应的值为:"+valueList);
+        Lg.info(QueryParams.class,"解析后的sql:"+sql.toString());
+        Lg.info(QueryParams.class,"对应的值为:"+valueList);
         return valueList;
     }
 

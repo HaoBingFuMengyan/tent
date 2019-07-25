@@ -49,7 +49,7 @@ public class Authentication {
             UsernamePasswordToken token = new UsernamePasswordToken(susername, spassword);
             token.setRememberMe(true);
 
-            Lg.debug(Authentication.class,"为登陆用户封装的token："+ ReflectionToStringBuilder.toString(token));
+            Lg.info(Authentication.class,"为登陆用户封装的token："+ ReflectionToStringBuilder.toString(token));
 
             ShiroUtils.getSubject().login(token);
             ShiroUtils.getSubject().getSession().setTimeout(1000*60*60*24*7);

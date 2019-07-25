@@ -47,7 +47,7 @@ public class SampleRealm extends AuthorizingRealm {
 		ShiroUsernamePasswordToken token = (ShiroUsernamePasswordToken)authcToken;
 		token.CheckCaptcha();
 
-		Lg.debug(getClass(),"验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
+		Lg.info(SampleRealm.class,"验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
 		LoginUser user = userService.findBySusernameOrSmobile(token.getUsername(),token.getUsername());
 		if(null == user){
 			throw new AccountException("帐号或密码不正确！");
@@ -109,7 +109,7 @@ public class SampleRealm extends AuthorizingRealm {
 		Subject currentUser = SecurityUtils.getSubject();
 		if(null != currentUser){
 			Session session = currentUser.getSession();
-			Lg.debug(getClass(),"Session默认超时时间为[" + session.getTimeout() + "]毫秒");
+			Lg.info(SampleRealm.class,"Session默认超时时间为[" + session.getTimeout() + "]毫秒");
 			if(null != session){
 				session.setAttribute(key, value);
 			}
