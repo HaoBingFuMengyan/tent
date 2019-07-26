@@ -29,14 +29,42 @@
         </property>
     </bean>
 
-    <!-- 引入属性文件 -->
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <!-- 开发环境 -->
+    <bean id="development"
+          class="com.tent.common.spring.Props">
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
         <property name="ignoreResourceNotFound" value="true" />
         <property name="locations">
             <list>
                 <value>classpath:application.dev.properties</value>
+                <value>classpath:config.properties</value>
+                <value>classpath:shiro-config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 测试环境 -->
+    <bean id="test"
+          class="com.tent.common.spring.Props">
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="locations">
+            <list>
+                <value>classpath:application.test.properties</value>
+                <value>classpath:config.properties</value>
+                <value>classpath:shiro-config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 生产环境 -->
+    <bean id="production"
+          class="com.tent.common.spring.Props">
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="locations">
+            <list>
+                <value>classpath:application.prod.properties</value>
                 <value>classpath:config.properties</value>
                 <value>classpath:shiro-config.properties</value>
             </list>
