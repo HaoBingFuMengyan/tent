@@ -10,6 +10,7 @@
     <meta name='copyright' content='codeglim'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="${ctx}/images/logo.jpg" type="image/x-icon" />
 
     <!-- Title Tag -->
     <title>Bizpro  &minus; One Page Business and Corporate HTML Template</title>
